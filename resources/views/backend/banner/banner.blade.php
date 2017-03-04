@@ -54,7 +54,7 @@
                             <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.banner.get.create') }}">Create Banner</a><br>
                             @if(count($banners) == 0)
-                                <br><p align="center">No banners available<p>
+                                <br><p align="center">No banner available<p>
                             @else
                                 <table class="table">
                                     <thead class="text-primary">
@@ -76,8 +76,8 @@
 
                                 </table>
                             @endif
-                            {{--{!! $banners->links() !!}
-                            <div class="pagination">--}}
+                            {!! $banners->links() !!}
+                            {{--<div class="pagination">--}}
 
                                 {{--@if($banners->currentPage() !== 1)
                                     <a href ="{{ $banners->previousPageUrl() }}" class="paginate"><span class="fa fa-caret-left"></span></a>

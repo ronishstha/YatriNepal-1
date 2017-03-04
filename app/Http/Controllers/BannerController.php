@@ -52,11 +52,13 @@ class BannerController extends Controller
         $banner->title = $request['title'];
         $banner->image = $request['image'];
         $banner->description = $request['description'];
+
         //-----requires changes-------
         $banner->status = "published, unpublished, trash";
         $user = User::where('id', 2)->first();
         $banner->user_id = $user->id;
         //-----------------------
+
         $banner->update();
         return redirect()->route('backend.banner')->with(['success' => 'successfully updated']);
     }

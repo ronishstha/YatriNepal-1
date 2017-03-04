@@ -76,8 +76,8 @@ class PageController extends Controller
     }
 
     public function getSinglePage($page_slug){
-        $page=Page::where('slug',$page_slug)
-            ->first();
+        $page = Page::where('slug',$page_slug)
+                ->first();
         return view('backend.pages.single_page', ['page' => $page]);
     }
 }

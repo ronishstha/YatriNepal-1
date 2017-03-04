@@ -75,6 +75,26 @@ Route::post('category/create', [
     'uses' => 'CategoriesController@postCategory',
     'as'  => 'backend.category.create'
 ]);
+
+Route::get('category/edit/{category_id}', [
+    'uses' => 'CategoriesController@getUpdate',
+    'as'  => 'backend.category.get.update'
+]);
+
+Route::post('category/update', [
+    'uses' => 'CategoriesController@postUpdate',
+    'as' => 'backend.category.post.update'
+]);
+
+Route::get('category/delete/{category_id}', [
+    'uses' => 'CategoriesController@getDelete',
+    'as' => 'backend.category.delete'
+]);
+
+Route::get('category/single/{category_slug}', [
+    'uses' => 'CategoriesController@getSingleCategory',
+    'as'  => 'backend.category.single.category'
+]);
 //-------------------------end of category route---------------------------------
 
 //--------------------------banner route----------------------------------

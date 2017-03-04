@@ -7,7 +7,6 @@
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Update Page</h4>
-                            <p class="category">Complete your profile</p>
                         </div>
                         <div class="card-content">
                             <form action="{{ route('backend.pages.post.update') }}" method="post">

@@ -33,16 +33,16 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="orange">
-                            <h4 class="title" align="center">{{ ucfirst($banner->title) }} | Last modified by: {{ $banner->user->name }}</h4>
+                            <h4 class="title" align="center">{{ ucfirst($category->title) }} | Last modified by: {{ $category->user->name }}</h4>
                             <p class="category" align="center">Last updated on
-                                    {{ $banner->created_at }}
+                                    {{ $category->created_at }}
                             </p>
                         </div>
                         <div class="card-content table-responsive">
-                            <p align="center">{{ $banner->description }}</p>
-                            <div class="single-button">N
-                            <button class="btn-edit"><a href="{{ route('backend.banner.get.update', ['banner_id' => $banner->id]) }}">Edit</a></button>
-                            <button class="btn-delete"><a href="{{ route('backend.banner.delete', ['banner_id' => $banner->id]) }}">Delete</a></button>
+                            <p align="center">{{ $category->description }}</p>
+                            <div class="single-button">
+                            <button class="btn-edit"><a href="{{ route('backend.category.get.update', ['category_id' => $category->id]) }}">Edit</a></button>
+                            <button class="btn-delete"><a href="{{ route('backend.category.delete', ['category_id' => $category->id]) }}">Delete</a></button>
                             </div>
                         </div>
                     </div>

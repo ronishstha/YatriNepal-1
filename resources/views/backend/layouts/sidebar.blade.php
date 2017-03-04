@@ -44,12 +44,7 @@
                     <p>Notifications</p>
                 </a>
             </li>
-            <li {{ Request::is('create') ? 'class=active' : '' }}>
-                <a href="{{ route('backend.pages.get.create') }}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Create</p>
-                </a>
-            </li>
+
             <li {{Request::is('banner') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.banner') }}">
                     <i class="material-icons">question_answer</i>
@@ -61,12 +56,6 @@
                 <a href="{{ route('backend.category') }}">
                 <i class="material-icons">comment</i>
                 <p>Category</p>
-                </a>
-            </li>
-            <li {{ Request::is('createpost') ? 'class=active' : ''}}>
-                <a href="{{ route('backend.create.post') }}">
-                    <i class="material-icons">comment</i>
-                    <p>CreatePost</p>
                 </a>
             </li>
         </ul>
