@@ -33,7 +33,7 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="orange">
-                            <h4 class="title" align="center">{{ ucfirst($page->title) }} | Page: {{ $page->page }}</h4>
+                            <h4 class="title" align="center">{{ ucfirst($page->title) }} | Page: {{ $page->page }} | Last modified by : {{ $page->user->name }}</h4>
                             <p class="category" align="center">Last updated on
                                     {{ $page->created_at }}
                             </p>

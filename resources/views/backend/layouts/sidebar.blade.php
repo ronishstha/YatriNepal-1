@@ -50,12 +50,13 @@
                     <p>Create</p>
                 </a>
             </li>
-            <li {{ Request::is('post') ? 'class=active' : '' }}>
-                <a href="{{ route('backend.post') }}">
-                <i class="material-icons">question_answer</i>
-                <p>Post</p>
+            <li {{Request::is('banner') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.banner') }}">
+                    <i class="material-icons">question_answer</i>
+                    <p>Banner</p>
                 </a>
             </li>
+
             <li {{ Request::is('category') ? 'class=active' : ''}}>
                 <a href="{{ route('backend.category') }}">
                 <i class="material-icons">comment</i>

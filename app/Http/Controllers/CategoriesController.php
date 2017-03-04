@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\User;
 
 class CategoriesController extends Controller
 {
     public function getCategory(){
         $categories = Category::all();
-        return view('backend.category', ['categories' => $categories]);
+        return view('backend.category.category', ['categories' => $categories]);
     }
 
     public function postCategory(Request $request){
@@ -20,7 +21,9 @@ class CategoriesController extends Controller
         $slug = $request['name'];
         $pages->name = $request['name'];
         $pages->slug = str_slug($slug,'-');
-        $pages->save();
+        $pages->status = "published, unpublished, trash";
+        $user = User::first();
+        $user->categories()->save($pages);
         return redirect()->route('backend.category');
     }
 }

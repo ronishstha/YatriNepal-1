@@ -6,11 +6,11 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Create Page</h4>
+                            <h4 class="title">Create Banner</h4>
                             <p class="category"></p>
                         </div>
                         <div class="card-content">
-                            <form action="{{ route('backend.create.posts') }}" method="post">
+                            <form action="{{ route('backend.banner.post.create') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">
@@ -24,35 +24,18 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Page</label>
-                                            <select class="form-control" name="page" id="page" value="{{ Request::old('page') }}">
-                                                <option>Page</option>
-                                                <option>Home</option>
-                                                <option>About</option>
-                                                <option>Contact</option>
-                                                <option>Career</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Category</label>
-                                            <select class="form-control" name="category" id="category">
-                                                @foreach($categories as $category)
-                                                    <option>{{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <label class="control-label">Image</label>
+                                            <input type="text" class="form-control" name="image" id="image" value="{{ Request::old('image') }}">
                                         </div>
                                     </div>
                                 </div>
 
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Content</label>
-                                            <textarea row=20 class="form-control" name="content" id="content" value="{{ Request::old('content') }}"></textarea>
+                                            <label class="control-label">Description</label>
+                                            <textarea row=20 class="form-control" name="description" id="description" value="{{ Request::old('description') }}"></textarea>
                                         </div>
                                     </div>
                                 </div>

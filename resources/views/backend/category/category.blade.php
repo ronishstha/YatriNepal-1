@@ -10,7 +10,7 @@
                             <p class="category"></p>
                         </div>
                         <div class="card-content">
-                            <form action="{{ route('backend.create.category') }}" method="post">
+                            <form action="{{ route('backend.category.create') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">

@@ -28,6 +28,7 @@
         .btn-view a{
             color: ghostwhite;
         }
+
         .pagination{
             margin-left: 550px;
         }
@@ -35,6 +36,8 @@
             color:black;
             font-size:25px;
         }
+
+
 
     </style>
     <div class="content">
@@ -48,9 +51,10 @@
                         </div>
 
                         <div class="card-content table-responsive">
-                            <i class="material-icons">note_add</i><a href="{{ route('backend.pages.get.create') }}">Create Page</a>
+                            <i class="material-icons create">note_add</i>
+                            <a href="{{ route('backend.pages.get.create') }}">Create Page</a><br/>
                             @if(count($pages) == 0)
-                                <p>No pages available<p>
+                                <br><p align="center">No pages available<p>
                             @else
                             <table class="table">
                                 <thead class="text-primary">
