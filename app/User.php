@@ -17,4 +17,12 @@ class User extends Model
     public function banners(){
         return $this->hasMany('App\Banner');
     }
+
+    public function countries(){
+        return $this->hasMany('App\Country');
+    }
+
+    public function destinations(){
+        return $this->hasMany('App\Destination');
+    }
 }

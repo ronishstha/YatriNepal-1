@@ -19,11 +19,11 @@ class CategoriesController extends Controller
             'description' => 'required'
         ]);
         $category = new Category();
+
+        $category->description = $request['description'];
         $slug = $request['title'];
         $category->title = $request['title'];
         $category->slug = str_slug($slug,'-');
-        $category->description = $request['description'];
-
         //--------------------requires changes----------------
         $category->status = "published, unpublished, trash";
         $user = User::first();
@@ -45,6 +45,9 @@ class CategoriesController extends Controller
         ]);
         $category = Category::findorFail($request['category_id']);
         $category->title = $request['title'];
+        $slug = $request['title'];
+        $category->title = $request['title'];
+        $category->slug = str_slug($slug,'-');
         $category->description = $request['description'];
 
         //--------------------requires changes----------------

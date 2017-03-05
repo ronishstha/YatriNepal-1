@@ -128,12 +128,118 @@ Route::get('banner/delete/{banner_id}', [
     'as'   => 'backend.banner.delete'
 ]);
 
-Route::get('banner/single/{banner_id}', [
+Route::get('banner/single/{banner_slug}', [
     'uses' => 'BannerController@getSingleBanner',
     'as'   => 'backend.banner.single.banner'
 ]);
 //----------------------end of banner route---------------------
 
+
+//---------------------------country route------------------------
+
+Route::get('country', [
+    'uses' => 'CountriesController@getCountry',
+    'as'   => 'backend.country'
+]);
+
+Route::get('country/create', [
+    'uses' => 'CountriesController@getCreateCountry',
+    'as'  => 'backend.country.get.create'
+]);
+
+Route::post('country/create', [
+    'uses' => 'CountriesController@postCreateCountry',
+    'as'   => 'backend.country.post.create'
+]);
+
+Route::get('country/edit/{country_id}', [
+    'uses' => 'CountriesController@getUpdate',
+    'as'   => 'backend.country.get.update'
+]);
+
+Route::post('country/update', [
+    'uses' => 'CountriesController@postUpdate',
+    'as'   => 'backend.country.post.update'
+]);
+
+Route::get('country/delete/{country_id}', [
+    'uses' => 'CountriesController@getDelete',
+    'as'   => 'backend.country.delete'
+]);
+
+//--------------------------end of country route----------------------------
+
+//-----------------------Destination route---------------------------
+
+Route::get('destination', [
+    'uses' => 'DestinationsController@getDestination',
+    'as'   => 'backend.destination'
+]);
+
+Route::get('destination/create', [
+    'uses' => 'DestinationsController@getCreateDestination',
+    'as'  => 'backend.destination.get.create'
+]);
+
+Route::post('destination/create', [
+    'uses' => 'DestinationsController@postCreateDestination',
+    'as'  => 'backend.destination.post.create'
+]);
+
+Route::get('destination/edit/{destination_slug', [
+    'uses' => 'DestinationsController@getUpdate',
+    'as'  => 'backend.destination.get.update'
+]);
+
+Route::post('destination/update', [
+    'uses' => 'DestinationsController@postUpdate',
+    'as' => 'backend.destination.post.update'
+]);
+
+Route::get('destination/delete/{destination_id}', [
+    'uses' => 'DestinationsController@getDelete',
+    'as' => 'backend.destination.delete'
+]);
+
+Route::get('destination/single/{category_slug}', [
+    'uses' => 'DestinationsController@getSingleDestination',
+    'as'  => 'backend.destination.single.destination'
+]);
+//-------------------------end of destination route---------------------------------
+
+//-----------------------Region route---------------------------
+
+Route::get('region', [
+    'uses' => 'RegionsController@getRegion',
+    'as'   => 'backend.region'
+]);
+
+Route::get('region/create', [
+    'uses' => 'RegionsController@getCreateRegion',
+    'as'  => 'backend.region.get.create'
+]);
+
+Route::post('region/create', [
+    'uses' => 'RegionsController@postCreateRegion',
+    'as'  => 'backend.region.post.create'
+]);
+
+Route::get('region/edit/{region_slug', [
+    'uses' => 'RegionsController@getUpdate',
+    'as'  => 'backend.region.get.update'
+]);
+
+Route::post('region/update', [
+    'uses' => 'RegionsController@postUpdate',
+    'as' => 'backend.region.post.update'
+]);
+
+Route::get('region/delete/{region_id}', [
+    'uses' => 'RegionsController@getDelete',
+    'as' => 'backend.region.delete'
+]);
+
+//-------------------------end of region route---------------------------------
 Route::get('post', [
    'uses' => 'PostsController@getPost',
     'as' => 'backend.post'

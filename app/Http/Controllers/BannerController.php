@@ -25,9 +25,11 @@ class BannerController extends Controller
         ]);
 
         $banner = new Banner();
+        $slug = $request['title'];
         $banner->title = $request['title'];
         $banner->image = $request['image'];
         $banner->description = $request['description'];
+        $banner->slug = str_slug($slug,'-');
         //-----requires changes-------
         $banner->status = "published, unpublished, trash";
         $user = User::first();
@@ -49,9 +51,11 @@ class BannerController extends Controller
             'description' => 'required'
         ]);
         $banner = Banner::findOrFail($request['banner_id']);
+        $slug = $request['title'];
         $banner->title = $request['title'];
         $banner->image = $request['image'];
         $banner->description = $request['description'];
+        $banner->slug = str_slug($slug,'-');
 
         //-----requires changes-------
         $banner->status = "published, unpublished, trash";
@@ -69,8 +73,9 @@ class BannerController extends Controller
         return redirect()->route('backend.banner');
     }
 
-    public function getSingleBanner($banner_id){
-        $banner=Banner::findorFail($banner_id);
+    public function getSingleBanner($banner_slug){
+        $banner = Banner::where('slug', $banner_slug)
+                        ->first();
         return view('backend.banner.single_banner', ['banner' => $banner]);
 
     }

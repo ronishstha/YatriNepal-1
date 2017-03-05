@@ -40,34 +40,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Content</label>
-                                            <textarea row=20 class="form-control" name="content" id="content" value="{{ Request::old('content') }}"></textarea>
+                                            <textarea row=20 class="form-control" name="content" id="content">{{ Request::old('content') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
 
-
-
                                 <button type="submit" class="btn btn-primary pull-right">Create</button>
                                 <div class="clearfix"></div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-profile">
-                        <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="../assets/img/avatar.png" />
-                            </a>
-                        </div>
-
-                        <div class="content">
-                            <h6 class="category text-gray">CEO / Co-Founder</h6>
-                            <h4 class="card-title">Ronish Shrestha</h4>
-                            <p class="card-content">
-                                Web Developer
-                            </p>
-                            <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
                         </div>
                     </div>
                 </div>

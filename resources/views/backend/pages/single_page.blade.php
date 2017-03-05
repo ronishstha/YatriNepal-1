@@ -35,7 +35,7 @@
                         <div class="card-header" data-background-color="orange">
                             <h4 class="title" align="center">{{ ucfirst($page->title) }} | Page: {{ $page->page }} | Last modified by : {{ $page->user->name }}</h4>
                             <p class="category" align="center">Last updated on
-                                    {{ $page->created_at }}
+                                    {{ $page->updated_at }}
                             </p>
                         </div>
                         <div class="card-content table-responsive">

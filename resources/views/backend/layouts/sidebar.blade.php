@@ -20,34 +20,17 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li {{ Request::is('user*') ? 'class=active' : '' }}>
-                <a href="{{ route('backend.user') }}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                </a>
-            </li>
+
             <li {{ Request::is('pages*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.pages') }}">
                     <i class="material-icons">content_paste</i>
                     <p>Pages</p>
                 </a>
             </li>
-            <li {{ Request::is('icon') ? 'class=active' : '' }}>
-                <a href="{{ route('backend.icon') }}">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>Icons</p>
-                </a>
-            </li>
-            <li {{ Request::is('notification') ? 'class=active' : '' }}>
-                <a href="{{ route('backend.notification') }}">
-                    <i class="material-icons text-gray">notifications</i>
-                    <p>Notifications</p>
-                </a>
-            </li>
 
             <li {{Request::is('banner') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.banner') }}">
-                    <i class="material-icons">question_answer</i>
+                    <i class="material-icons">satellite</i>
                     <p>Banner</p>
                 </a>
             </li>
@@ -56,6 +39,43 @@
                 <a href="{{ route('backend.category') }}">
                 <i class="material-icons">comment</i>
                 <p>Category</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('country') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.country') }}">
+                    <i class="material-icons">airplanemode_active</i>
+                    <p>Country</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('destination') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.destination') }}">
+                    <i class="material-icons">motorcycle</i>
+                    <p>Destination</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('region') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.region') }}">
+                    <i class="material-icons">flight_takeoff</i>
+                    <p>Region</p>
+                </a>
+            </li>
+
+            {{--<i class="material-icons">question_answer</i>--}}
+
+            <li {{ Request::is('icon') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.icon') }}">
+                    <i class="material-icons">bubble_chart</i>
+                    <p>Icons</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('notification') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.notification') }}">
+                    <i class="material-icons text-gray">notifications</i>
+                    <p>Notifications</p>
                 </a>
             </li>
         </ul>

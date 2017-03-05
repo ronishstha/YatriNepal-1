@@ -6,11 +6,11 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Create Destination</h4>
+                            <h4 class="title">Create Region</h4>
                             <p class="category"></p>
                         </div>
                         <div class="card-content">
-                            <form action="{{ route('backend.banner.post.create') }}" method="post">
+                            <form action="{{ route('backend.region.post.create') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">
@@ -24,28 +24,18 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Image</label>
-
-                                            {{------------------------Requires changes--------------------}}
-
-                                            <input type="text" class="form-control" name="image" id="image" value="{{ Request::old('image') }}">
-
-                                            {{-----------------------------------------------------------}}
-
+                                            <label class="control-label">Destination</label>
+                                            <select class="form-control" name="destination" id="destination">
+                                                @if(count($destinations) ==0)
+                                                    <option value=null>No destination available</option>
+                                                @endif
+                                                @foreach($destinations as $destination)
+                                                    <option>{{ $destination->title }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Description</label>
-                                            <textarea row=20 class="form-control" name="description" id="description" value="{{ Request::old('description') }}"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
 
 
                                 <button type="submit" class="btn btn-primary pull-right">Create</button>

@@ -1,45 +1,10 @@
 @extends('backend.layouts.index')
-@section('content')
-    <style>
-        .btn-edit{
-            background-color: dodgerblue;
-            border: none;
-            border-radius: 3px;
-            height: 25px;
-        }
-        .btn-edit a{
-            color: ghostwhite;
-        }
-        .btn-delete{
-            background-color: #e53935;
-            border: none;
-            border-radius: 3px;
-            height: 25px;
-        }
-        .btn-delete a{
-            color: ghostwhite;
-        }
-        .btn-view{
-            background-color: forestgreen;
-            border: none;
-            border-radius: 3px;
-            height: 25px;
-        }
-        .btn-view a{
-            color: ghostwhite;
-        }
-        .pagination{
-            margin-left: 550px;
-        }
-        .create{
-            margin-left: 510px;
-        }
-        .paginate{
-            color:black;
-            font-size:25px;
-        }
 
-    </style>
+@section('style')
+    <link href="{{ URL::asset('/assets/css/table.css') }}" rel="stylesheet"/>
+@endsection
+
+@section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -68,7 +33,7 @@
                                         <tr>
                                             <td><a href="{{ route('backend.banner.single.banner', ['banner_id' => $banner->id]) }}">{{ $banner->title }}</a></td>
                                             <td><button class="btn-edit"><a href="{{ route('backend.banner.get.update', ['banner_id' => $banner->id]) }}">Edit</a></button></td>
-                                            <td><button class="btn-view"><a href="{{ route('backend.banner.single.banner', ['banner_id' => $banner->id])  }}">View</a></button></td>
+                                            <td><button class="btn-view"><a href="{{ route('backend.banner.single.banner', ['banner_slug' => $banner->slug])  }}">View</a></button></td>
                                             <td><button class="btn-delete"><a href="{{ route('backend.banner.delete', ['banner_id' => $banner->id]) }}">Delete</a></button></td>
                                         </tr>
                                     @endforeach

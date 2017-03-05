@@ -1,45 +1,10 @@
 @extends('backend.layouts.index')
+
+@section('style')
+    <link href="{{ URL::asset('/assets/css/table.css') }}" rel="stylesheet"/>
+@endsection
+
 @section('content')
-    <style>
-        .btn-edit{
-            background-color: dodgerblue;
-            border: none;
-            border-radius: 3px;
-            height: 25px;
-        }
-        .btn-edit a{
-            color: ghostwhite;
-        }
-        .btn-delete{
-            background-color: #e53935;
-            border: none;
-            border-radius: 3px;
-            height: 25px;
-        }
-        .btn-delete a{
-            color: ghostwhite;
-        }
-        .btn-view{
-            background-color: forestgreen;
-            border: none;
-            border-radius: 3px;
-            height: 25px;
-        }
-        .btn-view a{
-            color: ghostwhite;
-        }
-
-        .pagination{
-            margin-left: 550px;
-        }
-        .paginate{
-            color:black;
-            font-size:25px;
-        }
-
-
-
-    </style>
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -75,7 +40,6 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-
                             </table>
                             @endif
                             {!! $pages->links() !!}
@@ -88,7 +52,6 @@
                                 <a href ="{{ $pages->nextPageUrl()}}"  class="paginate"><span class="fa fa-caret-right"></span></a>
                                 @endif--}}
                             </div>
-
                         </div>
                     </div>
                 </div>
