@@ -41,8 +41,8 @@ class DestinationsController extends Controller
 
         //-------------------------------
         $country = Country::where('title', $nation)->first();
-        $country->destinations()->associate($country);
-        $user->destinations()->associate($user);
+        $destination->user()->associate($user);
+        $destination->country()->associate($country);
         $destination->save();
 
         return redirect()->route('backend.destination');
