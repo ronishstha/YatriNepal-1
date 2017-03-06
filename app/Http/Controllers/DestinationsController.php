@@ -41,9 +41,9 @@ class DestinationsController extends Controller
 
         //-------------------------------
         $country = Country::where('title', $nation)->first();
-
-        $country->destinations()->save( $user->destinations()->save($destination));
-
+        $country->destinations()->associate($country);
+        $user->destinations()->associate($user);
+        $destination->save();
 
         return redirect()->route('backend.destination');
     }
@@ -87,8 +87,6 @@ class DestinationsController extends Controller
             $destination->delete();
             return redirect()->route('backend.destination');
         }
-
-
 
     public function getSingleDestination($destination_slug){
         $destination = Destination::where('slug', $destination_slug)

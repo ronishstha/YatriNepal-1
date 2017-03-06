@@ -60,6 +60,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="hidden" name="_token" value="{{ Session::token() }}"/>
                                 <button type="submit" class="btn btn-primary pull-right">Create</button>
                                 <div class="clearfix"></div>
                             </form>
