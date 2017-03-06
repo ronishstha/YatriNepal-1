@@ -28,18 +28,17 @@ class PageController extends Controller
             'content' => 'required'
         ]);
         $slug = $request['title'];
-        $pages = new Page();
-        $pages->title = $request['title'];
-        $pages->page = $request['page'];
-        $pages->content = $request['content'];
-        $pages->slug = str_slug($slug, '-');
-
-        //----------requires changes---------
-        $pages->status = "published, unpublished, trash";
+        $page = new Page();
+        $page->title = $request['title'];
+        $page->page = $request['page'];
+        $page->content = $request['content'];
+        $page->slug = str_slug($slug, '-');
+        $page->status = $request['status'];
+        //--------------------requires changes----------------
         $user = User::first();
         //----------requires changes---------
 
-        $user->pages()->save($pages);
+        $user->pages()->save($page);
         return redirect()->route('backend.pages');
     }
 
@@ -58,9 +57,9 @@ class PageController extends Controller
         $page->title = $request['title'];
         $page->page = $request['page'];
         $page->content = $request['content'];
-
+        $page->status = $request['status'];
         //--------------------requires changes----------------
-        $page->status = "published, unpublished, trash";
+
         $user = User::where('id', 2)->first();
         $page->user_id = $user->id;
         //-----------------------------------

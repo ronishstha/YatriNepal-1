@@ -37,8 +37,21 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Content</label>
+                                            <label class="control-label">Description</label>
                                             <textarea row=20 class="form-control" name="description" id="description" >{{ Request::old('description')? Request::old('description') : isset($region)? $region->description : '' }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Status</label>
+                                            <select class="form-control" name="status" id="status">
+                                                <option @if($category->status =="published") selected @endif>published</option>
+                                                <option @if($category->status =="unpublished") selected @endif>unpublished</option>
+                                                <option @if($category->status =="trash") selected @endif>trash</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

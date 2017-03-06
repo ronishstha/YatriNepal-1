@@ -22,7 +22,7 @@ class CreateDestinationsTable extends Migration
             $table->text('description');
             $table->string('slug');
             $table->string('user_id');
-            $table->string('status');
+            $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');
         });
     }
 

@@ -34,9 +34,8 @@ class DestinationsController extends Controller
         $destination->image = $request['image'];
         $destination->description = $request['description'];
         $destination->slug = str_slug($slug,'-');
-        //-----requires changes-------
-
-        $destination->status = "published, unpublished, trash";
+        $destination->status = $request['status'];
+        //--------------------requires changes----------------
         $user = User::first();
 
         //-------------------------------
@@ -69,9 +68,9 @@ class DestinationsController extends Controller
         $destination->country = $request['country'];
         $destination->description = $request['description'];
         $destination->slug = str_slug($slug, '-');
+        $destination->status = $request['status'];
         //-----requires changes-------
 
-        $destination->status = "published, unpublished, trash";
         $user = User::where('id', 2)->first();
         $destination->user_id = $user->id;
 

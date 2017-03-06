@@ -30,8 +30,8 @@ class BannerController extends Controller
         $banner->image = $request['image'];
         $banner->description = $request['description'];
         $banner->slug = str_slug($slug,'-');
-        //-----requires changes-------
-        $banner->status = "published, unpublished, trash";
+        $banner->status = $request['status'];
+        //--------------------requires changes----------------
         $user = User::first();
         //-------------------------------
         $user->banners()->save($banner);
@@ -56,9 +56,9 @@ class BannerController extends Controller
         $banner->image = $request['image'];
         $banner->description = $request['description'];
         $banner->slug = str_slug($slug,'-');
-
+        $banner->status = $request['status'];
         //-----requires changes-------
-        $banner->status = "published, unpublished, trash";
+
         $user = User::where('id', 2)->first();
         $banner->user_id = $user->id;
         //-----------------------

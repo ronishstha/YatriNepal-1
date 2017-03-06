@@ -20,7 +20,7 @@ class CreateRegionsTable extends Migration
             $table->integer('destination_id');
             $table->string('slug');
             $table->string('user_id');
-            $table->string('status');
+            $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');
         });
     }
 

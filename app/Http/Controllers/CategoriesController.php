@@ -24,8 +24,9 @@ class CategoriesController extends Controller
         $slug = $request['title'];
         $category->title = $request['title'];
         $category->slug = str_slug($slug,'-');
+        $category->status = $request['status'];
         //--------------------requires changes----------------
-        $category->status = "published, unpublished, trash";
+
         $user = User::first();
         //------------------------------------------
 
@@ -49,9 +50,10 @@ class CategoriesController extends Controller
         $category->title = $request['title'];
         $category->slug = str_slug($slug,'-');
         $category->description = $request['description'];
+        $category->status = $request['status'];
 
         //--------------------requires changes----------------
-        $category->status = "published, unpublished, trash";
+
         $user = User::where('id', 2)->first();
         $category->user_id = $user->id;
         //-----------------------------------

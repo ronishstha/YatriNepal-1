@@ -34,9 +34,9 @@ class RegionsController extends Controller
         $region->image = $request['image'];
         $region->description = $request['description'];
         $region->slug = str_slug($slug,'-');
+        $region->status = $request['status'];
         //-----requires changes-------
 
-        $region->status = "published, unpublished, trash";
         $user = User::first();
 
         //-------------------------------
@@ -69,9 +69,9 @@ class RegionsController extends Controller
         $region->destination = $request['destination'];
         $region->description = $request['description'];
         $region->slug = str_slug($slug, '-');
+        $region->status = $request['status'];
         //-----requires changes-------
 
-        $region->status = "published, unpublished, trash";
         $user = User::where('id', 2)->first();
         $region->user_id = $user->id;
 

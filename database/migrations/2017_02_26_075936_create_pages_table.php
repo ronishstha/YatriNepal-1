@@ -21,7 +21,7 @@ class CreatePagesTable extends Migration
             $table->text('content');
             $table->text('slug');
             $table->string('user_id');
-            $table->string('status');
+            $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');
         });
     }
 

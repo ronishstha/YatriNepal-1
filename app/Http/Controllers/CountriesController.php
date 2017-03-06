@@ -31,9 +31,8 @@ class CountriesController extends Controller
         $country->title = $request['title'];
         $country->flag = $request['flag'];
         $country->slug = str_slug($slug, '-');
-
-        //----------requires changes---------
-        $country->status = "published, unpublished, trash";
+        $country->status = $request['status'];
+        //--------------------requires changes----------------
         $user = User::first();
         //----------requires changes---------
 
@@ -54,9 +53,9 @@ class CountriesController extends Controller
         $country = Country::findOrFail($request['country_id']);
         $country->title = $request['title'];
         $country->flag = $request['flag'];
-
+        $country->status = $request['status'];
         //--------------------requires changes----------------
-        $country->status = "published, unpublished, trash";
+
         $user = User::where('id', 2)->first();
         $country->user_id = $user->id;
         //-----------------------------------
