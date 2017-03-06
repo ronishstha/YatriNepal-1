@@ -49,7 +49,8 @@ class DestinationsController extends Controller
 
     public function getUpdate($destination_id){
         $destination = Destination::findorFail($destination_id);
-        return view('backend.destination.update_destination', ['destination' => $destination]);
+        $countries = Country::all();
+        return view('backend.destination.update_destination', ['destination' => $destination, 'countries' => $countries]);
     }
 
     public function postUpdate(Request $request)
@@ -65,7 +66,6 @@ class DestinationsController extends Controller
         $nation = $request['country'];
         $destination->title = $request['title'];
         $destination->image = $request['image'];
-        $destination->country = $request['country'];
         $destination->description = $request['description'];
         $destination->slug = str_slug($slug, '-');
         $destination->status = $request['status'];
@@ -75,7 +75,7 @@ class DestinationsController extends Controller
         $destination->user_id = $user->id;
 
         //-------------------------------
-        $country = Country::where('title', $nation);
+        $country = Country::where('title', $nation)->first();
         $destination->country_id = $country->id;
         $destination->update();
         return redirect()->route('backend.destination')->with(['success' => 'successfully updated']);

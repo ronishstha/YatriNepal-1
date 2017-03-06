@@ -25,4 +25,8 @@ class User extends Model
     public function destinations(){
         return $this->hasMany('App\Destination');
     }
+
+    public function regions(){
+        return $this->hasMany('App\Region');
+    }
 }

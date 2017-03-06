@@ -33,7 +33,7 @@
                                     <tbody>
                                     @foreach($regions as $region)
                                         <tr>
-                                            <td><a href="{{ route('backend.region.single.region', ['region_id' => $region->id]) }}">{{ $region->title }}</a></td>
+                                            <td>{{ $region->title }}</td>
                                             <td>{{ $region->destination->title }}</td>
                                             <td>{{ $region->user->name }}</td>
                                             <td>{{ $region->updated_at }}</td>

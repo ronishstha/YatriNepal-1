@@ -26,7 +26,7 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Destination</label>
                                             <select class="form-control" name="destination" id="destination">
-                                                @if(count($destinations) ==0)
+                                                @if(count($destinations) == 0)
                                                     <option value=null>No destination available</option>
                                                 @endif
                                                 @foreach($destinations as $destination)

@@ -50,9 +50,9 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Status</label>
                                             <select class="form-control" name="status" id="status">
-                                                <option @if($category->status =="published") selected @endif>published</option>
-                                                <option @if($category->status =="unpublished") selected @endif>unpublished</option>
-                                                <option @if($category->status =="trash") selected @endif>trash</option>
+                                                <option @if($banner->status =="published") selected @endif>published</option>
+                                                <option @if($banner->status =="unpublished") selected @endif>unpublished</option>
+                                                <option @if($banner->status =="trash") selected @endif>trash</option>
                                             </select>
                                         </div>
                                     </div>

@@ -186,7 +186,7 @@ Route::post('destination/create', [
     'as'  => 'backend.destination.post.create'
 ]);
 
-Route::get('destination/edit/{destination_slug', [
+Route::get('destination/edit/{destination_id}', [
     'uses' => 'DestinationsController@getUpdate',
     'as'  => 'backend.destination.get.update'
 ]);
@@ -224,7 +224,7 @@ Route::post('region/create', [
     'as'  => 'backend.region.post.create'
 ]);
 
-Route::get('region/edit/{region_slug', [
+Route::get('region/edit/{region_slug}', [
     'uses' => 'RegionsController@getUpdate',
     'as'  => 'backend.region.get.update'
 ]);

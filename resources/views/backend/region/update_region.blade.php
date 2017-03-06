@@ -27,7 +27,7 @@
                                             <label class="control-label">Destination</label>
                                             <select class="form-control" name="destination" id="destination">
                                                 @foreach($destinations as $destination)
-                                                    <option @if($destination->destination->title == "$destination->title") selected @endif> {{$destination->title}}</option>
+                                                    <option @if($region->destination->title == "$destination->title") selected @endif> {{$destination->title}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -48,9 +48,9 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Status</label>
                                             <select class="form-control" name="status" id="status">
-                                                <option @if($category->status =="published") selected @endif>published</option>
-                                                <option @if($category->status =="unpublished") selected @endif>unpublished</option>
-                                                <option @if($category->status =="trash") selected @endif>trash</option>
+                                                <option @if($region->status =="published") selected @endif>published</option>
+                                                <option @if($region->status =="unpublished") selected @endif>unpublished</option>
+                                                <option @if($region->status =="trash") selected @endif>trash</option>
                                             </select>
                                         </div>
                                     </div>

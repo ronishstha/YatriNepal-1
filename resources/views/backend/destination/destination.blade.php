@@ -32,7 +32,7 @@
                                     <tbody>
                                     @foreach($destinations as $destination)
                                         <tr>
-                                            <td><a href="{{ route('backend.destination.single.destination', ['destination_id' => $destination->id]) }}">{{ $destination->title }}</a></td>
+                                            <td><a href="{{ route('backend.destination.single.destination', ['destination_slug' => $destination->slug]) }}">{{ $destination->title }}</a></td>
                                             <td>{{ $destination->country->title }}</td>
                                             <td><button class="btn-edit"><a href="{{ route('backend.destination.get.update', ['destination_id' => $destination->id]) }}">Edit</a></button></td>
                                             <td><button class="btn-view"><a href="{{ route('backend.destination.single.destination', ['destination_slug' => $destination->slug])  }}">View</a></button></td>
