@@ -63,14 +63,14 @@
                 </a>
             </li>
 
-            {{--<i class="material-icons">question_answer</i>--}}
-
-            <li {{ Request::is('icon') ? 'class=active' : '' }}>
-                <a href="{{ route('backend.icon') }}">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>Icons</p>
+            <li {{ Request::is('activity') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.activity') }}">
+                    <i class="material-icons">pool</i>
+                    <p>Activity</p>
                 </a>
             </li>
+
+            {{--<i class="material-icons">question_answer</i>--}}
 
             <li {{ Request::is('notification') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.notification') }}">

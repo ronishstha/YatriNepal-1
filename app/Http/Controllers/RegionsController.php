@@ -80,12 +80,10 @@ class RegionsController extends Controller
         return redirect()->route('backend.region');
     }
 
-
-
-    public function getSingleRegion($region_slug){
+    /*public function getSingleRegion($region_slug){
         $region = Region::where('slug', $region_slug)
             ->first();
         return view('backend.region.single_region', ['region' => $region]);
 
-    }
+    }*/
 }

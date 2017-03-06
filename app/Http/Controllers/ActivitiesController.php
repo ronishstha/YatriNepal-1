@@ -1,0 +1,82 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Activity;
+use App\User;
+use App\Region;
+
+class ActivitiesController extends Controller
+{
+    public function getActivity(){
+        $activities = Activity::orderBy('created_at', 'desc')->paginate(5);
+        return view('backend.activity.activity', ['activities' => $activities]);
+    }
+
+    public function getCreateActivity(){
+        $regions = Region::all();
+        return view('backend.activity.create_activity', ['regions' => $regions]);
+    }
+
+    public function postCreateActivity(Request $request){
+        $this->validate($request, [
+            'title' => 'required',
+            'region' => 'required'
+        ]);
+
+        $activity = new Activity();
+        $slug = $request['title'];
+        $area = $request['region'];
+        $activity->title = $request['title'];
+        $activity->slug = str_slug($slug,'-');
+        $activity->status = $request['status'];
+        //-----requires changes-------
+
+        $user = User::first();
+
+        //-------------------------------
+        $region = Region::where('title', $area)->first();
+        $activity->user()->associate($user);
+        $activity->region()->associate($region);
+        $activity->save();
+
+        return redirect()->route('backend.activity');
+    }
+
+    public function getUpdate($activity_id){
+        $activity = Activity::findorFail($activity_id);
+        $regions = Region::all();
+        return view('backend.activity.update_activity', ['activity' => $activity, 'regions' => $regions]);
+    }
+
+    public function postUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'region' => 'required',
+        ]);
+        $activity = Activity::findOrFail($request['activity_id']);
+        $slug = $request['title'];
+        $area = $request['region'];
+        $activity->title = $request['title'];
+        $activity->slug = str_slug($slug, '-');
+        $activity->status = $request['status'];
+        //-----requires changes-------
+
+        $user = User::where('id', 2)->first();
+        $activity->user_id = $user->id;
+
+        //-------------------------------
+        $region = Region::where('title', $area)->first();
+        $activity->region_id = $region->id;
+        $activity->update();
+        return redirect()->route('backend.activity')->with(['success' => 'successfully updated']);
+    }
+
+    public function getDelete($activity_id){
+        $activity = Activity::findOrFail($activity_id);
+        $activity->delete();
+        return redirect()->route('backend.activity');
+    }
+}

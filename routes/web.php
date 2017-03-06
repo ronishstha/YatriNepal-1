@@ -240,6 +240,40 @@ Route::get('region/delete/{region_id}', [
 ]);
 
 //-------------------------end of region route---------------------------------
+
+//-----------------------Activity route---------------------------
+
+Route::get('activity', [
+    'uses' => 'ActivitiesController@getActivity',
+    'as'   => 'backend.activity'
+]);
+
+Route::get('activity/create', [
+    'uses' => 'ActivitiesController@getCreateActivity',
+    'as'  => 'backend.activity.get.create'
+]);
+
+Route::post('activity/create', [
+    'uses' => 'ActivitiesController@postCreateActivity',
+    'as'  => 'backend.activity.post.create'
+]);
+
+Route::get('activity/edit/{activity_id}', [
+    'uses' => 'ActivitiesController@getUpdate',
+    'as'  => 'backend.activity.get.update'
+]);
+
+Route::post('activity/update', [
+    'uses' => 'ActivitiesController@postUpdate',
+    'as' => 'backend.activity.post.update'
+]);
+
+Route::get('activity/delete/{activity_id}', [
+    'uses' => 'ActivitiesController@getDelete',
+    'as' => 'backend.activity.delete'
+]);
+
+//-------------------------end of activity route---------------------------------
 Route::get('post', [
    'uses' => 'PostsController@getPost',
     'as' => 'backend.post'
