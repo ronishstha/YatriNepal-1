@@ -1,2 +1,2 @@
 # YatriNepal
-Yatri Nepal Site
+Travel Web portal
