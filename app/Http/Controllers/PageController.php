@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Page;
 use App\User;
 
@@ -34,10 +35,7 @@ class PageController extends Controller
         $page->content = $request['content'];
         $page->slug = str_slug($slug, '-');
         $page->status = $request['status'];
-        //--------------------requires changes----------------
-        $user = User::first();
-        //----------requires changes---------
-
+        $user = Auth::user();
         $user->pages()->save($page);
         return redirect()->route('backend.pages');
     }

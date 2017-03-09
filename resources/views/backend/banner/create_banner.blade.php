@@ -6,7 +6,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Create Destination</h4>
+                            <h4 class="title">Create Banner</h4>
                             <p class="category"></p>
                         </div>
                         <div class="card-content">

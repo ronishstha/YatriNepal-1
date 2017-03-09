@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Banner;
 use App\User;
 
@@ -31,11 +32,8 @@ class BannerController extends Controller
         $banner->description = $request['description'];
         $banner->slug = str_slug($slug,'-');
         $banner->status = $request['status'];
-        //--------------------requires changes----------------
-        $user = User::first();
-        //-------------------------------
+        $user = Auth::user();
         $user->banners()->save($banner);
-
         return redirect()->route('backend.banner');
     }
 
@@ -57,12 +55,8 @@ class BannerController extends Controller
         $banner->description = $request['description'];
         $banner->slug = str_slug($slug,'-');
         $banner->status = $request['status'];
-        //-----requires changes-------
-
-        $user = User::where('id', 2)->first();
+        $user = Auth::user();
         $banner->user_id = $user->id;
-        //-----------------------
-
         $banner->update();
         return redirect()->route('backend.banner')->with(['success' => 'successfully updated']);
     }

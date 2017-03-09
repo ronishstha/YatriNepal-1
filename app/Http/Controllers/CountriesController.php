@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Country;
 use App\User;
 
 class CountriesController extends Controller
@@ -32,10 +33,7 @@ class CountriesController extends Controller
         $country->flag = $request['flag'];
         $country->slug = str_slug($slug, '-');
         $country->status = $request['status'];
-        //--------------------requires changes----------------
-        $user = User::first();
-        //----------requires changes---------
-
+        $user = Auth::user();
         $user->countries()->save($country);
         return redirect()->route('backend.country');
     }
@@ -54,12 +52,8 @@ class CountriesController extends Controller
         $country->title = $request['title'];
         $country->flag = $request['flag'];
         $country->status = $request['status'];
-        //--------------------requires changes----------------
-
-        $user = User::where('id', 2)->first();
+        $user = Auth::user();
         $country->user_id = $user->id;
-        //-----------------------------------
-
         $country->update();
         return redirect()->route('backend.country')->with(['success' => 'successfully updated']);
     }

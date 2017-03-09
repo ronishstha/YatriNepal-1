@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Region;
 use App\Destination;
 use App\User;
@@ -31,11 +32,7 @@ class RegionsController extends Controller
         $region->title = $request['title'];
         $region->slug = str_slug($slug,'-');
         $region->status = $request['status'];
-        //-----requires changes-------
-
-        $user = User::first();
-
-        //-------------------------------
+        $user = Auth::user();
         $destination = Destination::where('title', $travel)->first();
         $region->user()->associate($user);
         $region->destination()->associate($destination);
@@ -62,12 +59,8 @@ class RegionsController extends Controller
         $region->title = $request['title'];
         $region->slug = str_slug($slug, '-');
         $region->status = $request['status'];
-        //-----requires changes-------
-
-        $user = User::where('id', 2)->first();
+        $user = Auth::user();
         $region->user_id = $user->id;
-
-        //-------------------------------
         $destination = Destination::where('title', $travel)->first();
         $region->destination_id = $destination->id;
         $region->update();

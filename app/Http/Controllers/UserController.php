@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function getLogout(){
         Auth::logout();
-        return redirect()->route('admin.logout');
+        return redirect()->route('frontend.index');
     }
 
     public function postLogin(Request $request){
@@ -26,6 +26,6 @@ class UserController extends Controller
         if(!Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
             return redirect()->back()->with(['fail' => 'Name and password do not match']);
         }
-        return redirect()->route('/');
+        return redirect()->route('backend.dashboard');
     }
 }

@@ -14,56 +14,56 @@
 
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li {{ Request::is('/') ? 'class=active' : '' }}>
+            <li {{ Request::is('/admin') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.dashboard') }}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
 
-            <li {{ Request::is('pages*') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/pages*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.pages') }}">
                     <i class="material-icons">content_paste</i>
                     <p>Pages</p>
                 </a>
             </li>
 
-            <li {{Request::is('banner') ? 'class=active' : '' }}>
+            <li {{Request::is('admin/banner') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.banner') }}">
                     <i class="material-icons">satellite</i>
                     <p>Banner</p>
                 </a>
             </li>
 
-            <li {{ Request::is('category') ? 'class=active' : ''}}>
+            <li {{ Request::is('admin/category') ? 'class=active' : ''}}>
                 <a href="{{ route('backend.category') }}">
                 <i class="material-icons">comment</i>
                 <p>Category</p>
                 </a>
             </li>
 
-            <li {{ Request::is('country') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/country') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.country') }}">
                     <i class="material-icons">airplanemode_active</i>
                     <p>Country</p>
                 </a>
             </li>
 
-            <li {{ Request::is('destination') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/destination') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.destination') }}">
                     <i class="material-icons">motorcycle</i>
                     <p>Destination</p>
                 </a>
             </li>
 
-            <li {{ Request::is('region') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/region') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.region') }}">
                     <i class="material-icons">flight_takeoff</i>
                     <p>Region</p>
                 </a>
             </li>
 
-            <li {{ Request::is('activity') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/activity') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.activity') }}">
                     <i class="material-icons">pool</i>
                     <p>Activity</p>
@@ -72,7 +72,7 @@
 
             {{--<i class="material-icons">question_answer</i>--}}
 
-            <li {{ Request::is('notification') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/notification') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.notification') }}">
                     <i class="material-icons text-gray">notifications</i>
                     <p>Notifications</p>
@@ -95,12 +95,6 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="material-icons">dashboard</i>
-                            <p class="hidden-lg hidden-md">Dashboard</p>
-                        </a>
-                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="material-icons">notifications</i>
@@ -120,6 +114,11 @@
                             <i class="material-icons">person</i>
                             <p class="hidden-lg hidden-md">Profile</p>
                         </a>
+                    </li>
+                    <li>
+                        @if(Auth::check())
+                            <a href="{{ route('admin.logout') }}">Log out</a>
+                        @endif
                     </li>
                 </ul>
 

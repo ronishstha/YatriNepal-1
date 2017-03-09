@@ -1,4 +1,4 @@
-<?php
+,<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +14,7 @@
 
 Route::get('/', function(){
     return view('frontend.index');
-});
-
-Route::get('/', [
-    'uses' => 'UserController@getLogout',
-    'as'   => 'admin.logout'
-]);
+})->name('frontend.index');
 
 Route::get('login', [
     'uses' => 'UserController@getLogin',
@@ -32,7 +27,7 @@ Route::post('login', [
 ]);
 
 //---------------------------------ADMIN MIDDLEWARE------------------------------------
-//----------------------------------------------------'-----------------------------------
+//-------------------------------------------------------------------------------------
 
 Route::group(['prefix' => 'admin',
             'middleware' => 'auth'], function() {
@@ -53,7 +48,7 @@ Route::group(['prefix' => 'admin',
         return view('backend.notification');
     })->name('backend.notification');
 
-//----------------------------------pages route---------------------------------
+//----------------------------------pages route---------------------------------------
     Route::get('pages', [
         'uses' => 'PageController@getPage',
         'as' => 'backend.pages'
@@ -300,6 +295,12 @@ Route::group(['prefix' => 'admin',
     ]);
 
 //-------------------------end of activity route---------------------------------
+
+    Route::get('logout', [
+        'uses' => 'UserController@getLogout',
+        'as'   => 'admin.logout'
+    ]);
+
     Route::get('post', [
         'uses' => 'PostsController@getPost',
         'as' => 'backend.post'

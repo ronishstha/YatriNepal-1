@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Category;
 use App\User;
 
@@ -25,11 +26,7 @@ class CategoriesController extends Controller
         $category->title = $request['title'];
         $category->slug = str_slug($slug,'-');
         $category->status = $request['status'];
-        //--------------------requires changes----------------
-
-        $user = User::first();
-        //------------------------------------------
-
+        $user = Auth::user();
         $user->categories()->save($category);
         return redirect()->route('backend.category');
     }
@@ -51,13 +48,8 @@ class CategoriesController extends Controller
         $category->slug = str_slug($slug,'-');
         $category->description = $request['description'];
         $category->status = $request['status'];
-
-        //--------------------requires changes----------------
-
-        $user = User::where('id', 2)->first();
+        $user = Auth::user();
         $category->user_id = $user->id;
-        //-----------------------------------
-
         $category->update();
         return redirect()->route('backend.category')->with(['success' => 'successfully updated']);
     }

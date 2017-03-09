@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Activity;
 use App\User;
 use App\Region;
@@ -31,11 +32,7 @@ class ActivitiesController extends Controller
         $activity->title = $request['title'];
         $activity->slug = str_slug($slug,'-');
         $activity->status = $request['status'];
-        //-----requires changes-------
-
-        $user = User::first();
-
-        //-------------------------------
+        $user = Auth::user();
         $region = Region::where('title', $area)->first();
         $activity->user()->associate($user);
         $activity->region()->associate($region);
@@ -62,12 +59,8 @@ class ActivitiesController extends Controller
         $activity->title = $request['title'];
         $activity->slug = str_slug($slug, '-');
         $activity->status = $request['status'];
-        //-----requires changes-------
-
-        $user = User::where('id', 2)->first();
+        $user = Auth::user();
         $activity->user_id = $user->id;
-
-        //-------------------------------
         $region = Region::where('title', $area)->first();
         $activity->region_id = $region->id;
         $activity->update();

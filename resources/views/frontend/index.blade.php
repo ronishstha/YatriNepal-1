@@ -1,1 +1,1 @@
-<a href="{{ route('admin.') }}"
+<a href="{{ route('admin.login.get') }}">Login</a>
