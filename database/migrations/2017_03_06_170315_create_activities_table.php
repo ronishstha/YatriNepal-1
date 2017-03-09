@@ -17,7 +17,8 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
-            $table->integer('region_id');
+            $table->integer('region_id')->unsigned();
+            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
             $table->string('slug');
             $table->string('user_id');
             $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');

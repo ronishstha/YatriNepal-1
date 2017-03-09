@@ -18,7 +18,8 @@ class CreateDestinationsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('image');
-            $table->integer('country_id');
+            $table->integer('country_id')->unsigned();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->text('description');
             $table->string('slug');
             $table->string('user_id');
