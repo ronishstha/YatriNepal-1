@@ -34,7 +34,7 @@ class BannerController extends Controller
         $banner->status = $request['status'];
         $user = Auth::user();
         $user->banners()->save($banner);
-        return redirect()->route('backend.banner');
+        return redirect()->route('backend.banner')->with(['success' => 'Successfully created']);
     }
 
     public function getUpdate($banner_id){
@@ -58,13 +58,20 @@ class BannerController extends Controller
         $user = Auth::user();
         $banner->user_id = $user->id;
         $banner->update();
-        return redirect()->route('backend.banner')->with(['success' => 'successfully updated']);
+        return redirect()->route('backend.banner')->with(['success' => 'Successfully updated']);
     }
 
     public function getDelete($banner_id){
         $banner = Banner::findOrFail($banner_id);
         $banner->delete();
-        return redirect()->route('backend.banner');
+        return redirect()->route('backend.banner.delete.page')->with(['success' => 'Successfully deleted']);
+    }
+
+    public function getTrash($banner_id){
+        $banner = Banner::findOrFail($banner_id);
+        $banner->status = "trash";
+        $banner->update();
+        return redirect()->route('backend.banner')->with(['success' => 'Successfully moved to trash']);
     }
 
     public function getSingleBanner($banner_slug){
@@ -72,5 +79,17 @@ class BannerController extends Controller
                         ->first();
         return view('backend.banner.single_banner', ['banner' => $banner]);
 
+    }
+
+    public function DeleteForever(){
+        $banners = Banner::all();
+        return view('backend.banner.trash_banner', ['banners' => $banners ]);
+    }
+
+    public function Restore($banner_id){
+        $banner = Banner::findorFail($banner_id);
+        $banner->status = "published";
+        $banner->update();
+        return redirect()->route('backend.banner');
     }
 }

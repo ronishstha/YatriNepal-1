@@ -1,4 +1,4 @@
-,<?php
+<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +83,22 @@ Route::group(['prefix' => 'admin',
         'uses' => 'PageController@getSinglePage',
         'as' => 'backend.pages.single.page'
     ]);
+
+    Route::get('page/trash/{page_id}', [
+        'uses' => 'PageController@getTrash',
+        'as'  => 'backend.pages.trash'
+    ]);
+
+    Route::get('pages/trash', [
+        'uses' => 'PageController@DeleteForever',
+        'as'   => 'backend.pages.delete.page'
+    ]);
+
+    Route::get('pages/restore/{page_id}', [
+        'uses' => 'PageController@Restore',
+        'as'   => 'backend.pages.restore'
+    ]);
+
 //----------------------end of pages route---------------------------------------
 
 //-----------------------category route---------------------------
@@ -116,6 +132,22 @@ Route::group(['prefix' => 'admin',
         'uses' => 'CategoriesController@getSingleCategory',
         'as' => 'backend.category.single.category'
     ]);
+
+    Route::get('category/trash/{category_id}', [
+        'uses' => 'CategoriesController@getTrash',
+        'as'  => 'backend.category.trash'
+    ]);
+
+    Route::get('category/trash', [
+        'uses' => 'CategoriesController@DeleteForever',
+        'as'   => 'backend.category.delete.page'
+    ]);
+
+    Route::get('category/restore/{category_id}', [
+        'uses' => 'CategoriesController@Restore',
+        'as'   => 'backend.category.restore'
+    ]);
+
 //-------------------------end of category route---------------------------------
 
 //--------------------------banner route----------------------------------
@@ -153,6 +185,22 @@ Route::group(['prefix' => 'admin',
         'uses' => 'BannerController@getSingleBanner',
         'as' => 'backend.banner.single.banner'
     ]);
+
+    Route::get('banner/trash/{banner_id}', [
+        'uses' => 'BannerController@getTrash',
+        'as'  => 'backend.banner.trash'
+    ]);
+
+    Route::get('banner/trash', [
+        'uses' => 'BannerController@DeleteForever',
+        'as'   => 'backend.banner.delete.page'
+    ]);
+
+    Route::get('banner/restore/{banner_id}', [
+        'uses' => 'BannerController@Restore',
+        'as'   => 'backend.banner.restore'
+    ]);
+
 //----------------------end of banner route---------------------
 
 
@@ -187,6 +235,22 @@ Route::group(['prefix' => 'admin',
         'uses' => 'CountriesController@getDelete',
         'as' => 'backend.country.delete'
     ]);
+
+    Route::get('country/trash/{country_id}', [
+        'uses' => 'CountriesController@getTrash',
+        'as'  => 'backend.country.trash'
+    ]);
+
+    Route::get('country/trash', [
+        'uses' => 'CountriesController@DeleteForever',
+        'as'   => 'backend.country.delete.page'
+    ]);
+
+    Route::get('country/restore/{country_id}', [
+        'uses' => 'CountriesController@Restore',
+        'as'   => 'backend.country.restore'
+    ]);
+
 
 //--------------------------end of country route----------------------------
 
@@ -226,6 +290,22 @@ Route::group(['prefix' => 'admin',
         'uses' => 'DestinationsController@getSingleDestination',
         'as' => 'backend.destination.single.destination'
     ]);
+
+    Route::get('destination/trash/{destination_id}', [
+        'uses' => 'DestinationsController@getTrash',
+        'as'  => 'backend.destination.trash'
+    ]);
+
+    Route::get('destination/trash', [
+        'uses' => 'DestinationsController@DeleteForever',
+        'as'   => 'backend.destination.delete.page'
+    ]);
+
+    Route::get('destination/restore/{destination_id}', [
+        'uses' => 'DestinationsController@Restore',
+        'as'   => 'backend.destination.restore'
+    ]);
+
 //-------------------------end of destination route---------------------------------
 
 //-----------------------Region route---------------------------
@@ -259,6 +339,22 @@ Route::group(['prefix' => 'admin',
         'uses' => 'RegionsController@getDelete',
         'as' => 'backend.region.delete'
     ]);
+
+    Route::get('region/trash/{region_id}', [
+       'uses' => 'RegionsController@getTrash',
+        'as'  => 'backend.region.trash'
+    ]);
+
+    Route::get('region/trash', [
+        'uses' => 'RegionsController@DeleteForever',
+        'as'   => 'backend.region.delete.page'
+    ]);
+
+    Route::get('region/restore/{region_id}', [
+        'uses' => 'RegionsController@Restore',
+        'as'   => 'backend.region.restore'
+    ]);
+
 
 //-------------------------end of region route---------------------------------
 
@@ -294,26 +390,26 @@ Route::group(['prefix' => 'admin',
         'as' => 'backend.activity.delete'
     ]);
 
+    Route::get('activity/trash/{activity_id}', [
+        'uses' => 'ActivitiesController@getTrash',
+        'as'  => 'backend.activity.trash'
+    ]);
+
+    Route::get('activity/trash', [
+        'uses' => 'ActivitiesController@DeleteForever',
+        'as'   => 'backend.activity.delete.page'
+    ]);
+
+    Route::get('activity/restore/{activity_id}', [
+        'uses' => 'ActivitiesController@Restore',
+        'as'   => 'backend.activity.restore'
+    ]);
+
 //-------------------------end of activity route---------------------------------
 
     Route::get('logout', [
         'uses' => 'UserController@getLogout',
         'as'   => 'admin.logout'
-    ]);
-
-    Route::get('post', [
-        'uses' => 'PostsController@getPost',
-        'as' => 'backend.post'
-    ]);
-
-    Route::get('post/create', [
-        'uses' => 'PostsController@getCreatePost',
-        'as' => 'backend.create.post'
-    ]);
-
-    Route::post('post/create_post', [
-        'uses' => 'PostsController@postCreatePost',
-        'as' => 'backend.create.posts'
     ]);
 
 });

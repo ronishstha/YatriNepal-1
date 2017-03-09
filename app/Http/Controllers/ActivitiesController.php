@@ -38,7 +38,7 @@ class ActivitiesController extends Controller
         $activity->region()->associate($region);
         $activity->save();
 
-        return redirect()->route('backend.activity');
+        return redirect()->route('backend.activity')->with(['success' => 'Successfully created']);;
     }
 
     public function getUpdate($activity_id){
@@ -64,12 +64,31 @@ class ActivitiesController extends Controller
         $region = Region::where('title', $area)->first();
         $activity->region_id = $region->id;
         $activity->update();
-        return redirect()->route('backend.activity')->with(['success' => 'successfully updated']);
+        return redirect()->route('backend.activity')->with(['success' => 'Successfully updated']);
     }
 
     public function getDelete($activity_id){
         $activity = Activity::findOrFail($activity_id);
         $activity->delete();
+        return redirect()->route('backend.activity.delete.page')->with(['success' => 'Successfully deleted']);
+    }
+
+    public function getTrash($activity_id){
+        $activity = Activity::findOrFail($activity_id);
+        $activity->status = "trash";
+        $activity->update();
+        return redirect()->route('backend.activity')->with(['success' => 'Successfully moved to trash']);
+    }
+
+    public function DeleteForever(){
+        $activities = Activity::all();
+        return view('backend.activity.trash_activity', ['activities' => $activities ]);
+    }
+
+    public function Restore($activity_id){
+        $activity = Activity::findorFail($activity_id);
+        $activity->status = "published";
+        $activity->update();
         return redirect()->route('backend.activity');
     }
 }

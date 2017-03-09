@@ -37,7 +37,7 @@ class PageController extends Controller
         $page->status = $request['status'];
         $user = Auth::user();
         $user->pages()->save($page);
-        return redirect()->route('backend.pages');
+        return redirect()->route('backend.pages')->with(['success' => 'Successfully created']);
     }
 
     public function getUpdate($page_id){
@@ -56,25 +56,40 @@ class PageController extends Controller
         $page->page = $request['page'];
         $page->content = $request['content'];
         $page->status = $request['status'];
-        //--------------------requires changes----------------
-
-        $user = User::where('id', 2)->first();
+        $user = Auth::user();
         $page->user_id = $user->id;
-        //-----------------------------------
-
         $page->update();
-        return redirect()->route('backend.pages')->with(['success' => 'successfully updated']);
+        return redirect()->route('backend.pages')->with(['success' => 'Successfully updated']);
     }
 
     public function getDelete($page_id){
         $page = Page::findOrFail($page_id);
         $page->delete();
-        return redirect()->route('backend.pages');
+        return redirect()->route('backend.pages.delete.page')->with(['success' => 'Successfully deleted']);
+    }
+
+    public function getTrash($page_id){
+        $page = Page::findOrFail($page_id);
+        $page->status = "trash";
+        $page->update();
+        return redirect()->route('backend.pages')->with(['success' => 'Successfully moved to trash']);
     }
 
     public function getSinglePage($page_slug){
         $page = Page::where('slug',$page_slug)
                 ->first();
         return view('backend.pages.single_page', ['page' => $page]);
+    }
+
+    public function DeleteForever(){
+        $pages = Page::all();
+        return view('backend.pages.trash_pages', ['pages' => $pages ]);
+    }
+
+    public function Restore($page_id){
+        $page = Page::findorFail($page_id);
+        $page->status = "published";
+        $page->update();
+        return redirect()->route('backend.pages');
     }
 }

@@ -42,7 +42,7 @@
                             <p align="center">{{ $banner->description }}</p>
                             <div class="single-button">
                             <button class="btn-edit"><a href="{{ route('backend.banner.get.update', ['banner_id' => $banner->id]) }}">Edit</a></button>
-                            <button class="btn-delete"><a href="{{ route('backend.banner.delete', ['banner_id' => $banner->id]) }}">Delete</a></button>
+                            <button class="btn-delete"><a href="{{ route('backend.banner.trash', ['banner_id' => $banner->id]) }}">Delete</a></button>
                             </div>
                         </div>
                     </div>

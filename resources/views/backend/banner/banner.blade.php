@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+    @if(count($errors) > 0)
+        <section class="info-box fail">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </section>
+    @endif
+    @if(Session::has('success'))
+        <section class="info-box success">
+            {{ Session::get('success') }}
+        </section>
+    @endif
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -17,8 +29,23 @@
 
                         <div class="card-content table-responsive">
                             <i class="material-icons create">note_add</i>
-                            <a href="{{ route('backend.banner.get.create') }}">Create Banner</a><br>
-                            @if(count($banners) == 0)
+                            <a href="{{ route('backend.banner.get.create') }}">Create Banner</a>
+                            <a href="{{ route('backend.banner.delete.page') }}">
+                                <i class="material-icons delete">delete</i>
+                            </a>
+                            @php
+                                $count = count($banners);
+                                $i = 0;
+                            @endphp
+                            @foreach($banners as $banner)
+                                @php
+
+                                    if($banner->status == "trash"){
+                                        $i += 1;
+                                }
+                                @endphp
+                            @endforeach
+                            @if(count($banners) == 0 || $count == $i)
                                 <br><p align="center">No banner available<p>
                             @else
                                 <table class="table">
@@ -30,12 +57,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($banners as $banner)
-                                        <tr>
-                                            <td><a href="{{ route('backend.banner.single.banner', ['banner_id' => $banner->id]) }}">{{ $banner->title }}</a></td>
-                                            <td><button class="btn-edit"><a href="{{ route('backend.banner.get.update', ['banner_id' => $banner->id]) }}">Edit</a></button></td>
-                                            <td><button class="btn-view"><a href="{{ route('backend.banner.single.banner', ['banner_slug' => $banner->slug])  }}">View</a></button></td>
-                                            <td><button class="btn-delete"><a href="{{ route('backend.banner.delete', ['banner_id' => $banner->id]) }}">Delete</a></button></td>
-                                        </tr>
+                                        @if($banner->status == "published" || $banner->status == "unpublished")
+                                            <tr>
+                                                <td><a href="{{ route('backend.banner.single.banner', ['banner_id' => $banner->id]) }}">{{ $banner->title }}</a></td>
+                                                <td><button class="btn-edit"><a href="{{ route('backend.banner.get.update', ['banner_id' => $banner->id]) }}">Edit</a></button></td>
+                                                <td><button class="btn-view"><a href="{{ route('backend.banner.single.banner', ['banner_slug' => $banner->slug])  }}">View</a></button></td>
+                                                <td><button class="btn-delete"><a href="{{ route('backend.banner.trash', ['banner_id' => $banner->id]) }}">Delete</a></button></td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                     </tbody>
 

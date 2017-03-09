@@ -1,5 +1,17 @@
 @extends('backend.layouts.index')
+
+@section('style')
+    <link href="{{ URL::asset('/assets/css/table.css') }}" rel="stylesheet"/>
+@endsection
+
 @section('content')
+    @if(count($errors) > 0)
+        <section class="info-box fail">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </section>
+    @endif
     <div class="content">
         <div class="container-fluid">
             <div class="row">

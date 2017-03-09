@@ -28,7 +28,7 @@ class CategoriesController extends Controller
         $category->status = $request['status'];
         $user = Auth::user();
         $user->categories()->save($category);
-        return redirect()->route('backend.category');
+        return redirect()->route('backend.category')->with(['success' => 'Successfully created']);
     }
 
     public function getUpdate($category_id){
@@ -51,18 +51,37 @@ class CategoriesController extends Controller
         $user = Auth::user();
         $category->user_id = $user->id;
         $category->update();
-        return redirect()->route('backend.category')->with(['success' => 'successfully updated']);
+        return redirect()->route('backend.category')->with(['success' => 'Successfully updated']);
     }
 
     public function getDelete($category_id){
         $category = Category::findOrFail($category_id);
         $category->delete();
-        return redirect()->route('backend.category');
+        return redirect()->route('backend.category.delete.page')->with(['success' => 'Successfully deleted']);
+    }
+
+    public function getTrash($category_id){
+        $category = Category::findOrFail($category_id);
+        $category->status = "trash";
+        $category->update();
+        return redirect()->route('backend.category')->with(['success' => 'Successfully moved to trash']);
     }
 
     public function getSingleCategory($category_slug){
         $category = Category::where('slug',$category_slug)
                     ->first();
         return view('backend.category.single_category', ['category' => $category]);
+    }
+
+    public function DeleteForever(){
+        $categories = Category::all();
+        return view('backend.category.trash_category', ['categories' => $categories ]);
+    }
+
+    public function Restore($category_id){
+        $category = Category::findorFail($category_id);
+        $category->status = "published";
+        $category->update();
+        return redirect()->route('backend.category');
     }
 }

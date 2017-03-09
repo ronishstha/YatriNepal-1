@@ -42,7 +42,7 @@
                             <p align="center">{{ $category->description }}</p>
                             <div class="single-button">
                             <button class="btn-edit"><a href="{{ route('backend.category.get.update', ['category_id' => $category->id]) }}">Edit</a></button>
-                            <button class="btn-delete"><a href="{{ route('backend.category.delete', ['category_id' => $category->id]) }}">Delete</a></button>
+                            <button class="btn-delete"><a href="{{ route('backend.category.trash', ['category_id' => $category->id]) }}">Delete</a></button>
                             </div>
                         </div>
                     </div>

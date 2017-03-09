@@ -42,7 +42,7 @@ class DestinationsController extends Controller
         $destination->country()->associate($country);
         $destination->save();
 
-        return redirect()->route('backend.destination');
+        return redirect()->route('backend.destination')->with(['success' => 'Successfully created']);
     }
 
     public function getUpdate($destination_id){
@@ -75,16 +75,34 @@ class DestinationsController extends Controller
         return redirect()->route('backend.destination')->with(['success' => 'successfully updated']);
     }
 
-        public function getDelete($destination_id){
-            $destination = Destination::findOrFail($destination_id);
-            $destination->delete();
-            return redirect()->route('backend.destination');
-        }
+    public function getDelete($destination_id){
+        $destination = Destination::findOrFail($destination_id);
+        $destination->delete();
+        return redirect()->route('backend.destination.delete.page')->with(['success' => 'Successfully deleted']);
+    }
+
+    public function getTrash($destination_id){
+        $destination = Destination::findOrFail($destination_id);
+        $destination->status = "trash";
+        $destination->update();
+        return redirect()->route('backend.destination')->with(['success' => 'Successfully moved to trash']);
+    }
 
     public function getSingleDestination($destination_slug){
         $destination = Destination::where('slug', $destination_slug)
                                     ->first();
         return view('backend.destination.single_destination', ['destination' => $destination]);
+    }
 
+    public function DeleteForever(){
+        $destinations = Destination::all();
+        return view('backend.destination.trash_destination', ['destinations' => $destinations ]);
+    }
+
+    public function Restore($destination_id){
+        $destination = Destination::findorFail($destination_id);
+        $destination->status = "published";
+        $destination->update();
+        return redirect()->route('backend.destination');
     }
 }

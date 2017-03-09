@@ -14,7 +14,7 @@
 
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li {{ Request::is('/admin') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.dashboard') }}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
@@ -28,42 +28,42 @@
                 </a>
             </li>
 
-            <li {{Request::is('admin/banner') ? 'class=active' : '' }}>
+            <li {{Request::is('admin/banner*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.banner') }}">
                     <i class="material-icons">satellite</i>
                     <p>Banner</p>
                 </a>
             </li>
 
-            <li {{ Request::is('admin/category') ? 'class=active' : ''}}>
+            <li {{ Request::is('admin/category*') ? 'class=active' : ''}}>
                 <a href="{{ route('backend.category') }}">
                 <i class="material-icons">comment</i>
                 <p>Category</p>
                 </a>
             </li>
 
-            <li {{ Request::is('admin/country') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/country*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.country') }}">
                     <i class="material-icons">airplanemode_active</i>
                     <p>Country</p>
                 </a>
             </li>
 
-            <li {{ Request::is('admin/destination') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/destination*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.destination') }}">
                     <i class="material-icons">motorcycle</i>
                     <p>Destination</p>
                 </a>
             </li>
 
-            <li {{ Request::is('admin/region') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/region*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.region') }}">
                     <i class="material-icons">flight_takeoff</i>
                     <p>Region</p>
                 </a>
             </li>
 
-            <li {{ Request::is('admin/activity') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/activity*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.activity') }}">
                     <i class="material-icons">pool</i>
                     <p>Activity</p>
@@ -72,7 +72,7 @@
 
             {{--<i class="material-icons">question_answer</i>--}}
 
-            <li {{ Request::is('admin/notification') ? 'class=active' : '' }}>
+            <li {{ Request::is('admin/notification*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.notification') }}">
                     <i class="material-icons text-gray">notifications</i>
                     <p>Notifications</p>
@@ -98,15 +98,14 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="material-icons">notifications</i>
-                            <span class="notification">5</span>
+                            <span class="notification">4</span>
                             <p class="hidden-lg hidden-md">Notifications</p>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Mike John responded to your email</a></li>
-                            <li><a href="#">You have 5 new tasks</a></li>
-                            <li><a href="#">You're now friend with Andrew</a></li>
-                            <li><a href="#">Another Notification</a></li>
-                            <li><a href="#">Another One</a></li>
+                            <li><a href="#">New user subscription</a></li>
+                            <li><a href="#">New bookings receiver</a></li>
+                            <li><a href="#">New user registered</a></li>
+                            <li><a href="#">New email received</a></li>
                         </ul>
                     </li>
                     <li>
@@ -117,11 +116,10 @@
                     </li>
                     <li>
                         @if(Auth::check())
-                            <a href="{{ route('admin.logout') }}">Log out</a>
+                            <a href="{{ route('admin.logout') }}"><strong>Log out</strong></a>
                         @endif
                     </li>
                 </ul>
-
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group  is-empty">
                         <input type="text" class="form-control" placeholder="Search">

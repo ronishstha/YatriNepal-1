@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+    @if(count($errors) > 0)
+        <section class="info-box fail">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </section>
+    @endif
+    @if(Session::has('success'))
+        <section class="info-box success">
+            {{ Session::get('success') }}
+        </section>
+    @endif
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -63,7 +75,22 @@
                         </div>
                         <div class="card-content">
                                 <div class="card-content table-responsive">
-                                    @if(count($categories) == 0)
+                                    <a href="{{ route('backend.category.delete.page') }}">
+                                        <i class="material-icons delete">delete</i>
+                                    </a>
+                                    @php
+                                        $count = count($categories);
+                                        $i = 0;
+                                    @endphp
+                                    @foreach($categories as $banner)
+                                        @php
+
+                                            if($banner->status == "trash"){
+                                                $i += 1;
+                                        }
+                                        @endphp
+                                    @endforeach
+                                    @if(count($categories) == 0 || $count == $i)
                                         <br><p align="center">No category available<p>
                                     @else
                                         <table class="table">
@@ -75,12 +102,14 @@
                                             </thead>
                                             <tbody>
                                             @foreach($categories as $category)
-                                                <tr>
-                                                    <td><a href="{{ route('backend.category.single.category', ['category_id' => $category->id]) }}">{{ $category->title }}</a></td>
-                                                    <td><button class="btn-edit"><a href="{{ route('backend.category.get.update', ['category_id' => $category->id]) }}">Edit</a></button></td>
-                                                    <td><button class="btn-view"><a href="{{ route('backend.category.single.category', ['category_slug' => $category->slug])  }}">View</a></button></td>
-                                                    <td><button class="btn-delete"><a href="{{ route('backend.category.delete', ['category_id' => $category->id]) }}">Delete</a></button></td>
-                                                </tr>
+                                                @if($category->status == "published" || $category->status == "unpublished")
+                                                    <tr>
+                                                        <td><a href="{{ route('backend.category.single.category', ['category_id' => $category->id]) }}">{{ $category->title }}</a></td>
+                                                        <td><button class="btn-edit"><a href="{{ route('backend.category.get.update', ['category_id' => $category->id]) }}">Edit</a></button></td>
+                                                        <td><button class="btn-view"><a href="{{ route('backend.category.single.category', ['category_slug' => $category->slug])  }}">View</a></button></td>
+                                                        <td><button class="btn-delete"><a href="{{ route('backend.category.trash', ['category_id' => $category->id]) }}">Delete</a></button></td>
+                                                    </tr>
+                                                @endif
                                             @endforeach
                                             </tbody>
 

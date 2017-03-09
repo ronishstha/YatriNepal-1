@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+    @if(count($errors) > 0)
+        <section class="info-box fail">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </section>
+    @endif
+    @if(Session::has('success'))
+        <section class="info-box success">
+            {{ Session::get('success') }}
+        </section>
+    @endif
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -17,8 +29,23 @@
 
                         <div class="card-content table-responsive">
                             <i class="material-icons create">note_add</i>
-                            <a href="{{ route('backend.activity.get.create') }}">Create Activity</a><br>
-                            @if(count($activities) == 0)
+                            <a href="{{ route('backend.activity.get.create') }}">Create Activity</a>
+                            <a href="{{ route('backend.activity.delete.page') }}">
+                                <i class="material-icons delete">delete</i>
+                            </a>
+                            @php
+                                $count = count($activities);
+                                $i = 0;
+                            @endphp
+                            @foreach($activities as $activity)
+                                @php
+
+                                    if($activity->status == "trash"){
+                                        $i += 1;
+                                }
+                                @endphp
+                            @endforeach
+                            @if(count($activities) == 0 || $count == $i)
                                 <br><p align="center">No Activity available<p>
                             @else
                                 <table class="table">
@@ -32,14 +59,16 @@
                                     </thead>
                                     <tbody>
                                     @foreach($activities as $activity)
-                                        <tr>
-                                            <td>{{ $activity->title }}</td>
-                                            <td>{{ $activity->region->title }}</td>
-                                            <td>{{ $activity->user->name }}</td>
-                                            <td>{{ $activity->updated_at }}</td>
-                                            <td><button class="btn-edit"><a href="{{ route('backend.activity.get.update', ['activity_id' => $activity->id]) }}">Edit</a></button></td>
-                                            <td><button class="btn-delete"><a href="{{ route('backend.activity.delete', ['activity_id' => $activity->id]) }}">Delete</a></button></td>
-                                        </tr>
+                                        @if($activity->status == "published" || $activity->status == "unpublished")
+                                            <tr>
+                                                <td>{{ $activity->title }}</td>
+                                                <td>{{ $activity->region->title }}</td>
+                                                <td>{{ $activity->user->name }}</td>
+                                                <td>{{ $activity->updated_at }}</td>
+                                                <td><button class="btn-edit"><a href="{{ route('backend.activity.get.update', ['activity_id' => $activity->id]) }}">Edit</a></button></td>
+                                                <td><button class="btn-delete"><a href="{{ route('backend.activity.trash', ['activity_id' => $activity->id]) }}">Delete</a></button></td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                     </tbody>
 

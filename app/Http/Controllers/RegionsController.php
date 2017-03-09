@@ -38,7 +38,7 @@ class RegionsController extends Controller
         $region->destination()->associate($destination);
         $region->save();
 
-        return redirect()->route('backend.region');
+        return redirect()->route('backend.region')->with(['success' => 'Successfully created']);
     }
 
     public function getUpdate($region_id){
@@ -70,6 +70,25 @@ class RegionsController extends Controller
     public function getDelete($region_id){
         $region = Region::findOrFail($region_id);
         $region->delete();
+        return redirect()->route('backend.region.delete.page')->with(['success' => 'Successfully deleted']);
+    }
+
+    public function getTrash($region_id){
+        $region = Region::findOrFail($region_id);
+        $region->status = "trash";
+        $region->update();
+        return redirect()->route('backend.region')->with(['success' => 'Successfully moved to trash']);
+    }
+
+    public function DeleteForever(){
+        $regions = Region::all();
+        return view('backend.region.trash_region', ['regions' => $regions ]);
+    }
+
+    public function Restore($region_id){
+        $region = Region::findorFail($region_id);
+        $region->status = "published";
+        $region->update();
         return redirect()->route('backend.region');
     }
 

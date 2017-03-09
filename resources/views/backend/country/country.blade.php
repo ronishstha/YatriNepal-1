@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+    @if(count($errors) > 0)
+        <section class="info-box fail">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </section>
+    @endif
+    @if(Session::has('success'))
+        <section class="info-box success">
+            {{ Session::get('success') }}
+        </section>
+    @endif
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -17,8 +29,23 @@
 
                         <div class="card-content table-responsive">
                             <i class="material-icons create">note_add</i>
-                            <a href="{{ route('backend.country.get.create') }}">Create Country</a><br/>
-                            @if(count($countries) == 0)
+                            <a href="{{ route('backend.country.get.create') }}">Create Country</a>
+                            <a href="{{ route('backend.country.delete.page') }}">
+                                <i class="material-icons delete">delete</i>
+                            </a>
+                            @php
+                                $count = count($countries);
+                                $i = 0;
+                            @endphp
+                            @foreach($countries as $country)
+                                @php
+
+                                    if($country->status == "trash"){
+                                        $i += 1;
+                                }
+                                @endphp
+                            @endforeach
+                            @if(count($countries) == 0 || $count == $i)
                                 <br><p align="center">No country available<p>
                             @else
                             <table class="table">
@@ -31,13 +58,15 @@
                                 </thead>
                                 <tbody>
                                 @foreach($countries as $country)
-                                    <tr>
-                                        <td>{{ $country->title }}</td>
-                                        <td>-</td>
-                                        <td><button class="btn-edit"><a href="{{ route('backend.country.get.update', ['country_id' => $country->id]) }}">Edit</a></button></td>
-                                        <td><button class="btn-delete"><a href="{{ route('backend.country.delete', ['country_id' => $country->id]) }}">Delete</a></button></td>
-                                        <td>{{ $country->user->name }}</td>
-                                    </tr>
+                                    @if($country->status == "published" || $country->status == "unpublished")
+                                        <tr>
+                                            <td>{{ $country->title }}</td>
+                                            <td>-</td>
+                                            <td><button class="btn-edit"><a href="{{ route('backend.country.get.update', ['country_id' => $country->id]) }}">Edit</a></button></td>
+                                            <td><button class="btn-delete"><a href="{{ route('backend.country.trash', ['country_id' => $country->id]) }}">Delete</a></button></td>
+                                            <td>{{ $country->user->name }}</td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
 

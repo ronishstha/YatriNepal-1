@@ -42,7 +42,7 @@
                             <p align="center">{{ $page->content }}</p>
                             <div class="single-button">
                             <button class="btn-edit"><a href="{{ route('backend.pages.get.update', ['page_id' => $page->id]) }}">Edit</a></button>
-                            <button class="btn-delete"><a href="{{ route('backend.pages.delete', ['page_id' => $page->id]) }}">Delete</a></button>
+                            <button class="btn-delete"><a href="{{ route('backend.pages.trash', ['page_id' => $page->id]) }}">Delete</a></button>
                             </div>
                         </div>
                     </div>

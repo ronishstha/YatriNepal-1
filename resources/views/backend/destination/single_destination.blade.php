@@ -42,7 +42,7 @@
                             <p align="center">{{ $destination->description }}</p>
                             <div class="single-button">
                             <button class="btn-edit"><a href="{{ route('backend.destination.get.update', ['destination_id' => $destination->id]) }}">Edit</a></button>
-                            <button class="btn-delete"><a href="{{ route('backend.destination.delete', ['destination_id' => $destination->id]) }}">Delete</a></button>
+                            <button class="btn-delete"><a href="{{ route('backend.destination.trash', ['destination_id' => $destination->id]) }}">Delete</a></button>
                             </div>
                         </div>
                     </div>

@@ -35,7 +35,7 @@ class CountriesController extends Controller
         $country->status = $request['status'];
         $user = Auth::user();
         $user->countries()->save($country);
-        return redirect()->route('backend.country');
+        return redirect()->route('backend.country')->with(['success' => 'Successfully created']);
     }
 
     public function getUpdate($country_id){
@@ -55,12 +55,31 @@ class CountriesController extends Controller
         $user = Auth::user();
         $country->user_id = $user->id;
         $country->update();
-        return redirect()->route('backend.country')->with(['success' => 'successfully updated']);
+        return redirect()->route('backend.country')->with(['success' => 'Successfully updated']);
     }
 
     public function getDelete($country_id){
         $country = Country::findOrFail($country_id);
         $country->delete();
+        return redirect()->route('backend.country.delete.page')->with(['success' => 'Successfully deleted']);
+    }
+
+    public function getTrash($country_id){
+        $country = Country::findOrFail($country_id);
+        $country->status = "trash";
+        $country->update();
+        return redirect()->route('backend.country')->with(['success' => 'Successfully moved to trash']);
+    }
+
+    public function DeleteForever(){
+        $countries = Country::all();
+        return view('backend.country.trash_country', ['countries' => $countries ]);
+    }
+
+    public function Restore($country_id){
+        $country = Country::findorFail($country_id);
+        $country->status = "published";
+        $country->update();
         return redirect()->route('backend.country');
     }
 }

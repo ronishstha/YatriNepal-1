@@ -26,12 +26,39 @@
     color: ghostwhite;
 }
 .pagination{
-    margin-left: 550px;
+    margin-left: 400px;
 }
 .create{
-    margin-left: 510px;
+    margin-left: 425px;
+}
+a .delete{
+  color: black;
+    margin-left: 380px;
 }
 .paginate{
     color:black;
     font-size:25px;
+}
+
+.info-box{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    margin-left: 80px;
+    padding: 16px;
+    border-radius: 3px;
+    width: 350px;
+}
+
+.info-box.fail{
+    border: 1px solid #ff6b6a;
+    background-color: #ffc2ba;
+    color: #ff6b6a;
+
+}
+
+.info-box.success{
+    border: 1px solid #46cc71;
+    background-color: #bdffb6;
+    color: #46cc71;
 }
