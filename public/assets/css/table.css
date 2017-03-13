@@ -1,0 +1,84 @@
+.btn-edit{
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 3px;
+    height: 25px;
+}
+.btn-edit a{
+    color: ghostwhite;
+}
+.btn-delete{
+    background-color: #e53935;
+    border: none;
+    border-radius: 3px;
+    height: 25px;
+}
+.btn-delete a{
+    color: ghostwhite;
+}
+.btn-view{
+    background-color: forestgreen;
+    border: none;
+    border-radius: 3px;
+    height: 25px;
+}
+.btn-view a{
+    color: ghostwhite;
+}
+.pagination{
+    margin-left: 400px;
+}
+.create{
+    margin-left: 425px;
+}
+a .delete{
+  color: black;
+    margin-left: 380px;
+    position: relative;
+    padding: 3px 5px;
+}
+.paginate{
+    color:black;
+    font-size:25px;
+}
+
+.info-box{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    margin-left: 80px;
+    padding: 16px;
+    border-radius: 3px;
+    width: 350px;
+}
+
+.info-box.fail{
+    border: 1px solid #ff6b6a;
+    background-color: #ffc2ba;
+    color: #ff6b6a;
+
+}
+
+.info-box.success{
+    border: 1px solid #46cc71;
+    background-color: #bdffb6;
+    color: #46cc71;
+}
+
+.noti-badge {
+    position: absolute;
+    top:-5px;
+    right: -1px;
+    padding: 4px 7px;
+    border: none;
+    border-radius:110px;
+    background: #f44336;
+    -webkit-background-clip: padding-box;
+    font: bold 7px/9px "Helvetica Neue", sans-serif;
+    color: white;
+    text-decoration: none;
+}​
+
+
+
+
