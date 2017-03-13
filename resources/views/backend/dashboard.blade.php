@@ -168,7 +168,7 @@
                                                 </label>
                                             </div>
                                         </td>
-                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                        <td>Image insertion</td>
                                         <td class="td-actions text-right">
                                             <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
                                                 <i class="material-icons">edit</i>
@@ -186,7 +186,7 @@
                                                 </label>
                                             </div>
                                         </td>
-                                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                        <td>Subscription and review table</td>
                                         <td class="td-actions text-right">
                                             <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
                                                 <i class="material-icons">edit</i>
@@ -204,8 +204,7 @@
                                                 </label>
                                             </div>
                                         </td>
-                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                        </td>
+                                        <td>Use of CK Editor</td>
                                         <td class="td-actions text-right">
                                             <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
                                                 <i class="material-icons">edit</i>
@@ -223,7 +222,7 @@
                                                 </label>
                                             </div>
                                         </td>
-                                        <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                        <td>Trash notification</td>
                                         <td class="td-actions text-right">
                                             <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
                                                 <i class="material-icons">edit</i>

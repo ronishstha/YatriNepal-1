@@ -201,6 +201,11 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.banner.restore'
     ]);
 
+    Route::get('banner/{filename}', [
+        'uses' => 'BannerController@getImage',
+        'as'   => 'backend.banner.image'
+    ]);
+
 //----------------------end of banner route---------------------
 
 
@@ -249,6 +254,11 @@ Route::group(['prefix' => 'admin',
     Route::get('country/restore/{country_id}', [
         'uses' => 'CountriesController@Restore',
         'as'   => 'backend.country.restore'
+    ]);
+
+    Route::get('country/{filename}', [
+       'uses' => 'CountriesController@getImage',
+        'as'  => 'backend.country.image'
     ]);
 
 
@@ -304,6 +314,11 @@ Route::group(['prefix' => 'admin',
     Route::get('destination/restore/{destination_id}', [
         'uses' => 'DestinationsController@Restore',
         'as'   => 'backend.destination.restore'
+    ]);
+
+    Route::get('destination/{filename}', [
+        'uses' => 'DestinationController@getImage',
+        'as'   => 'backend.destination.image'
     ]);
 
 //-------------------------end of destination route---------------------------------

@@ -31,20 +31,24 @@
                             <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.banner.get.create') }}">Create Banner</a>
                             <a href="{{ route('backend.banner.delete.page') }}">
-                                <i class="material-icons delete">delete</i>
-                            </a>
-                            @php
-                                $count = count($banners);
-                                $i = 0;
-                            @endphp
-                            @foreach($banners as $banner)
-                                @php
+                                <i class="material-icons delete">delete
+                                    @php
+                                        $count = count($banners);
+                                        $i = 0;
+                                    @endphp
+                                    @foreach($banners as $banner)
+                                        @php
 
-                                    if($banner->status == "trash"){
-                                        $i += 1;
-                                }
-                                @endphp
-                            @endforeach
+                                            if($banner->status == "trash"){
+                                                $i += 1;
+                                        }
+                                        @endphp
+                                    @endforeach
+                                    @if($i != 0)
+                                        <span class="noti-badge">{{ $i }}</span>
+                                    @endif
+                                </i>
+                            </a>
                             @if(count($banners) == 0 || $count == $i)
                                 <br><p align="center">No banner available<p>
                             @else

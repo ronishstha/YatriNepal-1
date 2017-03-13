@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Banner;
 use App\User;
 
@@ -26,9 +29,13 @@ class BannerController extends Controller
         ]);
 
         $banner = new Banner();
+        $file = $request->file('image');
+        $uploadPath = storage_path() . '/app';
+        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+        $file->move($uploadPath, $fileName);
+        $banner->image = $fileName;
         $slug = $request['title'];
         $banner->title = $request['title'];
-        $banner->image = $request['image'];
         $banner->description = $request['description'];
         $banner->slug = str_slug($slug,'-');
         $banner->status = $request['status'];
@@ -42,16 +49,29 @@ class BannerController extends Controller
         return view('backend.banner.update_banner', ['banner' => $banner]);
     }
 
-    public function postUpdate(Request $request){
+    public function postUpdate(Request $request)
+    {
         $this->validate($request, [
             'title' => 'required',
-            'image'  => 'required',
+            'image' => 'required',
             'description' => 'required'
         ]);
         $banner = Banner::findOrFail($request['banner_id']);
+        $old = $banner->image;
+        $file = $request->file('image');
+        if($request->hasFile('image')){
+            if(!empty($banner->image)){
+                unlink(storage_path() . "\\app\\" . $banner->image);
+            }
+            $uploadPath = storage_path() . '/app';
+            $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $banner->image = $fileName;
+        }else{
+            $banner->image = $old;
+        }
         $slug = $request['title'];
         $banner->title = $request['title'];
-        $banner->image = $request['image'];
         $banner->description = $request['description'];
         $banner->slug = str_slug($slug,'-');
         $banner->status = $request['status'];
@@ -91,5 +111,10 @@ class BannerController extends Controller
         $banner->status = "published";
         $banner->update();
         return redirect()->route('backend.banner');
+    }
+
+    public function getImage($filename){
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
     }
 }

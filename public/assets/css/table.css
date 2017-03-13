@@ -34,6 +34,8 @@
 a .delete{
   color: black;
     margin-left: 380px;
+    position: relative;
+    padding: 3px 5px;
 }
 .paginate{
     color:black;
@@ -62,3 +64,21 @@ a .delete{
     background-color: #bdffb6;
     color: #46cc71;
 }
+
+.noti-badge {
+    position: absolute;
+    top:-5px;
+    right: -1px;
+    padding: 4px 7px;
+    border: none;
+    border-radius:110px;
+    background: #f44336;
+    -webkit-background-clip: padding-box;
+    font: bold 7px/9px "Helvetica Neue", sans-serif;
+    color: white;
+    text-decoration: none;
+}​
+
+
+
+

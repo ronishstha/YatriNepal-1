@@ -31,20 +31,24 @@
                             <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.country.get.create') }}">Create Country</a>
                             <a href="{{ route('backend.country.delete.page') }}">
-                                <i class="material-icons delete">delete</i>
-                            </a>
-                            @php
-                                $count = count($countries);
-                                $i = 0;
-                            @endphp
-                            @foreach($countries as $country)
-                                @php
+                                <i class="material-icons delete">delete
+                                    @php
+                                        $count = count($countries);
+                                        $i = 0;
+                                    @endphp
+                                    @foreach($countries as $country)
+                                        @php
 
-                                    if($country->status == "trash"){
-                                        $i += 1;
-                                }
-                                @endphp
-                            @endforeach
+                                            if($country->status == "trash"){
+                                                $i += 1;
+                                        }
+                                        @endphp
+                                    @endforeach
+                                    @if($i != 0)
+                                        <span class="noti-badge">{{ $i }}</span>
+                                    @endif
+                                </i>
+                            </a>
                             @if(count($countries) == 0 || $count == $i)
                                 <br><p align="center">No country available<p>
                             @else
@@ -61,7 +65,7 @@
                                     @if($country->status == "published" || $country->status == "unpublished")
                                         <tr>
                                             <td>{{ $country->title }}</td>
-                                            <td>-</td>
+                                            <td><img src="{{ route('backend.country.image', ['filename' => $country->flag]) }}" alt="" class="img-responsive" style="border-radius: 2px;height:20px;width:20px;"></td>
                                             <td><button class="btn-edit"><a href="{{ route('backend.country.get.update', ['country_id' => $country->id]) }}">Edit</a></button></td>
                                             <td><button class="btn-delete"><a href="{{ route('backend.country.trash', ['country_id' => $country->id]) }}">Delete</a></button></td>
                                             <td>{{ $country->user->name }}</td>

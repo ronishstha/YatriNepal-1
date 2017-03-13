@@ -1,5 +1,15 @@
 @extends('backend.layouts.index')
 @section('content')
+    <style>
+        #fileupload-example-3::-webkit-file-upload-button {
+            color: gray;
+            border: none;
+            height: 30px;
+            border-radius: 3px;
+            background: #fff;
+            border: 1px solid #ccc;
+        }
+    </style>
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -9,7 +19,7 @@
                             <h4 class="title">Update Country</h4>
                         </div>
                         <div class="card-content">
-                            <form action="{{ route('backend.country.post.update') }}" method="post">
+                            <form action="{{ route('backend.country.post.update') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">
@@ -22,14 +32,9 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Flag</label>
-
-                                            {{------------------------------------------Requires changes-----------------------------------}}
-
-                                            <input type="text" class="form-control" name="flag" id="flag" value="{{ Request::old('flag') ? Request::old('flag') : isset($country) ? $country->flag : '' }}">
-
-                                            {{------------------------------------------------------------------------------------}}
+                                        <div class="">
+                                            <label id="fileupload-example-3-label" for="fileupload-example-3">Flag</label>
+                                            <input type="file" id="fileupload-example-3" name="flag" value="{{ Request::old('flag') ? Request::old('flag') : isset($country) ? $country->flag : '' }}"/>
                                         </div>
                                     </div>
                                 </div>

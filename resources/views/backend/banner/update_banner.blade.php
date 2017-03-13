@@ -1,5 +1,15 @@
 @extends('backend.layouts.index')
 @section('content')
+    <style>
+        #fileupload-example-3::-webkit-file-upload-button {
+            color: gray;
+            border: none;
+            height: 30px;
+            border-radius: 3px;
+            background: #fff;
+            border: 1px solid #ccc;
+        }
+    </style>
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -10,7 +20,7 @@
                             <p class="category"></p>
                         </div>
                         <div class="card-content">
-                            <form action="{{ route('backend.banner.post.update') }}" method="post">
+                            <form action="{{ route('backend.banner.post.update') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">
@@ -23,14 +33,9 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Image</label>
-
-                                            {{------------------------Requires changes--------------------}}
-
-                                            <input type="text" class="form-control" name="image" id="image" value="{{ Request::old('image') ? Request::old('image') : isset($banner) ? $banner->image : '' }}">
-
-                                            {{-------------------------------------------------------------}}
+                                        <div class="">
+                                            <label id="fileupload-example-3-label" for="fileupload-example-3">Image</label>
+                                            <input type="file" id="fileupload-example-3" name="image" value="{{ Request::old('image') ? Request::old('image') : isset($banner) ? $banner->image : '' }}"/>
                                         </div>
                                     </div>
                                 </div>

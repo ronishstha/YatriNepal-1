@@ -5,6 +5,16 @@
 @endsection
 
 @section('content')
+    <style>
+        #fileupload-example-3::-webkit-file-upload-button {
+            color: gray;
+            border: none;
+            height: 30px;
+            border-radius: 3px;
+            background: #fff;
+            border: 1px solid #ccc;
+        }
+    </style>
     @if(count($errors) > 0)
         <section class="info-box fail">
             @foreach($errors->all() as $error)
@@ -22,7 +32,7 @@
                             <p class="category"></p>
                         </div>
                         <div class="card-content">
-                            <form action="{{ route('backend.country.post.create') }}" method="post">
+                            <form action="{{ route('backend.country.post.create') }}" method="post"  enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-6">
@@ -35,9 +45,9 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Flag</label>
-                                            <input type="text" class="form-control" name="flag" id="flag" value="{{ Request::old('flag') }}"></textarea>
+                                        <div class="">
+                                            <label id="fileupload-example-3-label" for="fileupload-example-3">Flag</label>
+                                            <input type="file" id="fileupload-example-3" name="flag" value="{{ Request::old('flag')}}"/>
                                         </div>
                                     </div>
                                 </div>

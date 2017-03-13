@@ -40,6 +40,14 @@
                         </div>
                         <div class="card-content table-responsive">
                             <p align="center">{{ $destination->description }}</p>
+                            @if(Storage::disk('local')->has($destination->image))
+                                <section class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <img src="{{ route('backend.destination.image', ['filename' => $destination->image]) }}" alt="" class="img-responsive">
+                                    </div>
+                                </section>
+                            @endif
+
                             <div class="single-button">
                             <button class="btn-edit"><a href="{{ route('backend.destination.get.update', ['destination_id' => $destination->id]) }}">Edit</a></button>
                             <button class="btn-delete"><a href="{{ route('backend.destination.trash', ['destination_id' => $destination->id]) }}">Delete</a></button>

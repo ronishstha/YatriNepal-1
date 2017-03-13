@@ -31,20 +31,24 @@
                             <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.pages.get.create') }}">Create Page</a>
                             <a href="{{ route('backend.pages.delete.page') }}">
-                                <i class="material-icons delete">delete</i>
-                            </a>
-                            @php
-                                $count = count($pages);
-                                $i = 0;
-                            @endphp
-                            @foreach($pages as $page)
-                                @php
+                                <i class="material-icons delete">delete
+                                    @php
+                                        $count = count($pages);
+                                        $i = 0;
+                                    @endphp
+                                    @foreach($pages as $page)
+                                        @php
 
-                                    if($page->status == "trash"){
-                                        $i += 1;
-                                }
-                                @endphp
-                            @endforeach
+                                            if($page->status == "trash"){
+                                                $i += 1;
+                                        }
+                                        @endphp
+                                    @endforeach
+                                    @if($i != 0)
+                                    <span class="noti-badge">{{ $i }}</span>
+                                    @endif
+                                </i>
+                            </a>
                             @if(count($pages) == 0 || $count == $i)
                                 <br><p align="center">No pages available<p>
                             @else

@@ -103,7 +103,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">New user subscription</a></li>
-                            <li><a href="#">New bookings receiver</a></li>
+                            <li><a href="#">New bookings received</a></li>
                             <li><a href="#">New user registered</a></li>
                             <li><a href="#">New email received</a></li>
                         </ul>

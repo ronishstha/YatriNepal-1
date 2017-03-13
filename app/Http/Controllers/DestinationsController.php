@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Destination;
 use App\User;
 use App\Country;
@@ -29,10 +32,12 @@ class DestinationsController extends Controller
         ]);
 
         $destination = new Destination();
+        $file = $request->file('image');
+        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+        $destination->image = $fileName;
         $slug = $request['title'];
         $nation = $request['country'];
         $destination->title = $request['title'];
-        $destination->image = $request['image'];
         $destination->description = $request['description'];
         $destination->slug = str_slug($slug,'-');
         $destination->status = $request['status'];
@@ -40,10 +45,14 @@ class DestinationsController extends Controller
         $country = Country::where('title', $nation)->first();
         $destination->user()->associate($user);
         $destination->country()->associate($country);
+        if($file){
+            Storage::disk('local')->put($fileName, File::get($file));
+        }
         $destination->save();
 
         return redirect()->route('backend.destination')->with(['success' => 'Successfully created']);
     }
+
 
     public function getUpdate($destination_id){
         $destination = Destination::findorFail($destination_id);
@@ -60,14 +69,19 @@ class DestinationsController extends Controller
             'description' => 'required'
         ]);
         $destination = Destination::findOrFail($request['destination_id']);
+        $file = $request->file('image');
+        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+        $destination->image = $fileName;
         $slug = $request['title'];
         $nation = $request['country'];
         $destination->title = $request['title'];
-        $destination->image = $request['image'];
         $destination->description = $request['description'];
         $destination->slug = str_slug($slug, '-');
         $destination->status = $request['status'];
         $user = Auth::user();
+        if($file){
+            Storage::disk('local')->put($fileName, File::get($file));
+        }
         $destination->user_id = $user->id;
         $country = Country::where('title', $nation)->first();
         $destination->country_id = $country->id;
@@ -104,5 +118,10 @@ class DestinationsController extends Controller
         $destination->status = "published";
         $destination->update();
         return redirect()->route('backend.destination');
+    }
+
+    public function getImage($filename){
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
     }
 }

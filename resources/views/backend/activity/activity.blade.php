@@ -31,20 +31,24 @@
                             <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.activity.get.create') }}">Create Activity</a>
                             <a href="{{ route('backend.activity.delete.page') }}">
-                                <i class="material-icons delete">delete</i>
-                            </a>
-                            @php
-                                $count = count($activities);
-                                $i = 0;
-                            @endphp
-                            @foreach($activities as $activity)
-                                @php
+                                <i class="material-icons delete">delete
+                                    @php
+                                        $count = count($activities);
+                                        $i = 0;
+                                    @endphp
+                                    @foreach($activities as $activity)
+                                        @php
 
-                                    if($activity->status == "trash"){
-                                        $i += 1;
-                                }
-                                @endphp
-                            @endforeach
+                                            if($activity->status == "trash"){
+                                                $i += 1;
+                                        }
+                                        @endphp
+                                    @endforeach
+                                    @if($i != 0)
+                                        <span class="noti-badge">{{ $i }}</span>
+                                    @endif
+                                </i>
+                            </a>
                             @if(count($activities) == 0 || $count == $i)
                                 <br><p align="center">No Activity available<p>
                             @else

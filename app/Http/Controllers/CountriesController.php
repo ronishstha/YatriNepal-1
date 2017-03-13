@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Country;
 use App\User;
 
@@ -24,13 +26,17 @@ class CountriesController extends Controller
 
     public function postCreateCountry(Request $request){
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:countries',
             'flag'  => 'required',
         ]);
         $slug = $request['title'];
         $country = new Country();
+        $file = $request->file('flag');
+        $uploadPath = storage_path() . '/app';
+        $fileName = date('Y-m-d-H-i-s') . $file->getClientOriginalName();
+        $file->move($uploadPath, $fileName);
+        $country->flag = $fileName;
         $country->title = $request['title'];
-        $country->flag = $request['flag'];
         $country->slug = str_slug($slug, '-');
         $country->status = $request['status'];
         $user = Auth::user();
@@ -50,9 +56,23 @@ class CountriesController extends Controller
         ]);
         $country = Country::findOrFail($request['country_id']);
         $country->title = $request['title'];
-        $country->flag = $request['flag'];
         $country->status = $request['status'];
         $user = Auth::user();
+
+        $old = $country->flag;
+        $file = $request->file('flag');
+        if($request->hasFile('flag')){
+            if(!empty($country->flag)){
+                unlink(storage_path() . "\\app\\" . $country->flag);
+            }
+            $uploadPath = storage_path() . '/app';
+            $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $country->flag = $fileName;
+        }else{
+            $country->flag = $old;
+        }
+
         $country->user_id = $user->id;
         $country->update();
         return redirect()->route('backend.country')->with(['success' => 'Successfully updated']);
@@ -81,5 +101,10 @@ class CountriesController extends Controller
         $country->status = "published";
         $country->update();
         return redirect()->route('backend.country');
+    }
+
+    public function getImage($filename){
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
     }
 }

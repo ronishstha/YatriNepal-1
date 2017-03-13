@@ -76,20 +76,24 @@
                         <div class="card-content">
                                 <div class="card-content table-responsive">
                                     <a href="{{ route('backend.category.delete.page') }}">
-                                        <i class="material-icons delete">delete</i>
-                                    </a>
-                                    @php
-                                        $count = count($categories);
-                                        $i = 0;
-                                    @endphp
-                                    @foreach($categories as $banner)
-                                        @php
+                                        <i class="material-icons delete">delete
+                                            @php
+                                                $count = count($categories);
+                                                $i = 0;
+                                            @endphp
+                                            @foreach($categories as $category)
+                                                @php
 
-                                            if($banner->status == "trash"){
-                                                $i += 1;
-                                        }
-                                        @endphp
-                                    @endforeach
+                                                    if($category->status == "trash"){
+                                                        $i += 1;
+                                                }
+                                                @endphp
+                                            @endforeach
+                                            @if($i != 0)
+                                                <span class="noti-badge">{{ $i }}</span>
+                                            @endif
+                                        </i>
+                                    </a>
                                     @if(count($categories) == 0 || $count == $i)
                                         <br><p align="center">No category available<p>
                                     @else
