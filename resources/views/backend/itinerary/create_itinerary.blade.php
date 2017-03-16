@@ -230,7 +230,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Trekking Summary</label>
-                                            <textarea row=20 class="form-control" name="summary" id="summary">{{ Request::old('summary') }}"</textarea>
+                                            <textarea row=20 class="form-control" name="summary" id="summary">{{ Request::old('summary') }}</textarea>
                                         </div>
                                     </div>
                                 </div>

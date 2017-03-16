@@ -478,6 +478,11 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.itinerary.image'
     ]);
 
+    Route::get('itinerary/{filename}', [
+        'uses' => 'ItinerariesController@getRouteMap',
+        'as'   => 'backend.itinerary.routemap'
+    ]);
+
 //-------------------------end of itinerary route--------------------------------
 
     Route::get('logout', [
