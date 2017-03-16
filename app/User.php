@@ -36,4 +36,8 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
     public function activities(){
         return $this->hasMany('App\Activity');
     }
+
+    public function itineraries(){
+        return $this->hasMany('App\Itinerary');
+    }
 }

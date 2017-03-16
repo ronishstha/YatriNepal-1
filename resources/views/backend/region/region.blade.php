@@ -33,13 +33,13 @@
                             <a href="{{ route('backend.region.delete.page') }}">
                                 <i class="material-icons delete">delete
                                     @php
-                                        $count = count($pages);
+                                        $count = count($regions);
                                         $i = 0;
                                     @endphp
-                                    @foreach($pages as $page)
+                                    @foreach($regions as $region)
                                         @php
 
-                                            if($page->status == "trash"){
+                                            if($region->status == "trash"){
                                                 $i += 1;
                                         }
                                         @endphp
