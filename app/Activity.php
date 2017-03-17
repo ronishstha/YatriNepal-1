@@ -13,4 +13,8 @@ class Activity extends Model
     public function region(){
         return $this->belongsTo('App\Region');
     }
+
+    public function itineraries(){
+        return $this->hasMany('App\Itinerary');
+    }
 }

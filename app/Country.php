@@ -13,4 +13,8 @@ class Country extends Model
     public function destinations(){
         return $this->hasMany('App\Destination');
     }
+
+    public function itineraries(){
+        return $this->hasMany('App\Itinerary');
+    }
 }

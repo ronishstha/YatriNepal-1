@@ -72,12 +72,20 @@
 
             {{--<i class="material-icons">question_answer</i>--}}
 
+            <li {{ Request::is('admin/itinerary*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.itinerary') }}">
+                    <i class="material-icons">transfer_within_a_station</i>
+                    <p>Itinerary</p>
+                </a>
+            </li>
+
             <li {{ Request::is('admin/notification*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.notification') }}">
                     <i class="material-icons text-gray">notifications</i>
                     <p>Notifications</p>
                 </a>
             </li>
+
         </ul>
     </div>
 </div>

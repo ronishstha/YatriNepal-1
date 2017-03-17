@@ -74,6 +74,9 @@ class DestinationsController extends Controller
         $destination->image = $fileName;
         $slug = $request['title'];
         $nation = $request['country'];
+        $journey = $request['destination'];
+        $place = $request['region'];
+        $action = $request['activity'];
         $destination->title = $request['title'];
         $destination->description = $request['description'];
         $destination->slug = str_slug($slug, '-');

@@ -23,23 +23,23 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Regions</h4>
+                            <h4 class="title">Itineraries</h4>
                             <p class="category"></p>
                         </div>
 
                         <div class="card-content table-responsive">
                             <i class="material-icons create">note_add</i>
-                            <a href="{{ route('backend.region.get.create') }}">Create Region</a>
-                            <a href="{{ route('backend.region.delete.page') }}">
+                            <a href="{{ route('backend.itinerary.get.create') }}">Create Itinerary</a>
+                            <a href="{{ route('backend.itinerary.delete.page') }}">
                                 <i class="material-icons delete">delete
                                     @php
-                                        $count = count($regions);
+                                        $count = count($itineraries);
                                         $i = 0;
                                     @endphp
-                                    @foreach($regions as $region)
+                                    @foreach($itineraries as $itinerary)
                                         @php
 
-                                            if($region->status == "trash"){
+                                            if($itinerary->status == "trash"){
                                                 $i += 1;
                                         }
                                         @endphp
@@ -49,28 +49,24 @@
                                     @endif
                                 </i>
                             </a>
-                            @if(count($regions) == 0 || $count == $i)
-                                <br><p align="center">No region available<p>
+                            @if(count($itineraries) == 0 || $count == $i)
+                                <br><p align="center">No itinerary available<p>
                             @else
                                 <table class="table">
                                     <thead class="text-primary">
                                     <th>Title</th>
-                                    <th>Destination</th>
-                                    <th>Last modified by</th>
-                                    <th>modified date</th>
                                     <th>Edit</th>
-                                    <th>Trash</th>
+                                    <th>View</th>
+                                    <th>Delete</th>
                                     </thead>
                                     <tbody>
-                                    @foreach($regions as $region)
-                                        @if($region->status == "published" || $region->status == "unpublished")
+                                    @foreach($itineraries as $itinerary)
+                                        @if($itinerary->status == "published" || $itinerary->status == "unpublished")
                                             <tr>
-                                                <td>{{ $region->title }}</td>
-                                                <td>{{ $region->destination->title }}</td>
-                                                <td>{{ $region->user->name }}</td>
-                                                <td>{{ $region->updated_at }}</td>
-                                                <td><button class="btn-edit"><a href="{{ route('backend.region.get.update', ['region_id' => $region->id]) }}">Edit</a></button></td>
-                                                <td><button class="btn-delete"><a href="{{ route('backend.region.trash', ['region_id' => $region->id]) }}">Delete</a></button></td>
+                                                <td><a href="{{ route('backend.itinerary.single.itinerary', ['itinerary_id' => $itinerary->id]) }}">{{ $itinerary->title }}</a></td>
+                                                <td><button class="btn-edit"><a href="{{ route('backend.itinerary.get.update', ['itinerary_id' => $itinerary->id]) }}">Edit</a></button></td>
+                                                <td><button class="btn-view"><a href="{{ route('backend.itinerary.single.itinerary', ['itinerary_slug' => $itinerary->slug])  }}">View</a></button></td>
+                                                <td><button class="btn-delete"><a href="{{ route('backend.itinerary.trash', ['itinerary_id' => $itinerary->id]) }}">Delete</a></button></td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -78,17 +74,16 @@
 
                                 </table>
                             @endif
-                            {!! $regions->links() !!}
+                            {!! $itineraries->links() !!}
                             {{--<div class="pagination">--}}
 
-                                {{--@if($regions->currentPage() !== 1)
-                                    <a href ="{{ $regions->previousPageUrl() }}" class="paginate"><span class="fa fa-caret-left"></span></a>
+                                {{--@if($itineraries->currentPage() !== 1)
+                                    <a href ="{{ $itineraries->previousPageUrl() }}" class="paginate"><span class="fa fa-caret-left"></span></a>
                                 @endif
-                                @if($regions->currentPage() !== $regions->lastPage() && $regions->hasPages())
-                                    <a href ="{{ $regions->nextPageUrl()}}"  class="paginate"><span class="fa fa-caret-right"></span></a>
+                                @if($itineraries->currentPage() !== $itineraries->lastPage() && $itineraries->hasPages())
+                                    <a href ="{{ $itineraries->nextPageUrl()}}"  class="paginate"><span class="fa fa-caret-right"></span></a>
                                     @endif--}}
                             </div>
-
                         </div>
                     </div>
                 </div>

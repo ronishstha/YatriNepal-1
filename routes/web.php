@@ -422,6 +422,69 @@ Route::group(['prefix' => 'admin',
 
 //-------------------------end of activity route---------------------------------
 
+//-------------------------Itinerary route---------------------------------------
+    Route::get('itinerary', [
+        'uses' => 'ItinerariesController@getItinerary',
+        'as' => 'backend.itinerary'
+    ]);
+
+    Route::get('itinerary/create', [
+        'uses' => 'ItinerariesController@getCreateItinerary',
+        'as' => 'backend.itinerary.get.create'
+    ]);
+
+    Route::post('itinerary/create', [
+        'uses' => 'ItinerariesController@postCreateItinerary',
+        'as' => 'backend.itinerary.post.create'
+    ]);
+
+    Route::get('itinerary/edit/{itinerary_id}', [
+        'uses' => 'ItinerariesController@getUpdate',
+        'as' => 'backend.itinerary.get.update'
+    ]);
+
+    Route::post('itinerary/update', [
+        'uses' => 'ItinerariesController@postUpdate',
+        'as' => 'backend.itinerary.post.update'
+    ]);
+
+    Route::get('itinerary/delete/{itinerary_id}', [
+        'uses' => 'ItinerariesController@getDelete',
+        'as' => 'backend.itinerary.delete'
+    ]);
+
+    Route::get('itinerary/single/{itinerary_slug}', [
+        'uses' => 'ItinerariesController@getSingleItinerary',
+        'as' => 'backend.itinerary.single.itinerary'
+    ]);
+
+    Route::get('itinerary/trash/{itinerary_id}', [
+        'uses' => 'ItinerariesController@getTrash',
+        'as'  => 'backend.itinerary.trash'
+    ]);
+
+    Route::get('itinerary/trash', [
+        'uses' => 'ItinerariesController@DeleteForever',
+        'as'   => 'backend.itinerary.delete.page'
+    ]);
+
+    Route::get('itinerary/restore/{itinerary_id}', [
+        'uses' => 'ItinerariesController@Restore',
+        'as'   => 'backend.itinerary.restore'
+    ]);
+
+    Route::get('itinerary/{filename}', [
+        'uses' => 'ItinerariesController@getImage',
+        'as'   => 'backend.itinerary.image'
+    ]);
+
+    Route::get('itinerary/{filename}', [
+        'uses' => 'ItinerariesController@getRouteMap',
+        'as'   => 'backend.itinerary.routemap'
+    ]);
+
+//-------------------------end of itinerary route--------------------------------
+
     Route::get('logout', [
         'uses' => 'UserController@getLogout',
         'as'   => 'admin.logout'

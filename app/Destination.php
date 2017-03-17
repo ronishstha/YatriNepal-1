@@ -17,4 +17,8 @@ class Destination extends Model
     public function regions(){
         return $this->hasMany('App\Region');
     }
+
+    public function itineraries(){
+        return $this->hasMany('App\Itinerary');
+    }
 }
