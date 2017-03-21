@@ -12,6 +12,7 @@
 */
 
 
+//----------------------------------frontend admin login------------------------------------------------
 Route::get('/', function(){
     return view('frontend.index');
 })->name('frontend.index');
@@ -25,7 +26,10 @@ Route::post('login', [
    'uses' => 'UserController@postLogin',
     'as'  => 'admin.login.post'
 ]);
+//------------------------------------end of frontend admin login------------------------------------------
 
+
+//-------------------------------------------------------------------------------------
 //---------------------------------ADMIN MIDDLEWARE------------------------------------
 //-------------------------------------------------------------------------------------
 
@@ -317,7 +321,7 @@ Route::group(['prefix' => 'admin',
     ]);
 
     Route::get('destination/{filename}', [
-        'uses' => 'DestinationController@getImage',
+        'uses' => 'DestinationsController@getImage',
         'as'   => 'backend.destination.image'
     ]);
 
@@ -484,6 +488,65 @@ Route::group(['prefix' => 'admin',
     ]);
 
 //-------------------------end of itinerary route--------------------------------
+
+    //-----------------------Review route---------------------------
+
+    Route::get('review', [
+        'uses' => 'ReviewsController@getReview',
+        'as' => 'backend.review'
+    ]);
+
+    Route::get('review/create', [
+        'uses' => 'ReviewsController@getCreateReview',
+        'as' => 'backend.review.get.create'
+    ]);
+
+    Route::post('review/create', [
+        'uses' => 'ReviewsController@postCreateReview',
+        'as' => 'backend.review.post.create'
+    ]);
+
+    Route::get('review/edit/{review_id}', [
+        'uses' => 'ReviewsController@getUpdate',
+        'as' => 'backend.review.get.update'
+    ]);
+
+    Route::post('review/update', [
+        'uses' => 'ReviewsController@postUpdate',
+        'as' => 'backend.review.post.update'
+    ]);
+
+    Route::get('review/delete/{review_id}', [
+        'uses' => 'ReviewsController@getDelete',
+        'as' => 'backend.review.delete'
+    ]);
+
+    Route::get('review/single/{category_slug}', [
+        'uses' => 'ReviewsController@getSingleReview',
+        'as' => 'backend.review.single.review'
+    ]);
+
+    Route::get('review/trash/{review_id}', [
+        'uses' => 'ReviewsController@getTrash',
+        'as'  => 'backend.review.trash'
+    ]);
+
+    Route::get('review/trash', [
+        'uses' => 'ReviewsController@DeleteForever',
+        'as'   => 'backend.review.delete.page'
+    ]);
+
+    Route::get('review/restore/{review_id}', [
+        'uses' => 'ReviewsController@Restore',
+        'as'   => 'backend.review.restore'
+    ]);
+
+    Route::get('review/{filename}', [
+        'uses' => 'ReviewsController@getImage',
+        'as'   => 'backend.review.image'
+    ]);
+
+//-------------------------end of destination route---------------------------------
 
     Route::get('logout', [
         'uses' => 'UserController@getLogout',
