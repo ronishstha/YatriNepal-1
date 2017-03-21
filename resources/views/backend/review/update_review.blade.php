@@ -23,6 +23,13 @@
         .star:first-of-type{
             /*margin-left: 30px;*/
         }
+        .overall{
+            margin-left: 130px;
+        }
+        .star_rating{
+            margin: 0 auto;
+            width: 75%;
+        }
         .star-checked{
             color: gold;
         }
@@ -95,20 +102,19 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Status</label>
-                                            <select class="form-control" name="status" id="status">
-                                                <option @if($review->status =="published") selected @endif>published</option>
-                                                <option @if($review->status =="unpublished") selected @endif>unpublished</option>
-                                                <option @if($review->status =="trash") selected @endif>trash</option>
-                                            </select>
+                                <div class="star_rating">
+                                    <div class="row">
+                                        <div class="col-md-6 overall">
+                                            <label><strong>Overall Rating</strong></label>
+                                            <input type="hidden" name="overall" id="overall" value="0">
+                                            <input type="hidden" name="overall_value" id="overall_value" value="{{ $review->overall }}">
+                                            <i class="fa fa-star star g" id="star-1f"></i>
+                                            <i class="fa fa-star star g" id="star-2f"></i>
+                                            <i class="fa fa-star star g" id="star-3f"></i>
+                                            <i class="fa fa-star star g" id="star-4f"></i>
+                                            <i class="fa fa-star star g" id="star-5f"></i>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="rating">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Meals</label>
@@ -174,6 +180,19 @@
                                             <i class="fa fa-star star f" id="star-3e"></i>
                                             <i class="fa fa-star star f" id="star-4e"></i>
                                             <i class="fa fa-star star f" id="star-5e"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Status</label>
+                                            <select class="form-control" name="status" id="status">
+                                                <option @if($review->status =="published") selected @endif>published</option>
+                                                <option @if($review->status =="unpublished") selected @endif>unpublished</option>
+                                                <option @if($review->status =="trash") selected @endif>trash</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -411,6 +430,44 @@
                         $("#star-4e").addClass('star-checked1');
                         $("#star-5e").addClass('star-checked1');
                         $('#money_value').val(value);
+                        break;
+                }
+            });
+
+            $('.g').ready(function () {
+                //get the id of star
+                var value = $(('#overall_value')).val();
+                switch (value) {
+                    case "1":
+                        $("#star-1f").addClass('star-checked1');
+                        $('#overall').val(value);
+                        break;
+                    case "2":
+
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $('#overall').val(value);
+                        break;
+                    case "3":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $('#overall').val(value);
+                        break;
+                    case "4":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $("#star-4f").addClass('star-checked1');
+                        $('#overall').val(value);
+                        break;
+                    case "5":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $("#star-4f").addClass('star-checked1');
+                        $("#star-5f").addClass('star-checked1');
+                        $('#overall').val(value);
                         break;
                 }
             });
@@ -903,6 +960,88 @@
                         $("#star-4e").addClass('star-checked1');
                         $("#star-5e").addClass('star-checked1');
                         $('#money_value').val(5);
+                        break;
+                }
+            });
+
+            $('.g').hover(function () {
+                //get the id of star
+                var star_id = $(this).attr('id');
+                switch (star_id) {
+                    case "star-1f":
+                        $("#star-1f").addClass('star-checked');
+                        break;
+                    case "star-2f":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        break;
+                    case "star-3f":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        break;
+                    case "star-4f":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        $("#star-4f").addClass('star-checked');
+                        break;
+                    case "star-5f":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        $("#star-4f").addClass('star-checked');
+                        $("#star-5f").addClass('star-checked');
+                        break;
+                }
+            }).mouseout(function () {
+                //remove the star checked class when mouseout
+                $('.g').removeClass('star-checked');
+            });
+
+
+            $('.g').click(function () {
+                var star_id = $(this).attr('id');
+                switch (star_id) {
+                    case "star-1f":
+                        $("#star-1f").addClass('star-checked1');
+                        $('#star-2f').removeClass('star-checked1');
+                        $('#star-3f').removeClass('star-checked1');
+                        $('#star-4f').removeClass('star-checked1');
+                        $('#star-5f').removeClass('star-checked1');
+                        $('#overall').val(1);
+                        break;
+                    case "star-2f":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $('#star-3f').removeClass('star-checked1');
+                        $('#star-4f').removeClass('star-checked1');
+                        $('#star-5f').removeClass('star-checked1');
+                        $('#overall').val(2);
+                        break;
+                    case "star-3f":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $('#star-4f').removeClass('star-checked1');
+                        $('#star-5f').removeClass('star-checked1');
+                        $('#overall').val(3);
+                        break;
+                    case "star-4f":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $("#star-4f").addClass('star-checked1');
+                        $('#star-5f').removeClass('star-checked1');
+                        $('#overall').val(4);
+                        break;
+                    case "star-5f":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $("#star-4f").addClass('star-checked1');
+                        $("#star-5f").addClass('star-checked1');
+                        $('#overall').val(5);
                         break;
                 }
             });

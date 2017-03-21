@@ -36,7 +36,7 @@
                                     <p>Nothing in trash</p>
                                 @else
                                     <thead class="text-warning">
-                                    <th>title</th>
+                                    <th>name</th>
                                     <th>view</th>
                                     <th>deleted by</th>
                                     <th>restore</th>
@@ -47,7 +47,7 @@
                                         @if($review->status == "trash")
                                             <tbody>
                                             <tr>
-                                                <td>{{ $review->title }}</td>
+                                                <td>{{ $review->name }}</td>
                                                 <td>{{ $review->user->name }}</td>
                                                 <td><button class="btn-view"><a href="{{ route('backend.review.single.review', ['review_slug' => $review->slug]) }}">View</a></button></td>
                                                 <td><button class="btn-edit"><a href="{{ route('backend.review.restore', ['review_id' => $review->id]) }}">Restore</a></button></td>

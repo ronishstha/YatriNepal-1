@@ -20,6 +20,7 @@ class AddColumnsToTable extends Migration
             $table->integer('pre_info');
             $table->integer('staffs');
             $table->integer('money_value');
+            $table->integer('overall');
         });
     }
 

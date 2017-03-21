@@ -15,6 +15,13 @@
             background: #fff;
             border: 1px solid #ccc;
         }
+        .overall{
+            margin-left: 130px;
+        }
+        .star-rating{
+            margin: 0 auto;
+            width: 75%;
+        }
         .star{
             color: #ccc;
             cursor: pointer;
@@ -99,67 +106,85 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Meals</label>
-                                        <input type="hidden" name="meals" id="meals" value="0">
-                                        <i class="fa fa-star star a" id="star-1"></i>
-                                        <i class="fa fa-star star a" id="star-2"></i>
-                                        <i class="fa fa-star star a" id="star-3"></i>
-                                        <i class="fa fa-star star a" id="star-4"></i>
-                                        <i class="fa fa-star star a" id="star-5"></i>
+                                <div class="star-rating">
+                                    <div class="row">
+                                        <br/>
+                                        <div class="col-md-6 overall">
+                                            <label><strong>Overall Rating</strong></label>
+                                            <input type="hidden" name="overall" id="overall" value="0">
+                                            <i class="fa fa-star star g" id="star-1f"></i>
+                                            <i class="fa fa-star star g" id="star-2f"></i>
+                                            <i class="fa fa-star star g" id="star-3f"></i>
+                                            <i class="fa fa-star star g" id="star-4f"></i>
+                                            <i class="fa fa-star star g" id="star-5f"></i>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>Accommodation</label>
-                                        <input type="hidden" name="accommodation" id="accommodation" value="0">
-                                        <i class="fa fa-star star b" id="star-1a"></i>
-                                        <i class="fa fa-star star b" id="star-2a"></i>
-                                        <i class="fa fa-star star b" id="star-3a"></i>
-                                        <i class="fa fa-star star b" id="star-4a"></i>
-                                        <i class="fa fa-star star b" id="star-5a"></i>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Meals</label>
+                                            <input type="hidden" name="meals" id="meals" value="0">
+                                            <i class="fa fa-star star a" id="star-1"></i>
+                                            <i class="fa fa-star star a" id="star-2"></i>
+                                            <i class="fa fa-star star a" id="star-3"></i>
+                                            <i class="fa fa-star star a" id="star-4"></i>
+                                            <i class="fa fa-star star a" id="star-5"></i>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Accommodation</label>
+                                            <input type="hidden" name="accommodation" id="accommodation" value="0">
+                                            <i class="fa fa-star star b" id="star-1a"></i>
+                                            <i class="fa fa-star star b" id="star-2a"></i>
+                                            <i class="fa fa-star star b" id="star-3a"></i>
+                                            <i class="fa fa-star star b" id="star-4a"></i>
+                                            <i class="fa fa-star star b" id="star-5a"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Pre-Trip Information</label>
+                                            <input type="hidden" name="pre_info" id="pre_info" value="0">
+                                            <i class="fa fa-star star c" id="star-1b"></i>
+                                            <i class="fa fa-star star c" id="star-2b"></i>
+                                            <i class="fa fa-star star c" id="star-3b"></i>
+                                            <i class="fa fa-star star c" id="star-4b"></i>
+                                            <i class="fa fa-star star c" id="star-5b"></i>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Transportation</label>
+                                            <input type="hidden" name="transportation" id="transportation" value="0">
+                                            <i class="fa fa-star star d" id="star-1c"></i>
+                                            <i class="fa fa-star star d" id="star-2c"></i>
+                                            <i class="fa fa-star star d" id="star-3c"></i>
+                                            <i class="fa fa-star star d" id="star-4c"></i>
+                                            <i class="fa fa-star star d" id="star-5c"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Staffs</label>
+                                            <input type="hidden" name="staffs" id="staffs" value="0">
+                                            <i class="fa fa-star star e" id="star-1d"></i>
+                                            <i class="fa fa-star star e" id="star-2d"></i>
+                                            <i class="fa fa-star star e" id="star-3d"></i>
+                                            <i class="fa fa-star star e" id="star-4d"></i>
+                                            <i class="fa fa-star star e" id="star-5d"></i>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Value for Money</label>
+                                            <input type="hidden" name="money_value" id="money_value" value="0">
+                                            <i class="fa fa-star star f" id="star-1e"></i>
+                                            <i class="fa fa-star star f" id="star-2e"></i>
+                                            <i class="fa fa-star star f" id="star-3e"></i>
+                                            <i class="fa fa-star star f" id="star-4e"></i>
+                                            <i class="fa fa-star star f" id="star-5e"></i>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Pre-Trip Information</label>
-                                        <input type="hidden" name="pre_info" id="pre_info" value="0">
-                                        <i class="fa fa-star star c" id="star-1b"></i>
-                                        <i class="fa fa-star star c" id="star-2b"></i>
-                                        <i class="fa fa-star star c" id="star-3b"></i>
-                                        <i class="fa fa-star star c" id="star-4b"></i>
-                                        <i class="fa fa-star star c" id="star-5b"></i>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Transportation</label>
-                                        <input type="hidden" name="transportation" id="transportation" value="0">
-                                        <i class="fa fa-star star d" id="star-1c"></i>
-                                        <i class="fa fa-star star d" id="star-2c"></i>
-                                        <i class="fa fa-star star d" id="star-3c"></i>
-                                        <i class="fa fa-star star d" id="star-4c"></i>
-                                        <i class="fa fa-star star d" id="star-5c"></i>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Staffs</label>
-                                        <input type="hidden" name="staffs" id="staffs" value="0">
-                                        <i class="fa fa-star star e" id="star-1d"></i>
-                                        <i class="fa fa-star star e" id="star-2d"></i>
-                                        <i class="fa fa-star star e" id="star-3d"></i>
-                                        <i class="fa fa-star star e" id="star-4d"></i>
-                                        <i class="fa fa-star star e" id="star-5d"></i>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Value for Money</label>
-                                        <input type="hidden" name="money_value" id="money_value" value="0">
-                                        <i class="fa fa-star star f" id="star-1e"></i>
-                                        <i class="fa fa-star star f" id="star-2e"></i>
-                                        <i class="fa fa-star star f" id="star-3e"></i>
-                                        <i class="fa fa-star star f" id="star-4e"></i>
-                                        <i class="fa fa-star star f" id="star-5e"></i>
-                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -679,6 +704,88 @@
                         $("#star-4e").addClass('star-checked1');
                         $("#star-5e").addClass('star-checked1');
                         $('#money_value').val(5);
+                        break;
+                }
+            });
+
+            $('.g').hover(function () {
+                //get the id of star
+                var star_id = $(this).attr('id');
+                switch (star_id) {
+                    case "star-1f":
+                        $("#star-1f").addClass('star-checked');
+                        break;
+                    case "star-2f":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        break;
+                    case "star-3f":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        break;
+                    case "star-4f":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        $("#star-4f").addClass('star-checked');
+                        break;
+                    case "star-5f":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        $("#star-4f").addClass('star-checked');
+                        $("#star-5f").addClass('star-checked');
+                        break;
+                }
+            }).mouseout(function () {
+                //remove the star checked class when mouseout
+                $('.g').removeClass('star-checked');
+            });
+
+
+            $('.g').click(function () {
+                var star_id = $(this).attr('id');
+                switch (star_id) {
+                    case "star-1f":
+                        $("#star-1f").addClass('star-checked1');
+                        $('#star-2f').removeClass('star-checked1');
+                        $('#star-3f').removeClass('star-checked1');
+                        $('#star-4f').removeClass('star-checked1');
+                        $('#star-5f').removeClass('star-checked1');
+                        $('#overall').val(1);
+                        break;
+                    case "star-2f":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $('#star-3f').removeClass('star-checked1');
+                        $('#star-4f').removeClass('star-checked1');
+                        $('#star-5f').removeClass('star-checked1');
+                        $('#overall').val(2);
+                        break;
+                    case "star-3f":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $('#star-4f').removeClass('star-checked1');
+                        $('#star-5f').removeClass('star-checked1');
+                        $('#overall').val(3);
+                        break;
+                    case "star-4f":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $("#star-4f").addClass('star-checked1');
+                        $('#star-5f').removeClass('star-checked1');
+                        $('#overall').val(4);
+                        break;
+                    case "star-5f":
+                        $("#star-1f").addClass('star-checked1');
+                        $("#star-2f").addClass('star-checked1');
+                        $("#star-3f").addClass('star-checked1');
+                        $("#star-4f").addClass('star-checked1');
+                        $("#star-5f").addClass('star-checked1');
+                        $('#overall').val(5);
                         break;
                 }
             });

@@ -20,12 +20,6 @@ class CreateReviewsTable extends Migration
             $table->text('description');
             $table->string('image');
             $table->string('status');
-            $table->integer('meals');
-            $table->integer('accommodation');
-            $table->integer('transportation');
-            $table->integer('pre_info');
-            $table->integer('staffs');
-            $table->integer('money_value');
             $table->string('slug');
             $table->string('user_id');
             $table->integer('itinerary_id')->unsigned();

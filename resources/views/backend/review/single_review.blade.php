@@ -3,13 +3,17 @@
     <style>
         .rating{
             margin: 0 auto;
-            width: 60%;
+            width: 50%;
         }
         .btn-edit{
             background-color: dodgerblue;
             border: none;
             border-radius: 3px;
             height: 25px;
+        }
+        .overall{
+            margin-left: 130px;
+
         }
         .btn-edit a{
             color: ghostwhite;
@@ -76,6 +80,18 @@
 
 
                     <div class="rating">
+                        <div class="row">
+                            <br/>
+                            <div class="col-md-6 overall">
+                                <label><strong>Overall Rating</strong></label>
+                                <input type="hidden" name="overall" id="overall" value="{{ $review->overall }}">
+                                <i class="fa fa-star star g" id="star-1f"></i>
+                                <i class="fa fa-star star g" id="star-2f"></i>
+                                <i class="fa fa-star star g" id="star-3f"></i>
+                                <i class="fa fa-star star g" id="star-4f"></i>
+                                <i class="fa fa-star star g" id="star-5f"></i>
+                            </div>
+                        </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Meals</label>
@@ -136,6 +152,8 @@
                                     <i class="fa fa-star star f" id="star-3e"></i>
                                     <i class="fa fa-star star f" id="star-4e"></i>
                                     <i class="fa fa-star star f" id="star-5e"></i>
+                                    <br>
+                                    <br>
                                 </div>
                             </div>
                     </div>
@@ -348,6 +366,38 @@
                         $("#star-3e").addClass('star-checked');
                         $("#star-4e").addClass('star-checked');
                         $("#star-5e").addClass('star-checked');
+                        break;
+                }
+            });
+
+            $('.g').ready(function () {
+                //get the id of star
+                var value = $(('#overall')).val();
+                switch (value) {
+                    case "1":
+                        $("#star-1f").addClass('star-checked');
+                        break;
+                    case "2":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        break;
+                    case "3":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        break;
+                    case "4":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        $("#star-4f").addClass('star-checked');
+                        break;
+                    case "5":
+                        $("#star-1f").addClass('star-checked');
+                        $("#star-2f").addClass('star-checked');
+                        $("#star-3f").addClass('star-checked');
+                        $("#star-4f").addClass('star-checked');
+                        $("#star-5f").addClass('star-checked');
                         break;
                 }
             });

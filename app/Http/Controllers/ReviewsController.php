@@ -44,6 +44,7 @@ class ReviewsController extends Controller
         $review->staffs = $request['staffs'];
         $review->money_value = $request['money_value'];
         $review->pre_info = $request['pre_info'];
+        $review->overall = $request['overall'];
         $review->description = $request['description'];
         $review->slug = str_slug($slug,'-');
         $review->status = $request['status'];
@@ -87,6 +88,7 @@ class ReviewsController extends Controller
         $review->staffs = $request['staffs'];
         $review->money_value = $request['money_value'];
         $review->pre_info = $request['pre_info'];
+        $review->overall = $request['overall'];
         $review->description = $request['description'];
         $review->slug = str_slug($slug, '-');
         $review->status = $request['status'];
