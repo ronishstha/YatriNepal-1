@@ -55,6 +55,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'banner' => [
+            'driver' => 'local',
+            'root' => storage_path('app/banner'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),

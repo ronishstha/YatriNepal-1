@@ -56,19 +56,19 @@
                             <p align="center"><strong>Activity:</strong> {{ $itinerary->activity->title }}</p>
                             <p align="center"><strong>Category:</strong> {{ $itinerary->category->title }}</p>
                             <h4 align="center"><strong>Trip Summary</strong></h4>
-                            <p align="center">{{ $itinerary->summary }}</p>
+                            <p align="center">{!! $itinerary->summary !!} </p>
                             <h4 align="center"><strong>Trip Introduction</strong></h4>
-                            <p align="center">{{ $itinerary->trip_introduction }}</p>
+                            <p align="center">{!! $itinerary->trip_introduction !!}</p>
                             <h4 align="center"><strong>Itinerary</strong></h4>
-                            <p align="center">{{ $itinerary->itinerary }}</p>
+                            <p align="center">{!! $itinerary->itinerary !!}</p>
                             <h4 align="center"><strong>Important Note</strong></h4>
-                            <p align="center">{{ $itinerary->important_note }}</p>
+                            <p align="center">{!! $itinerary->important_note !!}</p>
                             <h4 align="center"><strong>Cost Inclusive</strong></h4>
-                            <p align="center">{{ $itinerary->cost_inclusive }}</p>
+                            <p align="center">{!! $itinerary->cost_inclusive  !!}</p>
                             <h4 align="center"><strong>Cost Exclusive</strong></h4>
-                            <p align="center">{{ $itinerary->cost_exclusive }}</p>
+                            <p align="center">{!! $itinerary->cost_exclusive !!} </p>
                             <h4 align="center"><strong>Trekking Group</strong></h4>
-                            <p align="center">{{ $itinerary->trekking_group }}</p>
+                            <p align="center">{!! $itinerary->trekking_group !!}</p>
                             <p align="center"><strong>Trip Status:</strong> {{ $itinerary->trip_status }}</p>
 
                             @if(Storage::disk('local')->has($itinerary->image))

@@ -229,7 +229,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Trekking Summary</label>
+                                            <label>Trekking Summary</label>
                                             <textarea row=20 class="form-control" name="summary" id="summary">{{ Request::old('summary') }}</textarea>
                                         </div>
                                     </div>
@@ -238,7 +238,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Trip Introduction</label>
+                                            <label>Trip Introduction</label>
                                             <textarea row=20 class="form-control" name="trip_introduction" id="trip_introduction">{{ Request::old('trip_introduction') }}</textarea>
                                         </div>
                                     </div>
@@ -247,7 +247,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Itinerary</label>
+                                            <label>Itinerary</label>
                                             <textarea row=20 class="form-control" name="itinerary" id="itinerary">{{ Request::old('itinerary') }}</textarea>
                                         </div>
                                     </div>
@@ -256,7 +256,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Included in cost</label>
+                                            <label>Included in cost</label>
                                             <textarea row=20 class="form-control" name="cost_inclusive" id="cost_inclusive">{{ Request::old('cost_inclusive') }}</textarea>
                                         </div>
                                     </div>
@@ -265,7 +265,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Not included in cost</label>
+                                            <label>Not included in cost</label>
                                             <textarea row=20 class="form-control" name="cost_exclusive" id="cost_exclusive">{{ Request::old('cost_exclusive') }}</textarea>
                                         </div>
                                     </div>
@@ -274,7 +274,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Trekking Group</label>
+                                            <label>Trekking Group</label>
                                             <textarea row=20 class="form-control" name="trekking_group" id="trekking_group">{{ Request::old('trekking_group') }}</textarea>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Important Note</label>
+                                            <label>Important Note</label>
                                             <textarea row=20 class="form-control" name="important_note" id="important_note">{{ Request::old('important_note') }}</textarea>
                                         </div>
                                     </div>

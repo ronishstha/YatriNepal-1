@@ -79,12 +79,20 @@
                 </a>
             </li>
 
+            <li {{ Request::is('admin/review*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.review') }}">
+                    <i class="material-icons text-gray">receipt</i>
+                    <p>Reviews</p>
+                </a>
+            </li>
+
             <li {{ Request::is('admin/notification*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.notification') }}">
                     <i class="material-icons text-gray">notifications</i>
                     <p>Notifications</p>
                 </a>
             </li>
+
 
         </ul>
     </div>
