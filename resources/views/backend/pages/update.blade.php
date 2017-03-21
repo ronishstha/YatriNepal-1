@@ -37,7 +37,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Content</label>
+                                            <label>Content</label>
                                             <textarea row=20 class="form-control" name="content" id="content" >{{ Request::old('content')? Request::old('content') : isset($page)? $page->content : '' }}</textarea>
                                         </div>
                                     </div>

@@ -39,7 +39,7 @@
                             </p>
                         </div>
                         <div class="card-content table-responsive">
-                            <p align="center">{{ $destination->description }}</p>
+                            <p align="center">{!! $destination->description !!}  </p>
                             @if(Storage::disk('local')->has($destination->image))
                                 <section class="row">
                                     <div class="col-md-6 col-md-offset-3">

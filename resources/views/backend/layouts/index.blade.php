@@ -91,7 +91,8 @@
 
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="/assets/js/demo.js"></script>
-
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -99,6 +100,10 @@
         demo.initDashboardPageCharts();
 
     });
+
+    $('textarea').ckeditor();
+    // $('.textarea').ckeditor(); // if class is prefered.
 </script>
+
 
 </html>

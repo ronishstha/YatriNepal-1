@@ -53,6 +53,17 @@
         b.g{
             color: green;
         }
+        .img_left{
+            float:left;
+        }
+        .img_comment{
+            margin: 0 auto;
+            width: 70%;
+        }
+        .text_right{
+            margin-left: -600px;
+        }
+
     </style>
     <div class="content">
         <div class="container-fluid">
@@ -68,14 +79,21 @@
                             </p>
                         </div>
                         <div class="card-content table-responsive">
-                            @if(Storage::disk('local')->has($review->image))
-                                <section class="row">
-                                    <div class="col-md-6 col-md-offset-3">
-                                        <img src="{{ route('backend.review.image', ['filename' => $review->image]) }}" alt="" class="img-responsive" style=" border-radius:2px;height:100px;width:100px;float:left;margin-left:-20px;">
-                                    </div>
-                                </section>
-                            @endif
-                            <p align="center">{{ $review->description }}</p>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @if(Storage::disk('local')->has($review->image))
+                                        <section class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <img src="{{ route('backend.review.image', ['filename' => $review->image]) }}" alt="" class="img-responsive" style=" border-radius:2px;height:100px;width:200px;margin-left:-20px;">
+                                            </div>
+                                        </section>
+                                    @endif
+                                </div>
+                                <div class="col-md-7">
+                                    <p>{{ $review->description }}</p>
+                                </div>
+                            </div>
+
 
 
 

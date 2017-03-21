@@ -39,7 +39,7 @@
                             </p>
                         </div>
                         <div class="card-content table-responsive">
-                            <p align="center">{{ $banner->description }}</p>
+                            <p align="center">{!! $banner->description  !!}</p>
 
                             @if(Storage::disk('banner')->has($banner->image))
                                 <section class="row">
