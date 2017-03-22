@@ -482,7 +482,7 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.itinerary.image'
     ]);
 
-    Route::get('itinerary/{filename}', [
+    Route::get('itinerary/{mapname}', [
         'uses' => 'ItinerariesController@getRouteMap',
         'as'   => 'backend.itinerary.routemap'
     ]);

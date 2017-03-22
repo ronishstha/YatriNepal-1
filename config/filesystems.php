@@ -60,6 +60,21 @@ return [
             'root' => storage_path('app/banner'),
         ],
 
+        'country' => [
+            'driver' => 'local',
+            'root' => storage_path('app/country'),
+        ],
+
+        'destination' => [
+            'driver' => 'local',
+            'root' => storage_path('app/destination'),
+        ],
+
+        'itinerary' => [
+            'driver' => 'local',
+            'root' => storage_path('app/itinerary'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),

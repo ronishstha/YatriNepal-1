@@ -61,7 +61,7 @@ class BannerController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($banner->image)){
-                unlink(storage_path() . "\\app\\" . $banner->image);
+                unlink(storage_path() . "\\app\\banner" . $banner->image);
             }
             $uploadPath = storage_path() . '/app/banner';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -83,6 +83,7 @@ class BannerController extends Controller
 
     public function getDelete($banner_id){
         $banner = Banner::findOrFail($banner_id);
+        unlink(storage_path() . "\\app\\banner" . $banner->image);
         $banner->delete();
         return redirect()->route('backend.banner.delete.page')->with(['success' => 'Successfully deleted']);
     }

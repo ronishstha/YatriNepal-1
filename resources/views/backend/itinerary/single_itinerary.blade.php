@@ -71,7 +71,7 @@
                             <p align="center">{!! $itinerary->trekking_group !!}</p>
                             <p align="center"><strong>Trip Status:</strong> {{ $itinerary->trip_status }}</p>
 
-                            @if(Storage::disk('local')->has($itinerary->image))
+                            @if(Storage::disk('itinerary')->has($itinerary->image))
                                 <section class="row">
                                     <div class="col-md-6 col-md-offset-3">
                                         <img src="{{ route('backend.itinerary.image', ['filename' => $itinerary->image]) }}" alt="" class="img-responsive" style="border-radius: 2px;">

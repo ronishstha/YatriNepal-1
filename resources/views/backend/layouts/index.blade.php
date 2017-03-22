@@ -101,8 +101,6 @@
 
     });
 
-    $('textarea').ckeditor();
-    // $('.textarea').ckeditor(); // if class is prefered.
 </script>
 
 <script>
@@ -111,7 +109,7 @@
 
 
 <script>
-    $('textarea[name=ce]').ckeditor({
+    $('textarea').ckeditor({
         height: 100,
         filebrowserImageBrowseUrl: route_prefix + '?type=Images',
         filebrowserImageUploadUrl: route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
