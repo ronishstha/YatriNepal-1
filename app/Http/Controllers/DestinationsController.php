@@ -33,7 +33,9 @@ class DestinationsController extends Controller
 
         $destination = new Destination();
         $file = $request->file('image');
+        $uploadPath = storage_path() . '/app/destination';
         $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+        $file->move($uploadPath, $fileName);
         $destination->image = $fileName;
         $slug = $request['title'];
         $nation = $request['country'];
@@ -45,9 +47,6 @@ class DestinationsController extends Controller
         $country = Country::where('title', $nation)->first();
         $destination->user()->associate($user);
         $destination->country()->associate($country);
-        if($file){
-            Storage::disk('local')->put($fileName, File::get($file));
-        }
         $destination->save();
 
         return redirect()->route('backend.destination')->with(['success' => 'Successfully created']);
@@ -69,9 +68,20 @@ class DestinationsController extends Controller
             'description' => 'required'
         ]);
         $destination = Destination::findOrFail($request['destination_id']);
+
+        $old = $destination->image;
         $file = $request->file('image');
-        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
-        $destination->image = $fileName;
+        if($request->hasFile('image')){
+            if(!empty($destination->image)){
+                unlink(storage_path() . "\\app\\destination\\" . $destination->image);
+            }
+            $uploadPath = storage_path() . '/app/destination';
+            $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $destination->image = $fileName;
+        }else{
+            $destination->image = $old;
+        }
         $slug = $request['title'];
         $nation = $request['country'];
         $journey = $request['destination'];
@@ -82,9 +92,6 @@ class DestinationsController extends Controller
         $destination->slug = str_slug($slug, '-');
         $destination->status = $request['status'];
         $user = Auth::user();
-        if($file){
-            Storage::disk('local')->put($fileName, File::get($file));
-        }
         $destination->user_id = $user->id;
         $country = Country::where('title', $nation)->first();
         $destination->country_id = $country->id;
@@ -94,6 +101,7 @@ class DestinationsController extends Controller
 
     public function getDelete($destination_id){
         $destination = Destination::findOrFail($destination_id);
+        unlink(storage_path() . "\\app\\destination\\" . $destination->image);
         $destination->delete();
         return redirect()->route('backend.destination.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -124,7 +132,7 @@ class DestinationsController extends Controller
     }
 
     public function getImage($filename){
-        $file = Storage::disk('local')->get($filename);
+        $file = Storage::disk('destination')->get($filename);
         return new Response($file, 200);
     }
 }

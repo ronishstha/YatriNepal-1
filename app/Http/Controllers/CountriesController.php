@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Response;
 use App\Country;
 use App\User;
 
@@ -32,7 +33,7 @@ class CountriesController extends Controller
         $slug = $request['title'];
         $country = new Country();
         $file = $request->file('flag');
-        $uploadPath = storage_path() . '/app';
+        $uploadPath = storage_path() . '/app/country';
         $fileName = date('Y-m-d-H-i-s') . $file->getClientOriginalName();
         $file->move($uploadPath, $fileName);
         $country->flag = $fileName;
@@ -63,9 +64,9 @@ class CountriesController extends Controller
         $file = $request->file('flag');
         if($request->hasFile('flag')){
             if(!empty($country->flag)){
-                unlink(storage_path() . "\\app\\" . $country->flag);
+                unlink(storage_path() . "\\app\\country\\" . $country->flag);
             }
-            $uploadPath = storage_path() . '/app';
+            $uploadPath = storage_path() . '/app/country';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
             $file->move($uploadPath, $fileName);
             $country->flag = $fileName;
@@ -80,6 +81,7 @@ class CountriesController extends Controller
 
     public function getDelete($country_id){
         $country = Country::findOrFail($country_id);
+        unlink(storage_path() . "\\app\\country\\" . $country->flag);
         $country->delete();
         return redirect()->route('backend.country.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -104,7 +106,7 @@ class CountriesController extends Controller
     }
 
     public function getImage($filename){
-        $file = Storage::disk('local')->get($filename);
+        $file = Storage::disk('country')->get($filename);
         return new Response($file, 200);
     }
 }

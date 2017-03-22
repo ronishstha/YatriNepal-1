@@ -81,7 +81,7 @@
                         <div class="card-content table-responsive">
                             <div class="row">
                                 <div class="col-md-3">
-                                    @if(Storage::disk('local')->has($review->image))
+                                    @if(Storage::disk('review')->has($review->image))
                                         <section class="row">
                                             <div class="col-md-6 col-md-offset-3">
                                                 <img src="{{ route('backend.review.image', ['filename' => $review->image]) }}" alt="" class="img-responsive" style=" border-radius:2px;height:100px;width:200px;margin-left:-20px;">
@@ -90,7 +90,7 @@
                                     @endif
                                 </div>
                                 <div class="col-md-7">
-                                    <p>{{ $review->description }}</p>
+                                    <p>{!! $review->description  !!}</p>
                                 </div>
                             </div>
 

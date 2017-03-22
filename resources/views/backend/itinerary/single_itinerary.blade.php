@@ -70,11 +70,22 @@
                             <h4 align="center"><strong>Trekking Group</strong></h4>
                             <p align="center">{!! $itinerary->trekking_group !!}</p>
                             <p align="center"><strong>Trip Status:</strong> {{ $itinerary->trip_status }}</p>
+                            <img src="" />
 
-                            @if(Storage::disk('local')->has($itinerary->image))
+                            @if(Storage::disk('itinerary')->has($itinerary->image))
                                 <section class="row">
                                     <div class="col-md-6 col-md-offset-3">
+
                                         <img src="{{ route('backend.itinerary.image', ['filename' => $itinerary->image]) }}" alt="" class="img-responsive" style="border-radius: 2px;">
+                                    </div>
+                                </section>
+                                <br>
+                            @endif
+
+                            @if(Storage::disk('itinerary')->has($itinerary->route_map))
+                                <section class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <img src="{{ route('backend.itinerary.routemap', ['mapname' => $itinerary->route_map]) }}" alt="" class="img-responsive" style="border-radius: 2px;">
                                     </div>
                                 </section>
                                 <br>
