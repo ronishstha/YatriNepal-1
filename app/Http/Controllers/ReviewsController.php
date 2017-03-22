@@ -33,7 +33,9 @@ class ReviewsController extends Controller
 
         $review = new Review();
         $file = $request->file('image');
+        $uploadPath = storage_path() . '/app/review';
         $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+        $file->move($uploadPath, $fileName);
         $review->image = $fileName;
         $slug = $request['name'];
         $trip = $request['itinerary'];
@@ -52,9 +54,6 @@ class ReviewsController extends Controller
         $itinerary = Itinerary::where('title', $trip)->first();
         $review->user()->associate($user);
         $review->itinerary()->associate($itinerary);
-        if($file){
-            Storage::disk('local')->put($fileName, File::get($file));
-        }
         $review->save();
 
         return redirect()->route('backend.review')->with(['success' => 'Successfully created']);
@@ -75,10 +74,21 @@ class ReviewsController extends Controller
             'itinerary' => 'required',
             'description' => 'required'
         ]);
+
         $review = Review::findOrFail($request['review_id']);
+        $old = $review->image;
         $file = $request->file('image');
-        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
-        $review->image = $fileName;
+        if($request->hasFile('image')){
+            if(!empty($review->image)){
+                unlink(storage_path() . "\\app\\review" . $review->image);
+            }
+            $uploadPath = storage_path() . '/app/review';
+            $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $review->image = $fileName;
+        }else{
+            $review->image = $old;
+        }
         $slug = $request['name'];
         $trip = $request['itinerary'];
         $review->name = $request['name'];
@@ -93,9 +103,6 @@ class ReviewsController extends Controller
         $review->slug = str_slug($slug, '-');
         $review->status = $request['status'];
         $user = Auth::user();
-        if($file){
-            Storage::disk('local')->put($fileName, File::get($file));
-        }
         $review->user_id = $user->id;
         $itinerary = Itinerary::where('title', $trip)->first();
         $review->itinerary_id = $itinerary->id;
@@ -135,7 +142,7 @@ class ReviewsController extends Controller
     }
 
     public function getImage($filename){
-        $file = Storage::disk('local')->get($filename);
+        $file = Storage::disk('review')->get($filename);
         return new Response($file, 200);
     }
 }

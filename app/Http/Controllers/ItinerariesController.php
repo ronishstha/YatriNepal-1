@@ -12,7 +12,7 @@ use App\Region;
 use App\Activity;
 use App\Category;
 use App\Itinerary;
-
+use Illuminate\Support\Facades\Storage;
 
 class ItinerariesController extends Controller
 {
@@ -286,8 +286,8 @@ class ItinerariesController extends Controller
         return new Response($file, 200);
     }
 
-    public function getRouteMap($mapname){
+    /*public function getRouteMap($mapname){
         $file = Storage::disk('itinerary')->get($mapname);
         return new Response($file, 200);
-    }
+    }*/
 }

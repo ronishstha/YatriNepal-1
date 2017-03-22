@@ -132,7 +132,7 @@ class DestinationsController extends Controller
     }
 
     public function getImage($filename){
-        $file = Storage::disk('local')->get($filename);
+        $file = Storage::disk('destination')->get($filename);
         return new Response($file, 200);
     }
 }

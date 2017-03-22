@@ -45,10 +45,8 @@
                                     <div class="col-md-6 col-md-offset-3">
                                         <img src="{{ route('backend.destination.image', ['filename' => $destination->image]) }}" alt="" class="img-responsive">
                                     </div>
-                                </section>
+                                </section><br>
                             @endif
-
-                            <img src="http://localhost:8000/admin/destination/{{ $destination->image }}" alt="" class="img-responsive">
 
                             <div class="single-button">
                             <button class="btn-edit"><a href="{{ route('backend.destination.get.update', ['destination_id' => $destination->id]) }}">Edit</a></button>
