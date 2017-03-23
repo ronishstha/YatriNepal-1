@@ -12,7 +12,7 @@ use App\Region;
 use App\Activity;
 use App\Category;
 use App\Itinerary;
-
+use Illuminate\Support\Facades\Storage;
 
 class ItinerariesController extends Controller
 {
@@ -250,6 +250,8 @@ class ItinerariesController extends Controller
 
     public function getDelete($itinerary_id){
         $itinerary = Itinerary::findOrFail($itinerary_id);
+        unlink(storage_path() . "\\app\\itinerary\\" . $itinerary->image);
+        unlink(storage_path() . "\\app\\itinerary\\" . $itinerary->route_map);
         $itinerary->delete();
         return redirect()->route('backend.itinerary.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -280,12 +282,12 @@ class ItinerariesController extends Controller
     }
 
     public function getImage($filename){
-        $file = Storage::disk('local')->get($filename);
+        $file = Storage::disk('itinerary')->get($filename);
         return new Response($file, 200);
     }
 
-    public function getRouteMap($filename){
-        $file = Storage::disk('local')->get($filename);
+    /*public function getRouteMap($mapname){
+        $file = Storage::disk('itinerary')->get($mapname);
         return new Response($file, 200);
-    }
+    }*/
 }

@@ -91,7 +91,8 @@
 
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="/assets/js/demo.js"></script>
-
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -99,6 +100,31 @@
         demo.initDashboardPageCharts();
 
     });
+
+</script>
+
+<script>
+    var route_prefix = "{{ url(config('lfm.prefix')) }}";
+</script>
+
+
+<script>
+    $('textarea').ckeditor({
+        height: 100,
+        filebrowserImageBrowseUrl: route_prefix + '?type=Images',
+        filebrowserImageUploadUrl: route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
+        filebrowserBrowseUrl: route_prefix + '?type=Files',
+        filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
+    });
+</script>
+
+
+
+<script>
+    {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/lfm.js')) !!}
+</script>
+<script>
+    $('#lfm').filemanager('image', {prefix: route_prefix});
 </script>
 
 </html>

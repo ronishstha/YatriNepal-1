@@ -29,4 +29,8 @@ class Itinerary extends Model
     public function activity(){
         return $this->belongsTo('App\Activity');
     }
+
+    public function reviews(){
+        return $this->hasMany('App\Review');
+    }
 }

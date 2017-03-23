@@ -13,6 +13,7 @@ class indexController extends Controller
         $banners = DB::table('banners')->get();
         $destination = DB::table('destinations')->get();
         $activities = DB::table('activities')->get();
+
         return view('frontend.layouts.Home.index',compact('banners','destination','activities'));
     }
 }

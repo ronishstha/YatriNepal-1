@@ -13,10 +13,11 @@ class ActivitiesTableSeeder extends Seeder
     public function run()
     {
         $activity = new Activity();
-        $activity->title = '';
-        $activity->slug = '';
-        $activity->user_id = '';
-        $activity->region_id = '';
-        $activity->status = '';
+        $activity->title = 'Hiking';
+        $activity->slug = str_slug($activity->title, '-');
+        $activity->user_id = '1';
+        $activity->region_id = '3';
+        $activity->status = 'unpublished';
+        $activity->save();
     }
 }

@@ -13,11 +13,12 @@ class RegionsTableSeeder extends Seeder
     public function run()
     {
         $region = new Region();
-        $region->title = '';
-        $region->destination_id = '';
-        $region->slug = '';
-        $region->user_id = '';
-        $region->status = '';
+        $region->title = 'Beautiful';
+        $region->destination_id = '1';
+        $region->slug = str_slug($region->title, '-');
+        $region->user_id = '2';
+        $region->status = 'unpublished';
+        $region->save();
 
     }
 }

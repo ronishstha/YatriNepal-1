@@ -30,7 +30,7 @@ class BannerController extends Controller
 
         $banner = new Banner();
         $file = $request->file('image');
-        $uploadPath = storage_path() . '/app';
+        $uploadPath = storage_path() . '/app/banner';
         $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
         $file->move($uploadPath, $fileName);
         $banner->image = $fileName;
@@ -61,9 +61,9 @@ class BannerController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($banner->image)){
-                unlink(storage_path() . "\\app\\" . $banner->image);
+                unlink(storage_path() . "\\app\\banner" . $banner->image);
             }
-            $uploadPath = storage_path() . '/app';
+            $uploadPath = storage_path() . '/app/banner';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
             $file->move($uploadPath, $fileName);
             $banner->image = $fileName;
@@ -83,6 +83,7 @@ class BannerController extends Controller
 
     public function getDelete($banner_id){
         $banner = Banner::findOrFail($banner_id);
+        unlink(storage_path() . "\\app\\banner" . $banner->image);
         $banner->delete();
         return redirect()->route('backend.banner.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -114,7 +115,7 @@ class BannerController extends Controller
     }
 
     public function getImage($filename){
-        $file = Storage::disk('local')->get($filename);
+        $file = Storage::disk('banner')->get($filename);
         return new Response($file, 200);
     }
 }

@@ -15,9 +15,11 @@ class DestinationsTableSeeder extends Seeder
         $destination = new Destination();
         $destination->title = 'Pokhara' ;
         $destination->slug = str_slug($destination->title, '-');
-        $destination->country_id = '';
-        $destination->description = '';
-        $destination->user_id = '';
-        $destination->status = '';
+        $destination->country_id = '1';
+        $destination->image = 'nothingnow' ;
+        $destination->description = 'A must visit place before u die';
+        $destination->user_id = '3';
+        $destination->status = 'unpublished';
+        $destination->save();
     }
 }

@@ -5,19 +5,16 @@ use App\Country;
 
 class CountriesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         $countries = new Country();
-        $countries->title = '';
-        $countries->flag = '';
-        $countries->slug = '';
-        $countries->user_id = '';
-        $countries->status = '';
+        $countries->title = 'Nepal';
+        $countries->flag = 'nothinghere';
+        $countries->slug = str_slug($countries->title, '-');
+        $countries->user_id = '3';
+        $countries->status = 'unpublished';
+        $countries->save();
 
     }
 }

@@ -7,10 +7,10 @@
                 <a href="#"><img src="{{ $banner->image }}" alt="" title="#slider-1-caption1"/></a>
             @endforeach
 
-            @forif($banners->isEmpty())
+            @if($banners->isEmpty())
                 <a href="#"><img src="img/slider/slider-3.jpg" alt="" title="#slider-1-caption1"/></a>
                 <a href="#"><img src="img/slider/slider-4.jpg" alt="" title="#slider-1-caption1"/></a>
-            @endforif
+            @endif
 
         </div>
         <div id="slider-1-caption1" class="nivo-html-caption nivo-caption">
@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="text-content">
-                 git
+
                                 <h1 class="title1">HIKING &amp; CAMPING</h1>
                                 <h1 class="title2 hidden-xs">GEAR STYLES</h1>
                                 <h2 class="sub-title">The right tour for the</h2>
@@ -41,9 +41,18 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="adventure-cat floatright">
-                                        <input type="date" name="date" class="search-adventure" placeholder="Select Date"/>
+                                        <select name="destination" class="search-adventure">
+                                            <option>Select Date</option>
+                                            <option>1-4-2016</option>
+                                            <option>5-9-2016</option>
+                                            <option>3-10-2016</option>
+                                            <option>15-2-2017</option>
+                                            <option>22-7-2017</option>
+                                            <option>10-8-2017</option>
+                                            <option>7-11-2017</option>
+                                            <option>9-12-2017</option>
+                                        </select>
                                     </div>
                                     <div class="clearfix"></div>
                                     <button type="submit" id="btn-search-category" class="button-yellow">SEARCH</button>

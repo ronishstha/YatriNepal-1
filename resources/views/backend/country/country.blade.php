@@ -61,11 +61,17 @@
                                 <th>Modified by</th>
                                 </thead>
                                 <tbody>
+
                                 @foreach($countries as $country)
                                     @if($country->status == "published" || $country->status == "unpublished")
                                         <tr>
                                             <td>{{ $country->title }}</td>
-                                            <td><img src="{{ route('backend.country.image', ['filename' => $country->flag]) }}" alt="" class="img-responsive" style="border-radius: 2px;height:20px;width:20px;"></td>
+                                            <td>
+                                                @if(Storage::disk('country')->has($country->flag))
+                                                    <img src="{{ route('backend.country.image', ['filename' => $country->flag]) }}" alt="" class="img-responsive" style="border-radius: 2px;height:20px;width:20px;">
+                                                @endif
+
+                                                </td>
                                             <td><button class="btn-edit"><a href="{{ route('backend.country.get.update', ['country_id' => $country->id]) }}">Edit</a></button></td>
                                             <td><button class="btn-delete"><a href="{{ route('backend.country.trash', ['country_id' => $country->id]) }}">Delete</a></button></td>
                                             <td>{{ $country->user->name }}</td>
