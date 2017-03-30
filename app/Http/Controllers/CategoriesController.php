@@ -17,7 +17,6 @@ class CategoriesController extends Controller
     public function postCategory(Request $request){
         $this->validate($request, [
             'title' => 'required',
-            'description' => 'required'
         ]);
         $category = new Category();
 
@@ -39,7 +38,6 @@ class CategoriesController extends Controller
     public function postUpdate(Request $request){
         $this->validate($request, [
             'title' => 'required',
-            'description' => 'required'
         ]);
         $category = Category::findorFail($request['category_id']);
         $category->title = $request['title'];

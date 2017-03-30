@@ -17,10 +17,10 @@ class CreateDestinationsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('slug');
             $table->string('user_id');
             $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');

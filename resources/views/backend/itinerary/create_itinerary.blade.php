@@ -41,6 +41,12 @@
                                             <input type="text" class="form-control" name="title" id="title" value="{{ Request::old('title') }}">
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Itinerary Code</label>
+                                            <input type="text" class="form-control" name="itinerary_code" id="itinerary_code" value="{{ Request::old('itinerary_code') }}">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -125,14 +131,17 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Date</label>
-                                            <input type="text" class="form-control" name="date" id="date" value="{{ Request::old('date') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
                                             <label class="control-label">Cost</label>
                                             <input type="text" class="form-control" name="cost" id="cost" value="{{ Request::old('cost') }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label>Date</label>
+                                            <input type="date" class="form-control" name="date" id="date" value="{{ Request::old('date') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -308,6 +317,39 @@
                                                 <option>published</option>
                                                 <option>unpublished</option>
                                                 <option>trash</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Featured</label>
+                                            <select class="form-control" name="featured" id="featured">
+                                                <option>no</option>
+                                                <option>yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Best Selling</label>
+                                            <select class="form-control" name="best_selling" id="best_selling">
+                                                <option>no</option>
+                                                <option>yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Special Package</label>
+                                            <select class="form-control" name="special_package" id="special_package">
+                                                <option>no</option>
+                                                <option>yes</option>
                                             </select>
                                         </div>
                                     </div>

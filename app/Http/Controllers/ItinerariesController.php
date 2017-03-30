@@ -38,6 +38,7 @@ class ItinerariesController extends Controller
     public function postCreateItinerary(Request $request){
         $this->validate($request, [
             'title' => 'required',
+            'itinerary_code' => 'required|unique:itineraries',
             'trip_duration' => 'required',
             'trekking_duration' => 'required',
             'trekking_grade' => 'required',
@@ -49,7 +50,6 @@ class ItinerariesController extends Controller
             'start_end' => 'required',
             'arrival' => 'required',
             'departure' => 'required',
-            'date' => 'required',
             'cost' => 'required',
             'country' => 'required',
             'destination' => 'required',
@@ -92,6 +92,7 @@ class ItinerariesController extends Controller
         $user = Auth::user();
 
         $itinerary->title = $request['title'];
+        $itinerary->itinerary_code = $request['itinerary_code'];
         $itinerary->trip_duration = $request['trip_duration'];
         $itinerary->trekking_duration = $request['trekking_duration'];
         $itinerary->trekking_grade = $request['trekking_grade'];
@@ -113,6 +114,9 @@ class ItinerariesController extends Controller
         $itinerary->cost_exclusive = $request['cost_exclusive'];
         $itinerary->trekking_group = $request['trekking_group'];
         $itinerary->trip_status = $request['trip_status'];
+        $itinerary->featured = $request['featured'];
+        $itinerary->special_package = $request['special_package'];
+        $itinerary->best_selling = $request['best_selling'];
         $itinerary->slug = str_slug($slug,'-');
         $itinerary->status = $request['status'];
         $itinerary->user()->associate($user);
@@ -158,7 +162,6 @@ class ItinerariesController extends Controller
             'start_end' => 'required',
             'arrival' => 'required',
             'departure' => 'required',
-            'date' => 'required',
             'cost' => 'required',
             'country' => 'required',
             'destination' => 'required',

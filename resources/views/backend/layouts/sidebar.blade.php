@@ -86,6 +86,13 @@
                 </a>
             </li>
 
+            <li {{ Request::is('admin/customize*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.customize') }}">
+                    <i class="material-icons text-gray">receipt</i>
+                    <p>Customized Trip</p>
+                </a>
+            </li>
+
             <li {{ Request::is('admin/notification*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.notification') }}">
                     <i class="material-icons text-gray">notifications</i>
@@ -136,15 +143,6 @@
                         @endif
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group  is-empty">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <span class="material-input"></span>
-                    </div>
-                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                        <i class="material-icons">search</i><div class="ripple-container"></div>
-                    </button>
-                </form>
             </div>
         </div>
     </nav>

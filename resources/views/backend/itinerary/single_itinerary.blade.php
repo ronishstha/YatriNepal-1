@@ -39,6 +39,7 @@
                             </p>
                         </div>
                         <div class="card-content table-responsive">
+                            <h4 align="center"><strong>Itinerary Code:</strong> {{  $itinerary->itinerary_code }}</h4>
                             <p align="center"><strong>Trip Duration:</strong> {{ $itinerary->trip_duration }}</p>
                             <p align="center"><strong>Trekking Duration:</strong> {{ $itinerary->trekking_duration }}</p>
                             <p align="center"><strong>Trekking Grade:</strong> {{ $itinerary->trekking_grade }}</p>
@@ -70,7 +71,10 @@
                             <h4 align="center"><strong>Trekking Group</strong></h4>
                             <p align="center">{!! $itinerary->trekking_group !!}</p>
                             <p align="center"><strong>Trip Status:</strong> {{ $itinerary->trip_status }}</p>
-                            <img src="" />
+                            <p align="center"><strong>Featured:</strong> {{ $itinerary->featured }}</p>
+                            <p align="center"><strong>Best Selling:</strong> {{ $itinerary->best_selling }}</p>
+                            <p align="center"><strong>Special Package:</strong> {{ $itinerary->special_package }}</p>
+
 
                             @if(Storage::disk('itinerary')->has($itinerary->image))
                                 <section class="row">

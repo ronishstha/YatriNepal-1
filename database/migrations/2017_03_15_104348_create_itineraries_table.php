@@ -16,6 +16,7 @@ class CreateItinerariesTable extends Migration
         Schema::create('itineraries', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('itinerary_code');
             $table->string('title');
             $table->string('trip_duration');
             $table->string('trekking_duration');
@@ -28,10 +29,10 @@ class CreateItinerariesTable extends Migration
             $table->string('start_end');
             $table->string('arrival');
             $table->string('departure');
-            $table->string('date');
+            $table->string('date')->nullable();
             $table->string('cost');
-            $table->string('image');
-            $table->string('route_map');
+            $table->string('image')->nullable();
+            $table->string('route_map')->nullable();
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->integer('destination_id')->unsigned();
@@ -45,13 +46,16 @@ class CreateItinerariesTable extends Migration
             $table->text('summary');
             $table->text('trip_introduction');
             $table->text('itinerary');
-            $table->text('important_note');
+            $table->text('important_note')->nullable();
             $table->text('cost_inclusive');
             $table->text('cost_exclusive');
-            $table->text('trekking_group');
+            $table->text('trekking_group')->nullable();
             $table->enum('trip_status', ['Booking Open', 'Join a Group', 'Limited Space', 'Sold Out'])->default('Booking Open');
             $table->string('slug');
             $table->string('user_id');
+            $table->enum('featured', ['yes', 'no'])->default('no');
+            $table->enum('special_package', ['yes', 'no'])->default('no');
+            $table->enum('best_selling', ['yes', 'no'])->default('no');
             $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');
         });
     }

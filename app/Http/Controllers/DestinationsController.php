@@ -26,8 +26,6 @@ class DestinationsController extends Controller
     public function postCreateDestination(Request $request){
         $this->validate($request, [
             'title' => 'required',
-            'image' => 'required',
-            'description' => 'required',
             'country' => 'required'
         ]);
 
@@ -63,9 +61,7 @@ class DestinationsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'image' => 'required',
             'country' => 'required',
-            'description' => 'required'
         ]);
         $destination = Destination::findOrFail($request['destination_id']);
 
