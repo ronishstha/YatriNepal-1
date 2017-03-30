@@ -489,7 +489,7 @@ Route::group(['prefix' => 'admin',
 
 //-------------------------end of itinerary route--------------------------------
 
-    //-----------------------Review route---------------------------
+//-----------------------Review route---------------------------
 
     Route::get('review', [
         'uses' => 'ReviewsController@getReview',
@@ -546,7 +546,66 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.review.image'
     ]);
 
-//-------------------------end of destination route---------------------------------
+//-------------------------end of review route---------------------------------
+
+//-----------------------Customize route---------------------------
+
+    Route::get('customize', [
+        'uses' => 'CustomizesController@getCustomize',
+        'as' => 'backend.customize'
+    ]);
+
+    Route::get('customize/create', [
+        'uses' => 'CustomizesController@getCreateCustomize',
+        'as' => 'backend.customize.get.create'
+    ]);
+
+    Route::post('customize/create', [
+        'uses' => 'CustomizesController@postCreateCustomize',
+        'as' => 'backend.customize.post.create'
+    ]);
+
+    Route::get('customize/edit/{customize_id}', [
+        'uses' => 'CustomizesController@getUpdate',
+        'as' => 'backend.customize.get.update'
+    ]);
+
+    Route::post('customize/update', [
+        'uses' => 'CustomizesController@postUpdate',
+        'as' => 'backend.customize.post.update'
+    ]);
+
+    Route::get('customize/delete/{customize_id}', [
+        'uses' => 'CustomizesController@getDelete',
+        'as' => 'backend.customize.delete'
+    ]);
+
+    Route::get('customize/single/{category_slug}', [
+        'uses' => 'CustomizesController@getSingleCustomize',
+        'as' => 'backend.customize.single.customize'
+    ]);
+
+    Route::get('customize/trash/{customize_id}', [
+        'uses' => 'CustomizesController@getTrash',
+        'as'  => 'backend.customize.trash'
+    ]);
+
+    Route::get('customize/trash', [
+        'uses' => 'CustomizesController@DeleteForever',
+        'as'   => 'backend.customize.delete.page'
+    ]);
+
+    Route::get('customize/restore/{customize_id}', [
+        'uses' => 'CustomizesController@Restore',
+        'as'   => 'backend.customize.restore'
+    ]);
+
+    Route::get('customize/{filename}', [
+        'uses' => 'CustomizesController@getImage',
+        'as'   => 'backend.customize.image'
+    ]);
+
+//-------------------------end of customize route---------------------------------
 
     Route::get('logout', [
         'uses' => 'UserController@getLogout',

@@ -33,4 +33,8 @@ class Itinerary extends Model
     public function reviews(){
         return $this->hasMany('App\Review');
     }
+
+    public function customizes(){
+        return $this->hasMany('App\Customize');
+    }
 }
