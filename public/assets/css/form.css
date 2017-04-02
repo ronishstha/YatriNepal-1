@@ -1,9 +1,16 @@
+body{
+    background-image: url('/assets/background.jpg');
+    background-repeat: no-repeat;
+    background-size:100% 720px;
+    background-attachment:fixed;
+
+}
 .fcontainer{
     height:300px;
     width:400px;
     text-align:center;
     border-radius:5px;
-    background-color:rgba(52,73,94, 0.7);
+    background-color:rgba(0, 0, 0, 0.4);
     margin:0 auto;
     margin-top:100px;
 }
@@ -25,7 +32,7 @@ input.text2{
     border-radius:4px;
     width:240px;
     height:40px;
-    font-size:18px;
+    font-size:14px;
     margin-bottom:12px;
     background-color:#fff;
     padding-left:40px;
@@ -46,6 +53,7 @@ input.text2:focus, textarea:focus {
     text-align:center;
     font-size:18px;
     border-radius:4px;
+    margin-top: 20px;
 }
 
 .form-input::before{

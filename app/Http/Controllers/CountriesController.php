@@ -28,15 +28,16 @@ class CountriesController extends Controller
     public function postCreateCountry(Request $request){
         $this->validate($request, [
             'title' => 'required|unique:countries',
-            'flag'  => 'required',
         ]);
         $slug = $request['title'];
         $country = new Country();
         $file = $request->file('flag');
-        $uploadPath = storage_path() . '/app/country';
-        $fileName = date('Y-m-d-H-i-s') . $file->getClientOriginalName();
-        $file->move($uploadPath, $fileName);
-        $country->flag = $fileName;
+        if(!empty($file)){
+            $uploadPath = public_path() . '/country';
+            $fileName = date('Y-m-d-H-i-s') . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $country->flag = $fileName;
+        }
         $country->title = $request['title'];
         $country->slug = str_slug($slug, '-');
         $country->status = $request['status'];
@@ -53,7 +54,6 @@ class CountriesController extends Controller
     public function postUpdate(Request $request){
         $this->validate($request, [
             'title' => 'required',
-            'flag'  => 'required',
         ]);
         $country = Country::findOrFail($request['country_id']);
         $country->title = $request['title'];
@@ -64,9 +64,9 @@ class CountriesController extends Controller
         $file = $request->file('flag');
         if($request->hasFile('flag')){
             if(!empty($country->flag)){
-                unlink(storage_path() . "\\app\\country\\" . $country->flag);
+                unlink(public_path() . "\\country\\" . $country->flag);
             }
-            $uploadPath = storage_path() . '/app/country';
+            $uploadPath = public_path() . '/country';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
             $file->move($uploadPath, $fileName);
             $country->flag = $fileName;
@@ -81,7 +81,7 @@ class CountriesController extends Controller
 
     public function getDelete($country_id){
         $country = Country::findOrFail($country_id);
-        unlink(storage_path() . "\\app\\country\\" . $country->flag);
+        unlink(public_path() . "\\country\\" . $country->flag);
         $country->delete();
         return redirect()->route('backend.country.delete.page')->with(['success' => 'Successfully deleted']);
     }
