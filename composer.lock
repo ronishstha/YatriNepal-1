@@ -364,18 +364,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
-            "version": "v5.4.15",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "ecc6468b8af30b77566a8519ce8898740ef691d7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ecc6468b8af30b77566a8519ce8898740ef691d7",
-                "reference": "ecc6468b8af30b77566a8519ce8898740ef691d7",
-=======
             "version": "v5.4.16",
             "source": {
                 "type": "git",
@@ -386,7 +374,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
                 "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
->>>>>>> cf769dcf173609c7d08f8009d4ae629b02ce22c2
                 "shasum": ""
             },
             "require": {
@@ -502,11 +489,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
-            "time": "2017-03-02T14:41:40+00:00"
-=======
             "time": "2017-03-21T19:34:41+00:00"
->>>>>>> cf769dcf173609c7d08f8009d4ae629b02ce22c2
         },
         {
             "name": "laravel/tinker",
@@ -568,16 +551,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.36",
+            "version": "1.0.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "d9c1698582dfbfbd092ec9c5c3325f862cdb3297"
+                "reference": "78b5cc4feb61a882302df4fbaf63b7662e5e4ccd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/d9c1698582dfbfbd092ec9c5c3325f862cdb3297",
-                "reference": "d9c1698582dfbfbd092ec9c5c3325f862cdb3297",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/78b5cc4feb61a882302df4fbaf63b7662e5e4ccd",
+                "reference": "78b5cc4feb61a882302df4fbaf63b7662e5e4ccd",
                 "shasum": ""
             },
             "require": {
@@ -647,7 +630,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-03-18T16:02:30+00:00"
+            "time": "2017-03-22T15:43:14+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -922,8 +905,6 @@
                 "random"
             ],
             "time": "2017-03-13T16:27:32+00:00"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "psr/http-message",
@@ -974,7 +955,6 @@
                 "response"
             ],
             "time": "2016-08-06T14:39:51+00:00"
->>>>>>> cf769dcf173609c7d08f8009d4ae629b02ce22c2
         },
         {
             "name": "psr/log",
@@ -1025,18 +1005,6 @@
         },
         {
             "name": "psy/psysh",
-<<<<<<< HEAD
-            "version": "v0.8.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "97113db4107a4126bef933b60fea6dbc9f615d41"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/97113db4107a4126bef933b60fea6dbc9f615d41",
-                "reference": "97113db4107a4126bef933b60fea6dbc9f615d41",
-=======
             "version": "v0.8.3",
             "source": {
                 "type": "git",
@@ -1047,7 +1015,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
                 "reference": "1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
->>>>>>> cf769dcf173609c7d08f8009d4ae629b02ce22c2
                 "shasum": ""
             },
             "require": {
@@ -1107,11 +1074,7 @@
                 "interactive",
                 "shell"
             ],
-<<<<<<< HEAD
-            "time": "2017-03-01T00:13:29+00:00"
-=======
             "time": "2017-03-19T21:40:44+00:00"
->>>>>>> cf769dcf173609c7d08f8009d4ae629b02ce22c2
         },
         {
             "name": "ramsey/uuid",
@@ -2082,16 +2045,16 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "v1.7.0",
+            "version": "v1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "f80d6623cb33c446e499c24de92f5d58a2678bf5"
+                "reference": "df97c5c7bf43eb0660f13fdc16a0efefc534311a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/f80d6623cb33c446e499c24de92f5d58a2678bf5",
-                "reference": "f80d6623cb33c446e499c24de92f5d58a2678bf5",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/df97c5c7bf43eb0660f13fdc16a0efefc534311a",
+                "reference": "df97c5c7bf43eb0660f13fdc16a0efefc534311a",
                 "shasum": ""
             },
             "require": {
@@ -2139,7 +2102,7 @@
                 "tinymce",
                 "upload"
             ],
-            "time": "2017-02-17T08:42:40+00:00"
+            "time": "2017-03-23T06:55:16+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2907,18 +2870,6 @@
         },
         {
             "name": "phpunit/phpunit",
-<<<<<<< HEAD
-            "version": "5.7.16",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "dafc78e2a7d12139b0e97078d1082326bd09363d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/dafc78e2a7d12139b0e97078d1082326bd09363d",
-                "reference": "dafc78e2a7d12139b0e97078d1082326bd09363d",
-=======
             "version": "5.7.17",
             "source": {
                 "type": "git",
@@ -2929,7 +2880,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/68752b665d3875f9a38a357e3ecb35c79f8673bf",
                 "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
->>>>>>> cf769dcf173609c7d08f8009d4ae629b02ce22c2
                 "shasum": ""
             },
             "require": {
@@ -2998,11 +2948,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
-            "time": "2017-03-15T13:02:34+00:00"
-=======
             "time": "2017-03-19T16:52:12+00:00"
->>>>>>> cf769dcf173609c7d08f8009d4ae629b02ce22c2
         },
         {
             "name": "phpunit/phpunit-mock-objects",

@@ -60,12 +60,11 @@
                 <div class="about-container section-padding">
                     <div class="section-title title-two">
                         <div class="title-border">
-                            <h1>About <span>Adventures</span></h1>
+                            <h1>{{ $about_adventure->title }}</h1>
                         </div>
                     </div>
                     <div class="about-text">
-                        <h1>This is your planet. Introduce yourself.</h1>
-                        <p>Travelling with G Adventures is the very best way to get up close and personal with your planet in a way you’d never manage on your own. For more than 20 years, we’ve brought together people from all over the globe to create lifelong connections. This is your planet, after all—and the better you get to know it.....</p>
+                        <p>{{ $about_adventure->content }} </p>
                         <a href="#" class="button-yellow">Why Trtavel with Adventures?</a>
                     </div>
                 </div>

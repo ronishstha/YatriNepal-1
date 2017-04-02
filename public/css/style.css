@@ -100,6 +100,7 @@ img {
     height:auto;
     border:0; 
     vertical-align:top;
+
 }
 .fix {overflow:hidden}
 p {}
@@ -1929,7 +1930,7 @@ header.header-three {top: 10px}
 .adventure-tab {float: right}
 .grid-two-tab .adventure-cat {float: right}
 .adventure-tab .nav > li > a.list-view, .adventure-tab .nav > li > a.grid-view {
-    background: rgba(0, 0, 0, 0) url("../.img/icon/list.png") no-repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) url("../img/icon/list.png") no-repeat scroll 0 0;
     border-color: rgba(0, 0, 0, 0) !important;
     float: left;
     font-size: 0;
@@ -2601,9 +2602,10 @@ header.header-three {top: 10px}
 .adventures-grid form#banner-searchbox.details-form {margin-bottom: 0}
 .trip-info-left-text .section-title {margin-bottom: 46px}
 .trip-info-left-text p, .about-adventures p {
-    line-height: 30px;
+    line-height: 20px;
     margin-top: 12px;
     text-align: left;
+
 }
 .details-social-link a {border-color: #606060; margin-right: 26px;}
 .details-social-link a:hover {border-color: #000; color: #000;}
@@ -2812,7 +2814,7 @@ header.fixed .header-logo-menu {
 }
 .details-two .trip-info-left-text {padding-top: 112px}
 .details-two .trip-booking-info {padding-top: 171px}
-.trip-information.details-two {background: #edecec url("../img/banner/24.png") no-repeat scroll right top / 57% 100%}
+.trip-information.details-two {background: #edecec url("../img/jj.jpg") no-repeat scroll right top / 51% 100%}
 /*----------------------------------------*/
 /*  21.1 Trip Gallery
 /*----------------------------------------*/
@@ -3656,3 +3658,4 @@ textarea.yourmessage {
 #scrollUp:hover {
     background-color: #000;
 }
+

@@ -18,6 +18,7 @@ class CategoriesTableSeeder extends Seeder
         $category->description = 'Fun area';
         $category->user_id = '3';
         $category->status = 'unpublished';
+        $category->save();
 
     }
 }

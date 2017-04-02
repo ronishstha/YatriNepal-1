@@ -15,7 +15,7 @@
             <div class="col-md-12 text-center">
                 <ul class="breadcrumb">
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Adventures</li>
+                    <li>Travel</li>
                 </ul>
             </div>
         </div>

@@ -2,16 +2,13 @@
 <div class="slider-area home-two-slider">
     <div class="preview-2">
         <div id="nivoslider" class="slides">
-
             @foreach($banners as $banner)
-                <a href="#"><img src="{{ $banner->image }}" alt="" title="#slider-1-caption1"/></a>
+                <img src="{{ URL::asset('banner/'.$banner->image) }}" alt="" class="img-responsive" style="border-radius: 2px;" title="#slider-1-caption1" >
             @endforeach
-
             @if($banners->isEmpty())
                 <a href="#"><img src="img/slider/slider-3.jpg" alt="" title="#slider-1-caption1"/></a>
                 <a href="#"><img src="img/slider/slider-4.jpg" alt="" title="#slider-1-caption1"/></a>
             @endif
-
         </div>
         <div id="slider-1-caption1" class="nivo-html-caption nivo-caption">
             <div class="banner-content slider-1">
@@ -19,7 +16,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="text-content">
-
                                 <h1 class="title1">HIKING &amp; CAMPING</h1>
                                 <h1 class="title2 hidden-xs">GEAR STYLES</h1>
                                 <h2 class="sub-title">The right tour for the</h2>
@@ -32,6 +28,7 @@
                                                     <option>{{ $activity->title }}</option>
                                                 @endforeach
                                         </select>
+                                        <button type="submit" id="btn-search-category" >Search</button>
                                     </div>
                                     <div class="adventure-cat destination">
                                         <select name="destination" class="search-adventure">
@@ -41,21 +38,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="adventure-cat floatright">
-                                        <select name="destination" class="search-adventure">
-                                            <option>Select Date</option>
-                                            <option>1-4-2016</option>
-                                            <option>5-9-2016</option>
-                                            <option>3-10-2016</option>
-                                            <option>15-2-2017</option>
-                                            <option>22-7-2017</option>
-                                            <option>10-8-2017</option>
-                                            <option>7-11-2017</option>
-                                            <option>9-12-2017</option>
-                                        </select>
-                                    </div>
                                     <div class="clearfix"></div>
-                                    <button type="submit" id="btn-search-category" class="button-yellow">SEARCH</button>
+
                                 </form>
                             </div>
                         </div>

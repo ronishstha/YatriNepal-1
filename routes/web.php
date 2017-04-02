@@ -1,12 +1,11 @@
 <?php
 
-<<<<<<< HEAD
+
 //---------------------------------Starting of frontend------------------------------------
 //-------------------------------------------------------------------------------------
 
 Route::get('/', [
     'uses' => 'frontend\indexController@index'
-
 ])->name("home");
 
 Route::get('/Travel', function () {
@@ -17,19 +16,29 @@ Route::get('/Contact', function () {
     return view('frontend.layouts.Contact.Contact');
 })->name("contact");
 
-Route::get('/Destination', function () {
-    return view('frontend.layouts.Destination.Destination');
-})->name("dest");
+Route::get('/Destination',[
+    'uses' => 'frontend\DestinationController@dest'
+])->name("dest");
 
 Route::get('/Blog', function () {
     return view('frontend.layouts.Blog.blog');
 })->name("blog");
 
 
+Route::get('/details/{slug}', [
+   'uses' => 'frontend\indexController@getDetails'
+])->name("details");
+
+//Route::get('/search/{category,destination}', [
+//    'uses' => 'frontend\SearchController@getResult',
+//    'as'   => 'searchItinerary'
+//]);
+
+
 //---------------------------------End of frontend------------------------------------
 //-------------------------------------------------------------------------------------
 
-=======
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,10 +52,6 @@ Route::get('/Blog', function () {
 
 
 //----------------------------------frontend admin login------------------------------------------------
-Route::get('/', function(){
-    return view('frontend.index');
-})->name('frontend.index');
->>>>>>> cf769dcf173609c7d08f8009d4ae629b02ce22c2
 
 Route::get('login', [
     'uses' => 'UserController@getLogin',

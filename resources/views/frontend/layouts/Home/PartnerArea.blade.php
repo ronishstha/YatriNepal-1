@@ -13,19 +13,25 @@
         <div class="row">
             <div class="partner-carousel carousel-style-two">
                 <div class="col-md-3">
-                    <a href="#"><img src="img/brand/1.jpg" alt=""></a>
+                    <a href="#"><img src="../img/partners/adventure-travel.png" alt=""></a>
                 </div>
                 <div class="col-md-3">
-                    <a href="#"><img src="img/brand/2.jpg" alt=""></a>
+                    <a href="#"><img src="../img/partners/asta.png" alt=""></a>
                 </div>
                 <div class="col-md-3">
-                    <a href="#"><img src="img/brand/3.jpg" alt=""></a>
+                    <a href="#"><img src="../img/partners/eco.png" alt=""></a>
                 </div>
                 <div class="col-md-3">
-                    <a href="#"><img src="img/brand/4.jpg" alt=""></a>
+                    <a href="#"><img src="../img/partners/leave" alt=""></a>
                 </div>
                 <div class="col-md-3">
-                    <a href="#"><img src="img/brand/1.jpg" alt=""></a>
+                    <a href="#"><img src="../img/partners/pata.png" alt=""></a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#"><img src="../img/partners/taan.png" alt=""></a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#"><img src="../img/partners/tourism.png" alt=""></a>
                 </div>
             </div>
         </div>
