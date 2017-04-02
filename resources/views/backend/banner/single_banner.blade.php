@@ -41,10 +41,10 @@
                         <div class="card-content table-responsive">
                             <p align="center">{!! $banner->description  !!}</p>
 
-                            @if(Storage::disk('banner')->has($banner->image))
+                            @if(!empty($banner->image))
                                 <section class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <img src="{{ route('backend.banner.image', ['filename' => $banner->image]) }}" alt="" class="img-responsive" style="border-radius: 2px;">
+                                        <img src="{{ URL::asset('banner/'. $banner->image) }}" alt="" class="img-responsive" style="border-radius: 2px;">
                                     </div>
                                 </section>
                                 <br>

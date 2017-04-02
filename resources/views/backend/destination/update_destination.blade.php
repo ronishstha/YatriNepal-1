@@ -44,11 +44,15 @@
                                     </div>
                                 </div>
 
+                                @if(!empty($destination->image))
+                                    <td><img src="{{ URL::asset('destination/' . $destination->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                @endif
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="">
                                             <label id="fileupload-example-3-label" for="fileupload-example-3">Image</label>
-                                            <input type="file" id="fileupload-example-3" name="image" value="{{ Request::old('image') ? Request::old('image') : isset($banner) ? $banner->image : '' }}"/>
+                                            <input type="file" id="fileupload-example-3" name="image" value="{{ Request::old('image') ? Request::old('image') : isset($destination) ? $destination->image : '' }}"/>
                                         </div>
                                     </div>
                                 </div>

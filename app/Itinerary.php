@@ -37,4 +37,16 @@ class Itinerary extends Model
     public function customizes(){
         return $this->hasMany('App\Customize');
     }
+
+    public function bookings(){
+        return $this->hasMany('App\Booking');
+    }
+
+    public function bookdetails(){
+        return $this->hasMany('App\Bookdetail');
+    }
+
+    public function galleries(){
+        return $this->hasMany('App\Gallery');
+    }
 }

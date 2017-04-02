@@ -25,15 +25,17 @@ class BannerController extends Controller
         $this->validate($request, [
            'title' => 'required',
            'image' => 'required',
-           'description' => 'required',
         ]);
 
         $banner = new Banner();
         $file = $request->file('image');
-        $uploadPath = storage_path() . '/app/banner';
-        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
-        $file->move($uploadPath, $fileName);
-        $banner->image = $fileName;
+        if(!empty($file)){
+            $uploadPath = public_path() . '/banner';
+            $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $banner->image = $fileName;
+        }
+
         $slug = $request['title'];
         $banner->title = $request['title'];
         $banner->description = $request['description'];
@@ -54,16 +56,15 @@ class BannerController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'image' => 'required',
-            'description' => 'required'
         ]);
         $banner = Banner::findOrFail($request['banner_id']);
         $old = $banner->image;
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($banner->image)){
-                unlink(storage_path() . "\\app\\banner" . $banner->image);
+                unlink(public_path() . "\\banner\\" . $banner->image);
             }
-            $uploadPath = storage_path() . '/app/banner';
+            $uploadPath = public_path() . '/banner';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
             $file->move($uploadPath, $fileName);
             $banner->image = $fileName;
@@ -83,7 +84,7 @@ class BannerController extends Controller
 
     public function getDelete($banner_id){
         $banner = Banner::findOrFail($banner_id);
-        unlink(storage_path() . "\\app\\banner" . $banner->image);
+        unlink(public_path() . "\\banner\\" . $banner->image);
         $banner->delete();
         return redirect()->route('backend.banner.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -112,10 +113,5 @@ class BannerController extends Controller
         $banner->status = "published";
         $banner->update();
         return redirect()->route('backend.banner');
-    }
-
-    public function getImage($filename){
-        $file = Storage::disk('banner')->get($filename);
-        return new Response($file, 200);
     }
 }

@@ -130,6 +130,19 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
+                                        @if(!empty($itinerary->image))
+                                            <td><img src="{{ URL::asset('itinerary/' . $itinerary->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if(!empty($itinerary->route_map))
+                                            <td><img src="{{ URL::asset('itinerary/' . $itinerary->route_map ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <div class="">
                                             <label id="fileupload-example-3-label" for="fileupload-example-3">Image</label>
                                             <input type="file" id="fileupload-example-3" name="image" value="{{ Request::old('image') ? Request::old('image') : isset($itinerary) ? $itinerary->image : '' }}"/>
