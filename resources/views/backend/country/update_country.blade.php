@@ -30,6 +30,10 @@
                                     </div>
                                 </div>
 
+                                @if(!empty($country->flag))
+                                    <td><img src="{{ URL::asset('country/' . $country->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                @endif
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="">

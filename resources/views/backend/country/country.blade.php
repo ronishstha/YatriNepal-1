@@ -67,8 +67,8 @@
                                         <tr>
                                             <td>{{ $country->title }}</td>
                                             <td>
-                                                @if(Storage::disk('country')->has($country->flag))
-                                                    <img src="{{ route('backend.country.image', ['filename' => $country->flag]) }}" alt="" class="img-responsive" style="border-radius: 2px;height:20px;width:20px;">
+                                                @if(!empty($country->flag))
+                                                    <img src="{{ URL::asset('country/' . $country->flag) }}" alt="" class="img-responsive" style="border-radius: 2px;height:20px;width:20px;">
                                                 @endif
 
                                                 </td>
