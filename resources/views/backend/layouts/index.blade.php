@@ -73,13 +73,13 @@
     $(document).ready(function(){
 
         // Javascript method's body can be found in assets/js/demos.js
-        /*demo.initDashboardPageCharts();*/
+        demo.initDashboardPageCharts();
 
         $(document).on('change','.country',function(){
             console.log("hmm its change");
 
             var country_id=$(this).val();
-            console.log(cat_id);
+            console.log(country_id);
             var div=$(this).parent();
 
             var op=" ";

@@ -185,6 +185,8 @@ class BookingsController extends Controller
                 $bookdetails->save();
             }
 
+
+
             $first_name = $request['first_name1'];
             $email = $request['email1'];
             $mobile = $request ['mobile1'];

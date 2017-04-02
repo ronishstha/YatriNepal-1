@@ -28,10 +28,15 @@
                         </div>
 
                         <div class="card-content table-responsive">
-                            <i class="material-icons create">note_add</i>
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-4"></div>
+                            <i class="material-icons">note_add</i>
                             <a href="{{ route('backend.booking.get.firstcreate') }}">Book Now</a>
+                            </div>
+                            <div class="col-md-3"></div>
                             <a href="{{ route('backend.booking.delete.page') }}">
-                                <i class="material-icons delete">delete
+                                <i class="material-icons">delete
                                     @php
                                         $count = count($bookings);
                                         $i = 0;
@@ -49,6 +54,7 @@
                                     @endif
                                 </i>
                             </a>
+                            </div>
                             @if(count($bookings) == 0 || $count == $i)
                                 <br><p align="center">No booking available<p>
                             @else

@@ -164,11 +164,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Country</label>
-                                            <select class="form-control" name="country" id="country">
+                                            <label >Country</label>
+                                            <select class="form-control country" name="country" id="country">
                                                 @if(count($countries) == 0)
                                                     <option value=null>No country available</option>
                                                 @endif
+                                                <option value="0" disabled="true" selected="true">-Select a country-</option>
                                                 @foreach($countries as $country)
                                                     <option>{{ $country->title }}</option>
                                                 @endforeach
@@ -177,14 +178,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Destination</label>
-                                            <select class="form-control" name="destination" id="destination">
-                                                @if(count($destinations) == 0)
+                                            <label >Destination</label>
+                                            <select class="form-control destination" name="destination" id="destination">
+                                                {{--@if(count($destinations) == 0)
                                                     <option value=null>No destination available</option>
-                                                @endif
-                                                @foreach($destinations as $destination)
+                                                @endif--}}
+                                                    <option value="0" disabled="true" selected="true">-</option>
+                                                {{--@foreach($destinations as $destination)
                                                     <option>{{ $destination->title }}</option>
-                                                @endforeach
+                                                @endforeach--}}
                                             </select>
                                         </div>
                                     </div>

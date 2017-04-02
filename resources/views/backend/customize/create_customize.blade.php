@@ -81,7 +81,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Country</label>
+                                            <label>Country</label>
                                             <select class="form-control" name="country" id="country">
                                                 <option value="">Country...</option>
                                                 <option value="Afganistan">Afghanistan</option>
