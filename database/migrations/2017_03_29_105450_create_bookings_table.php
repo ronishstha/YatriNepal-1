@@ -16,6 +16,7 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('number');
+            $table->string('date');
             $table->integer('itinerary_id')->unsigned();
             $table->foreign('itinerary_id')->references('id')->on('itineraries')->onDelete('cascade');
             $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');

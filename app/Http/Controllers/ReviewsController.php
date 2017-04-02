@@ -26,17 +26,18 @@ class ReviewsController extends Controller
     public function postCreateReview(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'image' => 'required',
             'description' => 'required',
             'itinerary' => 'required'
         ]);
 
         $review = new Review();
         $file = $request->file('image');
-        $uploadPath = storage_path() . '/app/review';
-        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
-        $file->move($uploadPath, $fileName);
-        $review->image = $fileName;
+        if(!empty($file)){
+            $uploadPath = public_path() . '/review';
+            $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $review->image = $fileName;
+        }
         $slug = $request['name'];
         $trip = $request['itinerary'];
         $review->name = $request['name'];
@@ -70,7 +71,6 @@ class ReviewsController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'image' => 'required',
             'itinerary' => 'required',
             'description' => 'required'
         ]);
@@ -80,9 +80,9 @@ class ReviewsController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($review->image)){
-                unlink(storage_path() . "\\app\\review" . $review->image);
+                unlink(public_path() . "\\review\\" . $review->image);
             }
-            $uploadPath = storage_path() . '/app/review';
+            $uploadPath = public_path() . '/review';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
             $file->move($uploadPath, $fileName);
             $review->image = $fileName;
@@ -112,6 +112,9 @@ class ReviewsController extends Controller
 
     public function getDelete($review_id){
         $review = Review::findOrFail($review_id);
+        if(!empty($review->image)){
+            unlink(public_path() . "\\review\\" . $review->image);
+        }
         $review->delete();
         return redirect()->route('backend.review.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -139,10 +142,5 @@ class ReviewsController extends Controller
         $review->status = "published";
         $review->update();
         return redirect()->route('backend.review');
-    }
-
-    public function getImage($filename){
-        $file = Storage::disk('review')->get($filename);
-        return new Response($file, 200);
     }
 }

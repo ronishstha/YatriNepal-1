@@ -38,32 +38,9 @@
 
         <footer class="footer">
             <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+
                 <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Admin Panel</a>
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Yatri Nepal</a>
                 </p>
             </div>
         </footer>
@@ -91,14 +68,48 @@
 
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="/assets/js/demo.js"></script>
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function(){
 
         // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
+        /*demo.initDashboardPageCharts();*/
 
+        $(document).on('change','.country',function(){
+            console.log("hmm its change");
+
+            var country_id=$(this).val();
+            console.log(cat_id);
+            var div=$(this).parent();
+
+            var op=" ";
+
+            $.ajax({
+                type:'get',
+                url:'{!!URL::to('admin/findDestinationName')!!}',
+                data:{'id':country_id},
+                success:function(data){
+                    console.log('success');
+
+                    console.log(data);
+                    var length = Object.keys(data).length
+                    console.log(length);
+                    console.log(Object.values(data));
+
+                    for(var i = 0; i < length; i++){
+                        op+='<option value="'+data[i].title+'">'+data[i].title+'</option>';
+                    }
+
+                    $('.destination').html(op);
+
+                    div.find('.destination').html(" ");
+                    div.find('.destination').append(op);
+                },
+                error:function(){
+
+                }
+            });
+        });
     });
 
 </script>
@@ -106,6 +117,10 @@
 <script>
     var route_prefix = "{{ url(config('lfm.prefix')) }}";
 </script>
+
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+
 
 
 <script>

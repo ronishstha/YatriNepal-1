@@ -1,5 +1,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ URL::asset('/assets/css/form.css') }}">
+    <link href="{{ URL::asset('/assets/css/table.css') }}" rel="stylesheet"/>
+
+    <style>
+        .info-box{
+            text-align: center;
+            margin: 0 auto;
+            padding: 16px;
+            border-radius: 3px;
+            width: 350px;
+        }
+
+        .info-box.fail{
+            border: 1px solid #ff6b6a;
+            background-color: #ffc2ba;
+            color: #ff6b6a;
+
+        }
+    </style>
 
 
     @if(count($errors) > 0)
