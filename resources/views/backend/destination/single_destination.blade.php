@@ -40,10 +40,10 @@
                         </div>
                         <div class="card-content table-responsive">
                             <p align="center">{!! $destination->description !!}  </p>
-                            @if(Storage::disk('destination')->has($destination->image))
+                            @if(!empty($destination->image))
                                 <section class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <img src="{{ route('backend.destination.image', ['filename' => $destination->image]) }}" alt="" class="img-responsive">
+                                        <img src="{{ URL::asset('destination/' . $destination->image) }}" alt="" class="img-responsive">
                                     </div>
                                 </section><br>
                             @endif

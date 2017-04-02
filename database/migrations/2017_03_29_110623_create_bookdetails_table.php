@@ -32,8 +32,8 @@ class CreateBookdetailsTable extends Migration
             $table->string('issue_date');
             $table->string('expiration_date');
             $table->string('emergency_contact');
-            $table->integer('book_id')->unsigned();
-            $table->foreign('book_id')->references('id')->on('bookings')->onDelete('cascade');
+            $table->integer('booking_id')->unsigned();
+            $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
             $table->integer('itinerary_id')->unsigned();
             $table->foreign('itinerary_id')->references('id')->on('itineraries')->onDelete('cascade');
             $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');

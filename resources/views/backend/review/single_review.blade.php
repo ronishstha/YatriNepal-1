@@ -3,7 +3,7 @@
     <style>
         .rating{
             margin: 0 auto;
-            width: 50%;
+            width: 55%;
         }
         .btn-edit{
             background-color: dodgerblue;
@@ -81,10 +81,10 @@
                         <div class="card-content table-responsive">
                             <div class="row">
                                 <div class="col-md-3">
-                                    @if(Storage::disk('review')->has($review->image))
+                                    @if(!empty($review->image))
                                         <section class="row">
                                             <div class="col-md-6 col-md-offset-3">
-                                                <img src="{{ route('backend.review.image', ['filename' => $review->image]) }}" alt="" class="img-responsive" style=" border-radius:2px;height:100px;width:200px;margin-left:-20px;">
+                                                <img src="{{ URL::asset('review/' . $review->image) }}" alt="" class="img-responsive" style=" border-radius:2px;height:100px;width:200px;margin-left:-20px;">
                                             </div>
                                         </section>
                                     @endif
