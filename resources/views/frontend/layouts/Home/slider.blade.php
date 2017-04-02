@@ -20,10 +20,10 @@
                                 <h1 class="title2 hidden-xs">GEAR STYLES</h1>
                                 <h2 class="sub-title">The right tour for the</h2>
                                 <h2 class="sub-title">right <span>traveller</span></h2>
-                                <form action="#" id="banner-searchbox" class="hidden-xs">
+                                <form action="{{ route('searchItinerary') }}" id="banner-searchbox" class="hidden-xs">
                                     <div class="adventure-cat">
-                                        <select name="category" class="search-adventure">
-                                                <option>Select Adventure</option>
+                                        <select name="activity" class="search-adventure" >
+                                                <option value="">Select Activity</option>
                                                 @foreach($activities as $activity)
                                                     <option>{{ $activity->title }}</option>
                                                 @endforeach
@@ -31,8 +31,8 @@
                                         <button type="submit" id="btn-search-category" >Search</button>
                                     </div>
                                     <div class="adventure-cat destination">
-                                        <select name="destination" class="search-adventure">
-                                            <option>Select Your Destination</option>
+                                        <select name="destination" class="search-adventure" >
+                                            <option value="">Select Your Destination</option>
                                             @foreach($destination as $dest)
                                                 <option>{{ $dest->title }}</option>
                                             @endforeach
@@ -49,4 +49,6 @@
         </div>
     </div>
 </div>
+
+
 <!--End of Slider Area-->

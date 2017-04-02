@@ -65,7 +65,7 @@
                     </div>
                     <div class="about-text">
                         <p>{{ $about_adventure->content }} </p>
-                        <a href="#" class="button-yellow">Why Trtavel with Adventures?</a>
+                        <a href="#" class="button-yellow">Why Travel with Adventures?</a>
                     </div>
                 </div>
             </div>

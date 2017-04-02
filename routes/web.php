@@ -29,10 +29,12 @@ Route::get('/details/{slug}', [
    'uses' => 'frontend\indexController@getDetails'
 ])->name("details");
 
-//Route::get('/search/{category,destination}', [
-//    'uses' => 'frontend\SearchController@getResult',
-//    'as'   => 'searchItinerary'
-//]);
+Route::get('/search', [
+    'uses' => 'frontend\SearchController@getResult',
+    'as'   => 'searchItinerary'
+]);
+
+
 
 
 //---------------------------------End of frontend------------------------------------
