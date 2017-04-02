@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBannersTable extends Migration
+class CreateBookingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateBannersTable extends Migration
      */
     public function up()
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->string('title');
-            $table->string('image');
-            $table->text('description')->nullable();
-            $table->string('slug');
-            $table->string('user_id');
+            $table->integer('number');
+            $table->integer('itinerary_id')->unsigned();
+            $table->foreign('itinerary_id')->references('id')->on('itineraries')->onDelete('cascade');
             $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +30,6 @@ class CreateBannersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('bookings');
     }
 }

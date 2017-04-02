@@ -17,7 +17,7 @@ class CreateCountriesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
-            $table->string('flag');
+            $table->string('flag')->nullable();
             $table->string('slug');
             $table->string('user_id');
             $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');

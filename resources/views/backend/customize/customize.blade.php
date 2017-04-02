@@ -23,23 +23,23 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Itineraries</h4>
+                            <h4 class="title">Customized Trip</h4>
                             <p class="category"></p>
                         </div>
 
                         <div class="card-content table-responsive">
                             <i class="material-icons create">note_add</i>
-                            <a href="{{ route('backend.itinerary.get.create') }}">Create Itinerary</a>
-                            <a href="{{ route('backend.itinerary.delete.page') }}">
+                            <a href="{{ route('backend.customize.get.create') }}">Create Customized Trip</a>
+                            <a href="{{ route('backend.customize.delete.page') }}">
                                 <i class="material-icons delete">delete
                                     @php
-                                        $count = count($itineraries);
+                                        $count = count($customizes);
                                         $i = 0;
                                     @endphp
-                                    @foreach($itineraries as $itinerary)
+                                    @foreach($customizes as $customize)
                                         @php
 
-                                            if($itinerary->status == "trash"){
+                                            if($customize->status == "trash"){
                                                 $i += 1;
                                         }
                                         @endphp
@@ -49,24 +49,24 @@
                                     @endif
                                 </i>
                             </a>
-                            @if(count($itineraries) == 0 || $count == $i)
-                                <br><p align="center">No itinerary available<p>
+                            @if(count($customizes) == 0 || $count == $i)
+                                <br><p align="center">No customized trip available<p>
                             @else
                                 <table class="table">
                                     <thead class="text-primary">
-                                    <th>Title</th>
+                                    <th>Name</th>
                                     <th>Edit</th>
                                     <th>View</th>
                                     <th>Delete</th>
                                     </thead>
                                     <tbody>
-                                    @foreach($itineraries as $itinerary)
-                                        @if($itinerary->status == "published" || $itinerary->status == "unpublished")
+                                    @foreach($customizes as $customize)
+                                        @if($customize->status == "published" || $customize->status == "unpublished")
                                             <tr>
-                                                <td><a href="{{ route('backend.itinerary.single.itinerary', ['itinerary_slug' => $itinerary->slug]) }}">{{ $itinerary->title }}</a></td>
-                                                <td><button class="btn-edit"><a href="{{ route('backend.itinerary.get.update', ['itinerary_id' => $itinerary->id]) }}">Edit</a></button></td>
-                                                <td><button class="btn-view"><a href="{{ route('backend.itinerary.single.itinerary', ['itinerary_slug' => $itinerary->slug])  }}">View</a></button></td>
-                                                <td><button class="btn-delete"><a href="{{ route('backend.itinerary.trash', ['itinerary_id' => $itinerary->id]) }}">Delete</a></button></td>
+                                                <td><a href="{{ route('backend.customize.single.customize', ['customize_id' => $customize->id]) }}">{{ $customize->name }}</a></td>
+                                                <td><button class="btn-edit"><a href="{{ route('backend.customize.get.update', ['customize_id' => $customize->id]) }}">Edit</a></button></td>
+                                                <td><button class="btn-view"><a href="{{ route('backend.customize.single.customize', ['customize_slug' => $customize->slug])  }}">View</a></button></td>
+                                                <td><button class="btn-delete"><a href="{{ route('backend.customize.trash', ['customize_id' => $customize->id]) }}">Delete</a></button></td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -74,16 +74,17 @@
 
                                 </table>
                             @endif
-                            {!! $itineraries->links() !!}
+                            {!! $customizes->links() !!}
                             {{--<div class="pagination">--}}
 
-                                {{--@if($itineraries->currentPage() !== 1)
-                                    <a href ="{{ $itineraries->previousPageUrl() }}" class="paginate"><span class="fa fa-caret-left"></span></a>
+                                {{--@if($customizes->currentPage() !== 1)
+                                    <a href ="{{ $customizes->previousPageUrl() }}" class="paginate"><span class="fa fa-caret-left"></span></a>
                                 @endif
-                                @if($itineraries->currentPage() !== $itineraries->lastPage() && $itineraries->hasPages())
-                                    <a href ="{{ $itineraries->nextPageUrl()}}"  class="paginate"><span class="fa fa-caret-right"></span></a>
+                                @if($customizes->currentPage() !== $customizes->lastPage() && $customizes->hasPages())
+                                    <a href ="{{ $customizes->nextPageUrl()}}"  class="paginate"><span class="fa fa-caret-right"></span></a>
                                     @endif--}}
                             </div>
+
                         </div>
                     </div>
                 </div>
