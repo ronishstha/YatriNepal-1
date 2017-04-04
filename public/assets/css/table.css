@@ -26,14 +26,14 @@
     color: ghostwhite;
 }
 .pagination{
-    margin-left: 400px;
+    margin-left: 375px;
 }
 .create{
-    margin-left: 425px;
+    margin-left: 375px;
 }
 a .delete{
   color: black;
-    margin-left: 380px;
+    margin-left: 275px;
     position: relative;
     padding: 3px 5px;
 }
@@ -46,7 +46,7 @@ a .delete{
     text-align: center;
     margin-top: 20px;
     margin-bottom: -20px;
-    margin-left: 80px;
+    margin-left: 280px;
     padding: 16px;
     border-radius: 3px;
     width: 350px;

@@ -113,15 +113,31 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Date</label>
-                                            <input type="text" class="form-control" name="date" id="date" value="{{ Request::old('date') ? Request::old('date') : isset($itinerary) ? $itinerary->date : ''  }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
                                             <label class="control-label">Cost</label>
                                             <input type="text" class="form-control" name="cost" id="cost" value="{{ Request::old('cost') ? Request::old('cost') : isset($itinerary) ? $itinerary->cost : ''  }}">
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Date</label>
+                                            <input type="date" class="form-control" name="date" id="date" value="{{ Request::old('date') ? Request::old('date') : isset($itinerary) ? $itinerary->date : ''  }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @if(!empty($itinerary->image))
+                                            <td><img src="{{ URL::asset('itinerary/' . $itinerary->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if(!empty($itinerary->route_map))
+                                            <td><img src="{{ URL::asset('itinerary/' . $itinerary->route_map ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -296,6 +312,39 @@
                                                 <option @if($itinerary->status =="published") selected @endif>published</option>
                                                 <option @if($itinerary->status =="unpublished") selected @endif>unpublished</option>
                                                 <option @if($itinerary->status =="trash") selected @endif>trash</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Featured</label>
+                                            <select class="form-control" name="featured" id="featured">
+                                                <option @if($itinerary->featured =="no") selected @endif>no</option>
+                                                <option @if($itinerary->featured =="yes") selected @endif>yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Best Selling</label>
+                                            <select class="form-control" name="best_selling" id="best_selling">
+                                                <option @if($itinerary->best_selling =="no") selected @endif>no</option>
+                                                <option @if($itinerary->best_selling =="yes") selected @endif>yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Special Package</label>
+                                            <select class="form-control" name="special_package" id="special_package">
+                                                <option @if($itinerary->status =="no") selected @endif>no</option>
+                                                <option @if($itinerary->status =="yes") selected @endif>yes</option>
                                             </select>
                                         </div>
                                     </div>

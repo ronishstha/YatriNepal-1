@@ -26,17 +26,17 @@ class DestinationsController extends Controller
     public function postCreateDestination(Request $request){
         $this->validate($request, [
             'title' => 'required',
-            'image' => 'required',
-            'description' => 'required',
             'country' => 'required'
         ]);
 
         $destination = new Destination();
         $file = $request->file('image');
-        $uploadPath = storage_path() . '/app/destination';
-        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
-        $file->move($uploadPath, $fileName);
-        $destination->image = $fileName;
+        if(!empty($file)){
+            $uploadPath = public_path() . '/destination';
+            $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $destination->image = $fileName;
+        }
         $slug = $request['title'];
         $nation = $request['country'];
         $destination->title = $request['title'];
@@ -63,9 +63,7 @@ class DestinationsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'image' => 'required',
             'country' => 'required',
-            'description' => 'required'
         ]);
         $destination = Destination::findOrFail($request['destination_id']);
 
@@ -73,9 +71,9 @@ class DestinationsController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($destination->image)){
-                unlink(storage_path() . "\\app\\destination\\" . $destination->image);
+                unlink(public_path() . "\\destination\\" . $destination->image);
             }
-            $uploadPath = storage_path() . '/app/destination';
+            $uploadPath = public_path() . '/destination';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
             $file->move($uploadPath, $fileName);
             $destination->image = $fileName;
@@ -84,9 +82,6 @@ class DestinationsController extends Controller
         }
         $slug = $request['title'];
         $nation = $request['country'];
-        $journey = $request['destination'];
-        $place = $request['region'];
-        $action = $request['activity'];
         $destination->title = $request['title'];
         $destination->description = $request['description'];
         $destination->slug = str_slug($slug, '-');
@@ -101,7 +96,7 @@ class DestinationsController extends Controller
 
     public function getDelete($destination_id){
         $destination = Destination::findOrFail($destination_id);
-        unlink(storage_path() . "\\app\\destination\\" . $destination->image);
+        unlink(public_path() . "\\destination\\" . $destination->image);
         $destination->delete();
         return redirect()->route('backend.destination.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -129,10 +124,5 @@ class DestinationsController extends Controller
         $destination->status = "published";
         $destination->update();
         return redirect()->route('backend.destination');
-    }
-
-    public function getImage($filename){
-        $file = Storage::disk('destination')->get($filename);
-        return new Response($file, 200);
     }
 }

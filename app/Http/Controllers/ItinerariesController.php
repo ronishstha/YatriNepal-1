@@ -12,6 +12,8 @@ use App\Region;
 use App\Activity;
 use App\Category;
 use App\Itinerary;
+use App\Photo;
+use App\Gallery;
 use Illuminate\Support\Facades\Storage;
 
 class ItinerariesController extends Controller
@@ -38,6 +40,7 @@ class ItinerariesController extends Controller
     public function postCreateItinerary(Request $request){
         $this->validate($request, [
             'title' => 'required',
+            'itinerary_code' => 'required|unique:itineraries',
             'trip_duration' => 'required',
             'trekking_duration' => 'required',
             'trekking_grade' => 'required',
@@ -49,7 +52,6 @@ class ItinerariesController extends Controller
             'start_end' => 'required',
             'arrival' => 'required',
             'departure' => 'required',
-            'date' => 'required',
             'cost' => 'required',
             'country' => 'required',
             'destination' => 'required',
@@ -67,17 +69,19 @@ class ItinerariesController extends Controller
 
         $itinerary = new Itinerary();
         $file = $request->file('image');
-        $uploadPath = storage_path() . '/app/itinerary';
-        $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
-        $file->move($uploadPath, $fileName);
-        $itinerary->image = $fileName;
-
+        if(!empty($file)){
+            $uploadPath = public_path() . '/itinerary';
+            $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
+            $file->move($uploadPath, $fileName);
+            $itinerary->image = $fileName;
+        }
         $file_route = $request->file('route_map');
-        $uploadPath = storage_path() . '/app/itinerary';
-        $fileName_route = date("Y-m-d-H-i-s") . $file_route->getClientOriginalName();
-        $file_route->move($uploadPath, $fileName_route);
-        $itinerary->route_map = $fileName_route;
-
+        if(!empty($file_route)){
+            $uploadPath = public_path() . '/itinerary';
+            $fileName_route = date("Y-m-d-H-i-s") . $file_route->getClientOriginalName();
+            $file_route->move($uploadPath, $fileName_route);
+            $itinerary->route_map = $fileName_route;
+        }
         $slug = $request['title'];
         $nation = $request['country'];
         $travel = $request['destination'];
@@ -92,6 +96,7 @@ class ItinerariesController extends Controller
         $user = Auth::user();
 
         $itinerary->title = $request['title'];
+        $itinerary->itinerary_code = $request['itinerary_code'];
         $itinerary->trip_duration = $request['trip_duration'];
         $itinerary->trekking_duration = $request['trekking_duration'];
         $itinerary->trekking_grade = $request['trekking_grade'];
@@ -113,6 +118,9 @@ class ItinerariesController extends Controller
         $itinerary->cost_exclusive = $request['cost_exclusive'];
         $itinerary->trekking_group = $request['trekking_group'];
         $itinerary->trip_status = $request['trip_status'];
+        $itinerary->featured = $request['featured'];
+        $itinerary->special_package = $request['special_package'];
+        $itinerary->best_selling = $request['best_selling'];
         $itinerary->slug = str_slug($slug,'-');
         $itinerary->status = $request['status'];
         $itinerary->user()->associate($user);
@@ -158,7 +166,6 @@ class ItinerariesController extends Controller
             'start_end' => 'required',
             'arrival' => 'required',
             'departure' => 'required',
-            'date' => 'required',
             'cost' => 'required',
             'country' => 'required',
             'destination' => 'required',
@@ -178,9 +185,9 @@ class ItinerariesController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($itinerary->image)){
-                unlink(storage_path() . "\\app\\itinerary\\" . $itinerary->image);
+                unlink(public_path() . "\\itinerary\\" . $itinerary->image);
             }
-            $uploadPath = storage_path() . '/app/itinerary';
+            $uploadPath = public_path() . '/itinerary';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
             $file->move($uploadPath, $fileName);
             $itinerary->image = $fileName;
@@ -191,9 +198,9 @@ class ItinerariesController extends Controller
         $file_route = $request->file('route_map');
         if($request->hasFile('route_map')){
             if(!empty($itinerary->route_map)){
-                unlink(storage_path() . "\\app\\itinerary\\" . $itinerary->route_map);
+                unlink(public_path() . "\\itinerary\\" . $itinerary->route_map);
             }
-            $uploadPath = storage_path() . '/app/itinerary';
+            $uploadPath = public_path() . '/itinerary';
             $fileName_route = date("Y-m-d-H-i-s") . $file_route->getClientOriginalName();
             $file_route->move($uploadPath, $fileName_route);
             $itinerary->route_map = $fileName_route;
@@ -250,8 +257,8 @@ class ItinerariesController extends Controller
 
     public function getDelete($itinerary_id){
         $itinerary = Itinerary::findOrFail($itinerary_id);
-        unlink(storage_path() . "\\app\\itinerary\\" . $itinerary->image);
-        unlink(storage_path() . "\\app\\itinerary\\" . $itinerary->route_map);
+        unlink(public_path() . "\\itinerary\\" . $itinerary->image);
+        unlink(public_path() . "\\itinerary\\" . $itinerary->route_map);
         $itinerary->delete();
         return redirect()->route('backend.itinerary.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -266,7 +273,9 @@ class ItinerariesController extends Controller
     public function getSingleItinerary($itinerary_slug){
         $itinerary = Itinerary::where('slug', $itinerary_slug)
             ->first();
-        return view('backend.itinerary.single_itinerary', ['itinerary' => $itinerary]);
+        $gallery = Gallery::where('itinerary_id', $itinerary->id)->first();
+        $photos = Photo::where('gallery_id', $gallery->id)->get();
+        return view('backend.itinerary.single_itinerary', ['itinerary' => $itinerary, 'photos' => $photos]);
     }
 
     public function DeleteForever(){
@@ -281,13 +290,8 @@ class ItinerariesController extends Controller
         return redirect()->route('backend.itinerary');
     }
 
-    public function getImage($filename){
-        $file = Storage::disk('itinerary')->get($filename);
-        return new Response($file, 200);
+    public function findDestinationName(Request $request){
+        $data = Destination::select('title')->where('country_id',$request->id)->get();
+        return response()->json($data);//then sent this data to ajax success
     }
-
-    /*public function getRouteMap($mapname){
-        $file = Storage::disk('itinerary')->get($mapname);
-        return new Response($file, 200);
-    }*/
 }

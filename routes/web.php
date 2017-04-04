@@ -1,5 +1,46 @@
 <?php
 
+
+//---------------------------------Starting of frontend------------------------------------
+//-------------------------------------------------------------------------------------
+
+Route::get('/', [
+    'uses' => 'frontend\indexController@index'
+])->name("home");
+
+Route::get('/Travel', function () {
+    return view('frontend.layouts.Travel.Travel');
+})->name("travel");
+
+Route::get('/Contact', function () {
+    return view('frontend.layouts.Contact.Contact');
+})->name("contact");
+
+Route::get('/Destination',[
+    'uses' => 'frontend\DestinationController@dest'
+])->name("dest");
+
+Route::get('/Blog', function () {
+    return view('frontend.layouts.Blog.blog');
+})->name("blog");
+
+
+Route::get('/details/{slug}', [
+   'uses' => 'frontend\indexController@getDetails'
+])->name("details");
+
+Route::get('/search', [
+    'uses' => 'frontend\SearchController@getResult',
+    'as'   => 'searchItinerary'
+]);
+
+
+
+
+//---------------------------------End of frontend------------------------------------
+//-------------------------------------------------------------------------------------
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +54,6 @@
 
 
 //----------------------------------frontend admin login------------------------------------------------
-Route::get('/', function(){
-    return view('frontend.index');
-})->name('frontend.index');
 
 Route::get('login', [
     'uses' => 'UserController@getLogin',
@@ -36,9 +74,19 @@ Route::post('login', [
 Route::group(['prefix' => 'admin',
             'middleware' => 'auth'], function() {
 
-    Route::get('/', function () {
-        return view('backend.dashboard');
-    })->name('backend.dashboard');
+    Route::get('/', [
+        'uses' => 'DashboardsController@getDashboard',
+        'as'   => 'backend.dashboard'
+    ]);
+
+    Route::get('/change-password', function () {
+        return view('backend.change_password');
+    })->name('backend.changepassword');
+
+    Route::post('/change-password/update', [
+        'uses' => 'UserController@changePassword',
+        'as'   => 'backend.update.password'
+    ]);
 
     Route::get('user', function () {
         return view('backend.user');
@@ -205,11 +253,6 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.banner.restore'
     ]);
 
-    Route::get('banner/{filename}', [
-        'uses' => 'BannerController@getImage',
-        'as'   => 'backend.banner.image'
-    ]);
-
 //----------------------end of banner route---------------------
 
 
@@ -258,11 +301,6 @@ Route::group(['prefix' => 'admin',
     Route::get('country/restore/{country_id}', [
         'uses' => 'CountriesController@Restore',
         'as'   => 'backend.country.restore'
-    ]);
-
-    Route::get('country/{filename}', [
-       'uses' => 'CountriesController@getImage',
-        'as'  => 'backend.country.image'
     ]);
 
 
@@ -318,11 +356,6 @@ Route::group(['prefix' => 'admin',
     Route::get('destination/restore/{destination_id}', [
         'uses' => 'DestinationsController@Restore',
         'as'   => 'backend.destination.restore'
-    ]);
-
-    Route::get('destination/{filename}', [
-        'uses' => 'DestinationsController@getImage',
-        'as'   => 'backend.destination.image'
     ]);
 
 //-------------------------end of destination route---------------------------------
@@ -477,19 +510,11 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.itinerary.restore'
     ]);
 
-    Route::get('itinerary/{filename}', [
-        'uses' => 'ItinerariesController@getImage',
-        'as'   => 'backend.itinerary.image'
-    ]);
-
-    Route::get('itinerary/{mapname}', [
-        'uses' => 'ItinerariesController@getRouteMap',
-        'as'   => 'backend.itinerary.routemap'
-    ]);
+    Route::get('/findDestinationName','ItinerariesController@findDestinationName');
 
 //-------------------------end of itinerary route--------------------------------
 
-    //-----------------------Review route---------------------------
+//-----------------------Review route---------------------------
 
     Route::get('review', [
         'uses' => 'ReviewsController@getReview',
@@ -521,7 +546,7 @@ Route::group(['prefix' => 'admin',
         'as' => 'backend.review.delete'
     ]);
 
-    Route::get('review/single/{category_slug}', [
+    Route::get('review/single/{review_slug}', [
         'uses' => 'ReviewsController@getSingleReview',
         'as' => 'backend.review.single.review'
     ]);
@@ -541,12 +566,307 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.review.restore'
     ]);
 
-    Route::get('review/{filename}', [
-        'uses' => 'ReviewsController@getImage',
-        'as'   => 'backend.review.image'
+//-------------------------end of review route---------------------------------
+
+//-----------------------Booking route---------------------------
+
+    Route::get('booking', [
+        'uses' => 'BookingsController@getBooking',
+        'as' => 'backend.booking'
     ]);
 
-//-------------------------end of destination route---------------------------------
+    Route::get('booking/step1', [
+        'uses' => 'BookingsController@getFirstBooking',
+        'as' => 'backend.booking.get.firstcreate'
+    ]);
+
+
+    Route::post('booking/step1', [
+        'uses' => 'BookingsController@postFirstBooking',
+        'as' => 'backend.booking.post.firstcreate'
+    ]);
+
+    Route::get('booking/step2/{itinerar}/{numbe}/{dat}', [
+        'uses' => 'BookingsController@getCreateBooking',
+        'as' => 'backend.booking.get.create'
+    ]);
+
+    Route::post('booking/step3', [
+        'uses' => 'BookingsController@postCreateBooking',
+        'as' => 'backend.booking.post.create'
+    ]);
+
+
+    Route::get('booking/edit/{booking_id}', [
+        'uses' => 'BookingsController@getUpdate',
+        'as' => 'backend.booking.get.update'
+    ]);
+
+    Route::post('booking/update', [
+        'uses' => 'BookingsController@postUpdate',
+        'as' => 'backend.booking.post.update'
+    ]);
+
+    Route::get('booking/delete/{booking_id}', [
+        'uses' => 'BookingsController@getDelete',
+        'as' => 'backend.booking.delete'
+    ]);
+
+    Route::get('booking/single/{booking_slug}', [
+        'uses' => 'BookingsController@getSingleBooking',
+        'as' => 'backend.booking.single.booking'
+    ]);
+
+    Route::get('booking/trash/{booking_id}', [
+        'uses' => 'BookingsController@getTrash',
+        'as'  => 'backend.booking.trash'
+    ]);
+
+    Route::get('booking/trash', [
+        'uses' => 'BookingsController@DeleteForever',
+        'as'   => 'backend.booking.delete.page'
+    ]);
+
+    Route::get('booking/restore/{booking_id}', [
+        'uses' => 'BookingsController@Restore',
+        'as'   => 'backend.booking.restore'
+    ]);
+
+//-------------------------end of booking route---------------------------------
+
+//-----------------------Customize route---------------------------
+
+    Route::get('customize', [
+        'uses' => 'CustomizesController@getCustomize',
+        'as' => 'backend.customize'
+    ]);
+
+    Route::get('customize/create', [
+        'uses' => 'CustomizesController@getCreateCustomize',
+        'as' => 'backend.customize.get.create'
+    ]);
+
+    Route::post('customize/create', [
+        'uses' => 'CustomizesController@postCreateCustomize',
+        'as' => 'backend.customize.post.create'
+    ]);
+
+    Route::get('customize/edit/{customize_id}', [
+        'uses' => 'CustomizesController@getUpdate',
+        'as' => 'backend.customize.get.update'
+    ]);
+
+    Route::post('customize/update', [
+        'uses' => 'CustomizesController@postUpdate',
+        'as' => 'backend.customize.post.update'
+    ]);
+
+    Route::get('customize/delete/{customize_id}', [
+        'uses' => 'CustomizesController@getDelete',
+        'as' => 'backend.customize.delete'
+    ]);
+
+    Route::get('customize/single/{customize_slug}', [
+        'uses' => 'CustomizesController@getSingleCustomize',
+        'as' => 'backend.customize.single.customize'
+    ]);
+
+    Route::get('customize/trash/{customize_id}', [
+        'uses' => 'CustomizesController@getTrash',
+        'as'  => 'backend.customize.trash'
+    ]);
+
+    Route::get('customize/trash', [
+        'uses' => 'CustomizesController@DeleteForever',
+        'as'   => 'backend.customize.delete.page'
+    ]);
+
+    Route::get('customize/restore/{customize_id}', [
+        'uses' => 'CustomizesController@Restore',
+        'as'   => 'backend.customize.restore'
+    ]);
+
+    Route::get('customize/{filename}', [
+        'uses' => 'CustomizesController@getImage',
+        'as'   => 'backend.customize.image'
+    ]);
+
+//-------------------------end of customize route---------------------------------
+
+//-----------------------Gallery route---------------------------
+
+    Route::get('gallery', [
+        'uses' => 'GalleriesController@getGallery',
+        'as' => 'backend.gallery'
+    ]);
+
+    Route::get('gallery/create', [
+        'uses' => 'GalleriesController@getCreateGallery',
+        'as' => 'backend.gallery.get.create'
+    ]);
+
+    Route::post('gallery/create', [
+        'uses' => 'GalleriesController@postCreateGallery',
+        'as' => 'backend.gallery.post.create'
+    ]);
+
+    Route::get('gallery/edit/{gallery_id}', [
+        'uses' => 'GalleriesController@getUpdate',
+        'as' => 'backend.gallery.get.update'
+    ]);
+
+    Route::post('gallery/update', [
+        'uses' => 'GalleriesController@postUpdate',
+        'as' => 'backend.gallery.post.update'
+    ]);
+
+    Route::get('gallery/delete/{gallery_id}', [
+        'uses' => 'GalleriesController@getDelete',
+        'as' => 'backend.gallery.delete'
+    ]);
+
+    Route::get('gallery/single/{gallery_slug}', [
+        'uses' => 'GalleriesController@getSingleGallery',
+        'as' => 'backend.gallery.single.gallery'
+    ]);
+
+    Route::get('gallery/trash/{gallery_id}', [
+        'uses' => 'GalleriesController@getTrash',
+        'as'  => 'backend.gallery.trash'
+    ]);
+
+    Route::get('gallery/trash', [
+        'uses' => 'GalleriesController@DeleteForever',
+        'as'   => 'backend.gallery.delete.page'
+    ]);
+
+    Route::get('gallery/restore/{gallery_id}', [
+        'uses' => 'GalleriesController@Restore',
+        'as'   => 'backend.gallery.restore'
+    ]);
+
+//-------------------------end of gallery route---------------------------------
+
+//-----------------------Affiliate route---------------------------
+
+    Route::get('affiliate', [
+        'uses' => 'AffiliatesController@getAffiliate',
+        'as' => 'backend.affiliate'
+    ]);
+
+    Route::get('affiliate/create', [
+        'uses' => 'AffiliatesController@getCreateAffiliate',
+        'as' => 'backend.affiliate.get.create'
+    ]);
+
+    Route::post('affiliate/create', [
+        'uses' => 'AffiliatesController@postCreateAffiliate',
+        'as' => 'backend.affiliate.post.create'
+    ]);
+
+    Route::get('affiliate/edit/{affiliate_id}', [
+        'uses' => 'AffiliatesController@getUpdate',
+        'as' => 'backend.affiliate.get.update'
+    ]);
+
+    Route::post('affiliate/update', [
+        'uses' => 'AffiliatesController@postUpdate',
+        'as' => 'backend.affiliate.post.update'
+    ]);
+
+    Route::get('affiliate/delete/{affiliate_id}', [
+        'uses' => 'AffiliatesController@getDelete',
+        'as' => 'backend.affiliate.delete'
+    ]);
+
+    Route::get('affiliate/single/{affiliate_slug}', [
+        'uses' => 'AffiliatesController@getSingleAffiliate',
+        'as' => 'backend.affiliate.single.affiliate'
+    ]);
+
+    Route::get('affiliate/trash/{affiliate_id}', [
+        'uses' => 'AffiliatesController@getTrash',
+        'as'  => 'backend.affiliate.trash'
+    ]);
+
+    Route::get('affiliate/trash', [
+        'uses' => 'AffiliatesController@DeleteForever',
+        'as'   => 'backend.affiliate.delete.page'
+    ]);
+
+    Route::get('affiliate/restore/{affiliate_id}', [
+        'uses' => 'AffiliatesController@Restore',
+        'as'   => 'backend.affiliate.restore'
+    ]);
+
+//-------------------------end of photo route---------------------------------
+
+//-----------------------Photo route---------------------------
+
+    Route::get('photo', [
+        'uses' => 'PhotosController@getPhoto',
+        'as' => 'backend.photo'
+    ]);
+
+    Route::get('photo/create', [
+        'uses' => 'PhotosController@getCreatePhoto',
+        'as' => 'backend.photo.get.create'
+    ]);
+
+    Route::post('photo/create', [
+        'uses' => 'PhotosController@postCreatePhoto',
+        'as' => 'backend.photo.post.create'
+    ]);
+
+    Route::get('photo/edit/{photo_id}', [
+        'uses' => 'PhotosController@getUpdate',
+        'as' => 'backend.photo.get.update'
+    ]);
+
+    Route::post('photo/update', [
+        'uses' => 'PhotosController@postUpdate',
+        'as' => 'backend.photo.post.update'
+    ]);
+
+    Route::get('photo/delete/{photo_id}', [
+        'uses' => 'PhotosController@getDelete',
+        'as' => 'backend.photo.delete'
+    ]);
+
+    Route::get('photo/single/{photo_slug}', [
+        'uses' => 'PhotosController@getSinglePhoto',
+        'as' => 'backend.photo.single.photo'
+    ]);
+
+    Route::get('photo/trash/{photo_id}', [
+        'uses' => 'PhotosController@getTrash',
+        'as'  => 'backend.photo.trash'
+    ]);
+
+    Route::get('photo/trash', [
+        'uses' => 'PhotosController@DeleteForever',
+        'as'   => 'backend.photo.delete.page'
+    ]);
+
+    Route::get('photo/restore/{photo_id}', [
+        'uses' => 'PhotosController@Restore',
+        'as'   => 'backend.photo.restore'
+    ]);
+
+//-------------------------end of photo route---------------------------------
+
+//-------------------------contact route-------------------------------------
+    Route::get('contact-us', [
+        'uses' => 'ContactsController@getContactForm',
+        'as'   => 'backend.contact'
+    ]);
+
+    Route::post('contact-us', [
+        'uses' => 'ContactsController@postMessage',
+        'as'   => 'backend.contact.post.create'
+    ]);
+
+//---------------------------------------------------------------------------
 
     Route::get('logout', [
         'uses' => 'UserController@getLogout',

@@ -37,7 +37,7 @@
 
             <li {{ Request::is('admin/category*') ? 'class=active' : ''}}>
                 <a href="{{ route('backend.category') }}">
-                <i class="material-icons">comment</i>
+                <i class="material-icons">dns</i>
                 <p>Category</p>
                 </a>
             </li>
@@ -86,6 +86,48 @@
                 </a>
             </li>
 
+            <li {{ Request::is('admin/customize*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.customize') }}">
+                    <i class="material-icons text-gray">build</i>
+                    <p>Customized Trip</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('admin/booking*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.booking') }}">
+                    <i class="material-icons text-gray">assignment_turned_in</i>
+                    <p>Booking</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('admin/gallery*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.gallery') }}">
+                    <i class="material-icons text-gray">perm_media</i>
+                    <p>Gallery</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('admin/photo*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.photo') }}">
+                    <i class="material-icons text-gray">wallpaper</i>
+                    <p>Photo</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('admin/affiliate*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.affiliate') }}">
+                    <i class="material-icons text-gray">account_balance</i>
+                    <p>Affiliate</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('admin/contact*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.contact') }}">
+                    <i class="material-icons text-gray">perm_phone_msg</i>
+                    <p>Contact Us</p>
+                </a>
+            </li>
+
             <li {{ Request::is('admin/notification*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.notification') }}">
                     <i class="material-icons text-gray">notifications</i>
@@ -124,27 +166,15 @@
                             <li><a href="#">New email received</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="material-icons">person</i>
-                            <p class="hidden-lg hidden-md">Profile</p>
-                        </a>
-                    </li>
-                    <li>
-                        @if(Auth::check())
+                    @if(Auth::check())
+                        <li {{ Request::is('admin/change-password*') ? 'class=active' : '' }}>
+                            <a href="{{ route('backend.changepassword') }}"><strong>Change Password</strong></a>
+                        </li>
+                        <li>
                             <a href="{{ route('admin.logout') }}"><strong>Log out</strong></a>
-                        @endif
-                    </li>
+                        </li>
+                    @endif
                 </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group  is-empty">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <span class="material-input"></span>
-                    </div>
-                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                        <i class="material-icons">search</i><div class="ripple-container"></div>
-                    </button>
-                </form>
             </div>
         </div>
     </nav>

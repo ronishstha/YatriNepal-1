@@ -6,11 +6,11 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="orange">
-                        <i class="material-icons">content_copy</i>
+                        <i class="material-icons">airplanemode_active</i>
                     </div>
                     <div class="card-content">
-                        <p class="category">Used Space</p>
-                        <h3 class="title">49/50<small>GB</small></h3>
+                        <p class="category">Total Countries</p>
+                        <h3 class="title">{{ count($countries) }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -22,11 +22,11 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="green">
-                        <i class="material-icons">store</i>
+                        <i class="material-icons">transfer_within_a_station</i>
                     </div>
                     <div class="card-content">
-                        <p class="category">Revenue</p>
-                        <h3 class="title">$34,245</h3>
+                        <p class="category">Total Itineraries</p>
+                        <h3 class="title">{{ count($itineraries) }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -38,11 +38,11 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="red">
-                        <i class="material-icons">info_outline</i>
+                        <i class="material-icons">motorcycle</i>
                     </div>
                     <div class="card-content">
-                        <p class="category">Fixed Issues</p>
-                        <h3 class="title">75</h3>
+                        <p class="category">Total Places</p>
+                        <h3 class="title">{{ count($destinations) }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -55,11 +55,11 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="blue">
-                        <i class="fa fa-twitter"></i>
+                        <i class="material-icons">pool</i>
                     </div>
                     <div class="card-content">
-                        <p class="category">Followers</p>
-                        <h3 class="title">+245</h3>
+                        <p class="category">Total Activities</p>
+                        <h3 class="title">{{ count($activities) }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">

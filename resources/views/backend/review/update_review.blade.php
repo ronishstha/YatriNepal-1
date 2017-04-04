@@ -28,7 +28,7 @@
         }
         .star_rating{
             margin: 0 auto;
-            width: 75%;
+            width: 80%;
         }
         .star-checked{
             color: gold;
@@ -83,6 +83,10 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                @if(!empty($review->image))
+                                    <td><img src="{{ URL::asset('review/' . $review->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                @endif
 
                                 <div class="row">
                                     <div class="col-md-6">

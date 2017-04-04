@@ -63,7 +63,7 @@
                                     @foreach($itineraries as $itinerary)
                                         @if($itinerary->status == "published" || $itinerary->status == "unpublished")
                                             <tr>
-                                                <td><a href="{{ route('backend.itinerary.single.itinerary', ['itinerary_id' => $itinerary->id]) }}">{{ $itinerary->title }}</a></td>
+                                                <td><a href="{{ route('backend.itinerary.single.itinerary', ['itinerary_slug' => $itinerary->slug]) }}">{{ $itinerary->title }}</a></td>
                                                 <td><button class="btn-edit"><a href="{{ route('backend.itinerary.get.update', ['itinerary_id' => $itinerary->id]) }}">Edit</a></button></td>
                                                 <td><button class="btn-view"><a href="{{ route('backend.itinerary.single.itinerary', ['itinerary_slug' => $itinerary->slug])  }}">View</a></button></td>
                                                 <td><button class="btn-delete"><a href="{{ route('backend.itinerary.trash', ['itinerary_id' => $itinerary->id]) }}">Delete</a></button></td>

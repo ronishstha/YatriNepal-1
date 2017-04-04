@@ -44,4 +44,20 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
     public function reviews(){
         return $this->hasMany('App\Review');
     }
+
+    public function customizes(){
+        return $this->hasMany('App\Customize');
+    }
+
+    public function galleries(){
+        return $this->hasMany('App\Gallery');
+    }
+
+    public function photos(){
+        return $this->hasMany('App\Photo');
+    }
+
+    public function affiliates(){
+        return $this->hasMany('App\Affiliate');
+    }
 }

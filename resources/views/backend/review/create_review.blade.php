@@ -20,7 +20,7 @@
         }
         .star-rating{
             margin: 0 auto;
-            width: 75%;
+            width: 80%;
         }
         .star{
             color: #ccc;
@@ -100,7 +100,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Description</label>
+                                            <label>Description</label>
                                             <textarea row=20 class="form-control" name="description" id="description">{{ Request::old('description') }}</textarea>
                                         </div>
                                     </div>
