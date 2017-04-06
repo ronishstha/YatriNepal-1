@@ -143,4 +143,25 @@ class ReviewsController extends Controller
         $review->update();
         return redirect()->route('backend.review');
     }
+
+    public function DeleteAll(){
+        $reviews = Review::all();
+        foreach($reviews as $review){
+            if($review->status = "trash"){
+                $review->delete();
+            }
+        }
+        return redirect()->route('backend.review.delete.review')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $reviews = Review::all();
+        foreach($reviews as $review){
+            if($review->status = "trash"){
+                $review->status = "published";
+                $review->update();
+            }
+        }
+        return redirect()->route('backend.review')->with(['success' => 'All items restored']);
+    }
 }

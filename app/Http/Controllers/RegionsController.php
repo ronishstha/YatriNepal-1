@@ -92,10 +92,24 @@ class RegionsController extends Controller
         return redirect()->route('backend.region');
     }
 
-    /*public function getSingleRegion($region_slug){
-        $region = Region::where('slug', $region_slug)
-            ->first();
-        return view('backend.region.single_region', ['region' => $region]);
+    public function DeleteAll(){
+        $regions = Region::all();
+        foreach($regions as $region){
+            if($region->status = "trash"){
+                $region->delete();
+            }
+        }
+        return redirect()->route('backend.region.delete.region')->with(['success' => 'Trash Cleared']);
+    }
 
-    }*/
+    public function RestoreAll(){
+        $regions = Region::all();
+        foreach($regions as $region){
+            if($region->status = "trash"){
+                $region->status = "published";
+                $region->update();
+            }
+        }
+        return redirect()->route('backend.region')->with(['success' => 'All items restored']);
+    }
 }

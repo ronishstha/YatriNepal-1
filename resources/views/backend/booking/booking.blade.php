@@ -29,14 +29,12 @@
 
                         <div class="card-content table-responsive">
                             <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-4"></div>
-                            <i class="material-icons">note_add</i>
+                                <div class="col-md-2 col-md-offset-5">
+                            <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.booking.get.firstcreate') }}">Book Now</a>
-                            </div>
-                            <div class="col-md-3"></div>
+                                </div>
                             <a href="{{ route('backend.booking.delete.page') }}">
-                                <i class="material-icons">delete
+                                <i class="material-icons delete col-md-push-4">delete
                                     @php
                                         $count = count($bookings);
                                         $i = 0;
@@ -87,6 +85,8 @@
                                 </table>
                             @endif
                             {!! $bookings->links() !!}
+                           {{--{{ dd($firstname, $middlename, $lastname, $nationalit, $stat, $emai, $mobil, $landlin, $occupatio, $emergencycontact, $issuedate, $dateofbirth, $placeofissue, $expirationdate, $emergencycontact) }}
+                            {{ $firstname[0] }}--}}
                             {{--<div class="pagination">--}}
 
                                 {{--@if($bookings->currentPage() !== 1)

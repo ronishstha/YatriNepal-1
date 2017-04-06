@@ -140,6 +140,25 @@ class BookingsController extends Controller
         }
 
         if($number > 1){
+            $titl = array();
+            $firstname = array();
+            $middlename = array();
+            $lastname = array();
+            $nationalit = array();
+            $stat = array();
+            $emai = array();
+            $mobil = array();
+            $landlin = array();
+            $dateofbirth = array();
+            $occupatio = array();
+            $mailingaddress = array();
+            $passportno = array();
+            $placeofissue = array();
+            $issuedate = array();
+            $expirationdate = array();
+            $emergencycontact = array();
+
+
             for($i = 1; $i <= $number; $i++){
                 $title = $request['title'.$i];
                 $first_name = $request['first_name'.$i];
@@ -159,6 +178,25 @@ class BookingsController extends Controller
                 $expiration_date = $request['expiration_date'.$i];
                 $emergency_contact = $request['emergency_contact'.$i];
                 $status = $request['status'.$i];
+
+                array_push($titl, $title);
+                array_push($firstname, $first_name);
+                array_push($middlename, $middle_name);
+                array_push($lastname, $last_name);
+                array_push($nationalit, $nationality);
+                array_push($stat, $state);
+                array_push($emai, $email);
+                array_push($mobil, $mobile);
+                array_push($landlin, $landline);
+                array_push($dateofbirth, $date_of_birth);
+                array_push($occupatio, $occupation);
+                array_push($mailingaddress, $mailing_address);
+                array_push($passportno, $passport_no);
+                array_push($placeofissue, $place_of_issue);
+                array_push($issuedate, $issue_date);
+                array_push($expirationdate, $expiration_date);
+                array_push($emergencycontact, $emergency_contact);
+
 
                 $bookdetails = new Bookdetail();
                 $bookdetails->title = $title;
@@ -184,7 +222,26 @@ class BookingsController extends Controller
                 $bookdetails->booking()->associate($booked);
                 $bookdetails->save();
             }
-
+           /* $bookings = Booking::orderBy('created_at', 'desc')->paginate(5);
+            return view('backend.booking.booking', [
+                'bookings' => $bookings,
+                'firstname' => $firstname,
+                'middlename' => $middlename,
+                'lastname' => $lastname,
+                'nationalit' => $nationalit,
+                'stat' => $stat,
+                'emai' => $emai,
+                'mobil' => $mobil,
+                'landlin' => $landlin,
+                'dateofbirth' => $dateofbirth,
+                'occupatio' => $occupatio,
+                'mailingaddress' => $mailingaddress,
+                'passportno' => $passportno,
+                'placeofissue' => $placeofissue,
+                'issuedate' => $issuedate,
+                'expirationdate' => $expirationdate,
+                'emergencycontact' => $emergencycontact
+                ]);*/
 
 
             $first_name = $request['first_name1'];
@@ -196,24 +253,57 @@ class BookingsController extends Controller
                 'trip_code' => $trip_code,
                 'date' => $date,
                 'mobile' => $mobile,
-                'email' => $email], function($msg) use($first_name, $email){
+                'email' => $email,
+                'titl' => $title,
+                'firstname' => $firstname,
+                'middlename' => $middlename,
+                'lastname' => $lastname,
+                'nationalit' => $nationalit,
+                'stat' => $stat,
+                'emai' => $emai,
+                'mobil' => $mobil,
+                'landlin' => $landlin,
+                'dateofbirth' => $dateofbirth,
+                'occupatio' => $occupatio,
+                'mailingaddress' => $mailingaddress,
+                'passportno' => $passportno,
+                'placeofissue' => $placeofissue,
+                'issuedate' => $issuedate,
+                'expirationdate' => $expirationdate,
+                'emergencycontact' => $emergencycontact
+                ], function($msg) use($first_name, $email){
                 $msg->from($email, $first_name);
                 $msg->to('stharonish@gmail.com', 'Admin');
                 $msg->subject('New booking received');
             });
 
             Mail::send('backend.booking.booking_message_user', [
+                'number' => $number,
                 'trip' => $trip,
                 'trip_code' => $trip_code,
-                'date' => $date], function($msg) use($first_name, $email){
+                'date' => $date,
+                'titl' => $title,
+                'firstname' => $firstname,
+                'middlename' => $middlename,
+                'lastname' => $lastname,
+                'nationalit' => $nationalit,
+                'stat' => $stat,
+                'emai' => $emai,
+                'mobil' => $mobil,
+                'landlin' => $landlin,
+                'dateofbirth' => $dateofbirth,
+                'occupatio' => $occupatio,
+                'mailingaddress' => $mailingaddress,
+                'passportno' => $passportno,
+                'placeofissue' => $placeofissue,
+                'issuedate' => $issuedate,
+                'expirationdate' => $expirationdate,
+                'emergencycontact' => $emergencycontact], function($msg) use($first_name, $email){
                 $msg->from('yatrinepalserver@gamil.com', 'Yatri Nepal');
                 $msg->to($email, $first_name);
                 $msg->subject('Thank you for booking');
             });
         }
-
-
-
         return redirect()->route('backend.booking')->with(['success' => 'Successfully created']);
     }
 
@@ -270,5 +360,26 @@ class BookingsController extends Controller
         $booking->status = "published";
         $booking->update();
         return redirect()->route('backend.booking');
+    }
+
+    public function DeleteAll(){
+        $bookings = Page::all();
+        foreach($bookings as $booking){
+            if($booking->status = "trash"){
+                $booking->delete();
+            }
+        }
+        return redirect()->route('backend.booking.delete.booking')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $bookings = Page::all();
+        foreach($bookings as $booking){
+            if($booking->status = "trash"){
+                $booking->status = "published";
+                $booking->update();
+            }
+        }
+        return redirect()->route('backend.booking')->with(['success' => 'All items restored']);
     }
 }

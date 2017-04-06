@@ -28,6 +28,14 @@
 </head>
 
 <body>
+<style>
+    body.modal-open div.modal-backdrop {
+        z-index: 0;
+    }
+    #confirm{
+        color: white;
+    }
+</style>
 
 <div class="wrapper">
 @include('backend.layouts.sidebar')
@@ -46,6 +54,7 @@
         </footer>
     </div>
 </div>
+
 
 </body>
 
@@ -73,8 +82,8 @@
     $(document).ready(function(){
 
         // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
 
+        /* demo.initDashboardPageCharts();*/
         $(document).on('change','.country',function(){
             console.log("hmm its change");
 
@@ -90,14 +99,13 @@
                 data:{'id':country_id},
                 success:function(data){
                     console.log('success');
-
                     console.log(data);
                     var length = Object.keys(data).length
                     console.log(length);
-                    console.log(Object.values(data));
 
+                    op+='<option value="0" selected disabled>select destination</option>';
                     for(var i = 0; i < length; i++){
-                        op+='<option value="'+data[i].title+'">'+data[i].title+'</option>';
+                        op+='<option value="'+data[i].id+'">'+data[i].title+'</option>';
                     }
 
                     $('.destination').html(op);
@@ -110,6 +118,80 @@
                 }
             });
         });
+
+        $(document).on('change','.destination',function(){
+            console.log("hmm its change");
+
+            var destination_id = $(this).val();
+            console.log(destination_id);
+            var d = $(this).parent();
+
+            var op=" ";
+
+            $.ajax({
+                type:'get',
+                url:'{!!URL::to('admin/findRegionName')!!}',
+                data:{'id':destination_id},
+                success:function(result){
+                    console.log('success');
+                    console.log(result);
+                    var length = Object.keys(result).length
+                    console.log(length);
+
+
+                    op+='<option value="0" selected disabled>select region</option>';
+                    for(var i = 0; i < length; i++){
+                        op+='<option value="'+result[i].id+'">'+result[i].title+'</option>';
+                    }
+
+                    $('.region').html(op);
+
+                    d.find('.region').html(" ");
+                    d.find('.region').append(op);
+                },
+                error:function(){
+
+                }
+            });
+        });
+
+        $(document).on('change','.region',function(){
+            console.log("hmm its change");
+
+            var region_id = $(this).val();
+            console.log(region_id);
+            var d = $(this).parent();
+
+            var op=" ";
+
+            $.ajax({
+                type:'get',
+                url:'{!!URL::to('admin/findActivityName')!!}',
+                data:{'id':region_id},
+                success:function(answer){
+                    console.log('success');
+                    console.log(answer);
+                    var length = Object.keys(answer).length
+                    console.log(length);
+
+
+                    for(var i = 0; i < length; i++){
+                        op+='<option value="'+answer[i].id+'">'+answer[i].title+'</option>';
+                    }
+
+                    $('.activity').html(op);
+
+                    d.find('.activity').html(" ");
+                    d.find('.activity').append(op);
+                },
+                error:function(){
+
+                }
+            });
+        });
+
+        c
+
     });
 
 </script>

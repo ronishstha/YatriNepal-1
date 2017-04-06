@@ -72,7 +72,7 @@ class CustomizesController extends Controller
             'description' => $description,
             'contact_no' => $contact_no,
             'country' => $country], function($msg) use($name, $email){
-            $msg->from('$email', $name);
+            $msg->from($email, $name);
             /*yatrinepal email required*/
             $msg->to('stharonish@gmail.com', 'Yatri Nepal');
             $msg->subject('Customized trip message received');
@@ -144,5 +144,26 @@ class CustomizesController extends Controller
         $customize->status = "published";
         $customize->update();
         return redirect()->route('backend.customize');
+    }
+
+    public function DeleteAll(){
+        $customizes = Customize::all();
+        foreach($customizes as $customize){
+            if($customize->status = "trash"){
+                $customize->delete();
+            }
+        }
+        return redirect()->route('backend.customize.delete.customize')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $customizes = Customize::all();
+        foreach($customizes as $customize){
+            if($customize->status = "trash"){
+                $customize->status = "published";
+                $customize->update();
+            }
+        }
+        return redirect()->route('backend.customize')->with(['success' => 'All items restored']);
     }
 }

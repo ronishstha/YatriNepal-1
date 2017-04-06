@@ -1,5 +1,16 @@
 @extends('backend.layouts.index')
 @section('content')
+    <style>
+        .btn-view{
+            background-color: forestgreen;
+            border: none;
+            border-radius: 3px;
+            height: 25px;
+        }
+        .btn-view a{
+            color: ghostwhite;
+        }
+    </style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -95,7 +106,6 @@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
                         </div>
                     </div>
                 </div>
@@ -146,19 +156,19 @@
                                     <li class="active">
                                         <a href="#profile" data-toggle="tab">
                                             <i class="material-icons">transfer_within_a_station</i>
-                                            Itineraries
+                                            Itinerary
                                             <div class="ripple-container"></div></a>
                                     </li>
                                     <li class="">
                                         <a href="#messages" data-toggle="tab">
-                                            <i class="material-icons">assignment_turned_in</i>
-                                            Bookings
+                                            <i class="material-icons">build</i>
+                                            Customized
                                             <div class="ripple-container"></div></a>
                                     </li>
                                     <li class="">
                                         <a href="#settings" data-toggle="tab">
-                                            <i class="material-icons">cloud</i>
-                                            Server
+                                            <i class="material-icons">receipt</i>
+                                            Review
                                             <div class="ripple-container"></div></a>
                                     </li>
                                 </ul>
@@ -170,6 +180,10 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="profile">
                                 <table class="table">
+                                    <thead class="text-primary">
+                                    <th>Itinerary</th>
+                                    <th>Destination</th>
+                                    </thead>
                                     <tbody>
                                     @foreach($itineraries as $itinerary)
                                     <tr>
@@ -177,99 +191,51 @@
                                         <td>
                                            {{$itinerary->destination->title}}
                                         </td>
-
                                     </tr>
                                     @endforeach
                                     </tbody>
 
                                 </table>
-                                {!! $itineraries->links() !!}
                             </div>
                             <div class="tab-pane" id="messages">
                                 <table class="table">
 
                                     <thead class="text-primary">
+                                    <th>Name</th>
                                     <th>Itinerary</th>
-                                    <th>Made at</th>
-                                    <th>Booked For</th>
+                                    <th></th>
                                     </thead>
                                     <tbody>
-                                    @foreach($bookings as $booking)
+                                    @foreach($customizes as $customize)
                                     <tr>
-                                        <td>
-                                            {{ $booking->itinerary->title }}
-                                        </td>
-                                        <td>
-                                            {{ $booking->created_at }}
-                                        </td>
-                                        <td>
-                                           {{ $booking->date }}
-                                        </td>
+                                        <td>{{ $customize->name }}</td>
+                                        <td>{{  $customize->itinerary->title }}</td>
+                                        <td><button class="btn-view"><a href="{{ route('backend.customize.single.customize', ['customize_slug' => $customize->slug])  }}">Details</a></button></td>
                                     </tr>
                                     @endforeach
-
                                     </tbody>
                                 </table>
-                                {!! $bookings->links() !!}
                             </div>
                             <div class="tab-pane" id="settings">
                                 <table class="table">
+                                    <thead class="text-primary">
+                                    <th>Name</th>
+                                    <th>Itinerary</th>
+                                    <th></th>
+                                    </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes" checked>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                        </td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    @foreach($reviews as $review)
+                                        <tr>
+                                            <td>
+                                                {{ $review->name }}
+                                            </td>
+                                            <td>
+                                                {{ $review->itinerary->title }}
+                                            </td>
+                                            <td><button class="btn-view"><a href="{{ route('backend.review.single.review', ['review_slug' => $review->slug])  }}">Details</a></button></td>
+                                        </tr>
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -281,43 +247,33 @@
             <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
-                        <h4 class="title">Employees Stats</h4>
-                        <p class="category">New employees on 15th September, 2016</p>
+                        <h4 class="title">Bookings</h4>
+                        <p class="category">Bookings made in the last 7 days</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table table-hover">
+                            @if (count($bookings) == 0)
+                                <p align="center">No bookings made this week</p>
+                            @endif
+                            @if(count($bookings) != 0)
                             <thead class="text-warning">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Salary</th>
-                            <th>Country</th>
+                            <th>Itinerary</th>
+                            <th>No of People</th>
+                            <th>Made at</th>
+                            <th>Booked For</th>
                             </thead>
                             <tbody>
+
+                            @foreach($bookings as $booking)
                             <tr>
-                                <td>1</td>
-                                <td>Dakota Rice</td>
-                                <td>$36,738</td>
-                                <td>Niger</td>
+                                <td>{{  $booking->itinerary->title }}</td>
+                                <td>{{ $booking->number }}</td>
+                                <td>{{ $booking->created_at }}</td>
+                                <td>{{ $booking->date }}</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Minerva Hooper</td>
-                                <td>$23,789</td>
-                                <td>Curaçao</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Sage Rodriguez</td>
-                                <td>$56,142</td>
-                                <td>Netherlands</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Philip Chaney</td>
-                                <td>$38,735</td>
-                                <td>Korea, South</td>
-                            </tr>
+                            @endforeach
                             </tbody>
+                                @endif
                         </table>
                     </div>
                 </div>

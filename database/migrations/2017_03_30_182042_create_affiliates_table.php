@@ -17,6 +17,7 @@ class CreateAffiliatesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('image')->nullable;
+            $table->string('link')->nullable;
             $table->string('slug');
             $table->string('user_id');
             $table->enum('status', ['published', 'unpublished', 'trash'])->default('published');

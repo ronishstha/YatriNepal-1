@@ -23,7 +23,7 @@
 </p>
 
 <p>
-    <strong>Message:</strong> {{ $description }}
+    <strong>Message:</strong> {!! $description !!}
 </p>
 
 

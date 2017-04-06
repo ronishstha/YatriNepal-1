@@ -128,4 +128,24 @@ class GalleriesController extends Controller
         return redirect()->route('backend.gallery');
     }
 
+    public function DeleteAll(){
+        $galleries = Gallery::all();
+        foreach($galleries as $gallery){
+            if($gallery->status = "trash"){
+                $gallery->delete();
+            }
+        }
+        return redirect()->route('backend.gallery.delete.gallery')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $galleries = Gallery::all();
+        foreach($galleries as $gallery){
+            if($gallery->status = "trash"){
+                $gallery->status = "published";
+                $gallery->update();
+            }
+        }
+        return redirect()->route('backend.gallery')->with(['success' => 'All items restored']);
+    }
 }
