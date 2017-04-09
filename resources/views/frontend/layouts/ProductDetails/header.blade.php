@@ -1,82 +1,82 @@
 <header class="fixed">
-    <div class="header-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6 hidden-xs">
-                    <div class="currency-language">
-                        <div class="currency-menu">
-                            <ul>
-                                <li><a href="#">USD <i class="fa fa-angle-down"></i></a>
-                                    <ul class="currency-dropdown">
-                                        <li><a href="#">EUR</a></li>
-                                        <li><a href="#">USD</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="language-menu">
-                            <ul>
-                                <li><a href="#">English <i class="fa fa-angle-down"></i></a>
-                                    <ul class="language-dropdown">
-                                        <li><a href="#">Nepali</a></li>
-                                        <li><a href="#">English</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <div class="header-top-right">
-                        <div class="login">
-                            <a href="#"><i class="fa fa-pencil-square-o"></i>Register</a>
-                        </div>
-                        <div class="account">
-                            <a href="signin.html"><i class="fa fa-lock"></i>sign In</a>
-                        </div>
-                        <ul class="header-r-cart">
-                            <li><a href="#" class="cart"><i class="fa fa-shopping-cart"></i>(2)</a>
-                                <div class="mini-cart-content">
-                                    <div class="cart-products-list">
-                                        <div class="cart-products">
-                                            <div class="cart-image">
-                                                <a href="#"><img alt="" src="img/cart/1.jpg"></a>
-                                            </div>
-                                            <div class="cart-product-info">
-                                                <a class="product-name" href="#">alteration</a>
-                                                <span class="quantity">X 1 -</span>
-                                                <span class="p-price">$23.87</span>
-                                                <a class="remove-product"><i class="fa fa-times-circle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="cart-products">
-                                            <div class="cart-image">
-                                                <a href="#"><img alt="" src="img/cart/2.jpg"></a>
-                                            </div>
-                                            <div class="cart-product-info">
-                                                <a class="product-name" href="#">alteration</a>
-                                                <span class="quantity">X 1 -</span>
-                                                <span class="p-price">$332.28</span>
-                                                <a class="remove-product"><i class="fa fa-times-circle"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-price-list">
-                                        <p class="price-amount">Sub-Total : <span>$293.73</span> </p>
-                                        <p class="price-amount">Total : <span>$356.15</span> </p>
-                                        <div class="cart-buttons">
-                                            <a href="#"><i class="fa fa-shopping-cart"></i> View Cart</a>
-                                            <a href="#"><i class="fa fa-sign-in"></i> Checkout</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--<div class="header-top">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-md-4 col-sm-6 hidden-xs">--}}
+                    {{--<div class="currency-language">--}}
+                        {{--<div class="currency-menu">--}}
+                            {{--<ul>--}}
+                                {{--<li><a href="#">USD <i class="fa fa-angle-down"></i></a>--}}
+                                    {{--<ul class="currency-dropdown">--}}
+                                        {{--<li><a href="#">EUR</a></li>--}}
+                                        {{--<li><a href="#">USD</a></li>--}}
+                                    {{--</ul>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                        {{--<div class="language-menu">--}}
+                            {{--<ul>--}}
+                                {{--<li><a href="#">English <i class="fa fa-angle-down"></i></a>--}}
+                                    {{--<ul class="language-dropdown">--}}
+                                        {{--<li><a href="#">Nepali</a></li>--}}
+                                        {{--<li><a href="#">English</a></li>--}}
+                                    {{--</ul>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-8 col-sm-6 col-xs-12">--}}
+                    {{--<div class="header-top-right">--}}
+                        {{--<div class="login">--}}
+                            {{--<a href="#"><i class="fa fa-pencil-square-o"></i>Register</a>--}}
+                        {{--</div>--}}
+                        {{--<div class="account">--}}
+                            {{--<a href="signin.html"><i class="fa fa-lock"></i>sign In</a>--}}
+                        {{--</div>--}}
+                        {{--<ul class="header-r-cart">--}}
+                            {{--<li><a href="#" class="cart"><i class="fa fa-shopping-cart"></i>(2)</a>--}}
+                                {{--<div class="mini-cart-content">--}}
+                                    {{--<div class="cart-products-list">--}}
+                                        {{--<div class="cart-products">--}}
+                                            {{--<div class="cart-image">--}}
+                                                {{--<a href="#"><img alt="" src="img/cart/1.jpg"></a>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="cart-product-info">--}}
+                                                {{--<a class="product-name" href="#">alteration</a>--}}
+                                                {{--<span class="quantity">X 1 -</span>--}}
+                                                {{--<span class="p-price">$23.87</span>--}}
+                                                {{--<a class="remove-product"><i class="fa fa-times-circle"></i></a>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="cart-products">--}}
+                                            {{--<div class="cart-image">--}}
+                                                {{--<a href="#"><img alt="" src="img/cart/2.jpg"></a>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="cart-product-info">--}}
+                                                {{--<a class="product-name" href="#">alteration</a>--}}
+                                                {{--<span class="quantity">X 1 -</span>--}}
+                                                {{--<span class="p-price">$332.28</span>--}}
+                                                {{--<a class="remove-product"><i class="fa fa-times-circle"></i></a>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="cart-price-list">--}}
+                                        {{--<p class="price-amount">Sub-Total : <span>$293.73</span> </p>--}}
+                                        {{--<p class="price-amount">Total : <span>$356.15</span> </p>--}}
+                                        {{--<div class="cart-buttons">--}}
+                                            {{--<a href="#"><i class="fa fa-shopping-cart"></i> View Cart</a>--}}
+                                            {{--<a href="#"><i class="fa fa-sign-in"></i> Checkout</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <!--Logo Mainmenu Start-->
     <div class="header-logo-menu">
         <div class="container">
@@ -86,7 +86,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <div class="logo">
-                                    <a href="index.html"><img src="../img/logo/logo.png" alt="ADVENTURES"></a>
+                                    <a href="index.html"><img src="../img/yatri-logo/logoy.png" alt="ADVENTURES"></a>
                                 </div>
                             </div>
                             <div class="col-md-8 hidden-sm hidden-xs">
@@ -132,7 +132,6 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li><a href="{{ route('travel') }}">Travel</a></li>
                                             <li class="drop-down"><a href="{{ route('home') }}">Pages</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="#" class="mega-title">Other Pages</a></li>

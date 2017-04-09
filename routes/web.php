@@ -8,19 +8,24 @@ Route::get('/', [
     'uses' => 'frontend\indexController@index'
 ])->name("home");
 
-Route::get('/Travel', function () {
-    return view('frontend.layouts.Travel.Travel');
-})->name("travel");
+//Route::get('/travel', function () {
+//    return view('frontend.layouts.Travel.Travel');
+//})->name("travel");
 
-Route::get('/Contact', function () {
+Route::get('/contact', function () {
     return view('frontend.layouts.Contact.Contact');
 })->name("contact");
 
-Route::get('/Destination',[
+Route::get('/booking',[
+    'uses' => 'frontend\indexController@booking' ,
+    'as' => 'booking'
+]);
+
+Route::get('/destinations',[
     'uses' => 'frontend\DestinationController@dest'
 ])->name("dest");
 
-Route::get('/Blog', function () {
+Route::get('/blog', function () {
     return view('frontend.layouts.Blog.blog');
 })->name("blog");
 
@@ -32,6 +37,19 @@ Route::get('/details/{slug}', [
 Route::get('/search', [
     'uses' => 'frontend\SearchController@getResult',
     'as'   => 'searchItinerary'
+]);
+
+Route::get('/search_itinerary', [
+    'uses' => 'frontend\DestinationController@searchDest',
+    'as'   => 'searchDest'
+]);
+Route::get('/web-register', [
+    'uses' => 'frontend\AuthController@webRegister',
+    'as'   => 'web-register'
+]);
+Route::post('/web-register-post', [
+    'uses' => 'frontend\AuthController@webRegisterPost',
+    'as'   => 'web-register-post'
 ]);
 
 

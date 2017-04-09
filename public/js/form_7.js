@@ -1,3 +1,5 @@
-/**
- * Created by Psykohunter on 4/7/2017.
- */
+//auto expand textarea
+    function adjust_textarea(h) {
+        h.style.height = "20px";
+        h.style.height = (h.scrollHeight)+"px";
+    }

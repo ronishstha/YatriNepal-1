@@ -4,6 +4,63 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="trip-info-left-text">
+
+                    @if(session()->has('success'))
+                    {{--<div class="modal fade demo-popup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">--}}
+                        {{--<div class="modal-dialog">--}}
+                            {{--<div class="modal-content">--}}
+                                {{--<div class="modal-header">--}}
+                                    {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> <h3 class="modal-title">Message</h3>--}}
+                                {{--</div>--}}
+                                {{--<div class="modal-body">--}}
+                                    <div class="customize-box alert alert-info" style="color:green">
+                                        {{ session('success') }}
+                                    </div>
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    @endif
+                    @if(count($errors)>0)
+                        {{--<div class="modal fade demo-popup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">--}}
+                            {{--<div class="modal-dialog">--}}
+                                {{--<div class="modal-content">--}}
+                                    {{--<div class="modal-header">--}}
+                                        {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> <h3 class="modal-title">Message</h3>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="modal-body">--}}
+                                        <div class="customize-box alert alert-danger" style="color:red">
+                                            <p>Your queries couldnt be submitted due to following.Please try again</p>
+                                            <div class="imglist" style="text-align: left">
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+                                                        <li>{{$error}}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    @endif
+                        @if(session()->has('failure'))
+                            {{--<div class="modal fade demo-popup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">--}}
+                                {{--<div class="modal-dialog">--}}
+                                    {{--<div class="modal-content">--}}
+                                        {{--<div class="modal-header">--}}
+                                            {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> <h3 class="modal-title">Message</h3>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="modal-body">--}}
+                                            <div class="customize-box alert alert-danger" style="color:red">
+                                                {{ session('failure') }}
+                                            </div>
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        @endif
+
                     <div class="section-title text-center">
                         <div class="title-border">
                             <h1>Trip <span>Overview</span></h1>

@@ -4,12 +4,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="shop-item-filter">
-                    <form action="#" id="banner-searchbox">
+                    <form action="{{ route('searchDest') }}" id="banner-searchbox">
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
                                 <div class="adventure-cat">
-                                    <select name="category" class="search-adventure">
-                                        <option>Select Adventure</option>
+                                    <select name="activity" class="search-adventure">
+                                        <option value="select">Select Activities</option>
                                             @foreach($activities as $activities)
                                                 <option>{{ $activities->title }}</option>
                                             @endforeach
@@ -19,7 +19,7 @@
                             <div class="col-md-3 col-sm-4">
                                 <div class="adventure-cat">
                                     <select name="destination" class="search-adventure">
-                                        <option>Select Your Destination</option>
+                                        <option value="select">Select Your Destination</option>
                                         @foreach($destination as $destination)
                                             <option>{{ $destination->title }}</option>
                                         @endforeach
@@ -29,7 +29,7 @@
                             <div class="col-md-2 hidden-sm">
                                 <div class="adventure-cat">
                                     <select name="price" class="search-adventure">
-                                        <option>Price</option>
+                                        <option value="select">Price</option>
                                         <option>$5000</option>
                                         <option>$8000</option>
                                         <option>$10000</option>

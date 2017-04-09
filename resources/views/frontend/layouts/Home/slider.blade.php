@@ -23,23 +23,21 @@
                                 <form action="{{ route('searchItinerary') }}" id="banner-searchbox" class="hidden-xs">
                                     <div class="adventure-cat">
                                         <select name="activity" class="search-adventure" >
-                                            <option value="">Select Activity</option>
+                                            <option value="select">Select Activity</option>
                                             @foreach($activities as $activity)
                                                 <option>{{ $activity->title }}</option>
                                             @endforeach
                                         </select>
-                                        <button type="submit" id="btn-search-category" >Search</button>
+                                        <button type="submit" class="button-yellow" id="btn-search-category" >Search</button>
                                     </div>
                                     <div class="adventure-cat destination">
                                         <select name="destination" class="search-adventure">
-                                            <option value="">Select Your Destination</option>
+                                            <option value="select">Select Your Destination</option>
                                             @foreach($destination as $dest)
                                                 <option>{{ $dest->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="clearfix"></div>
-                                    <button type="submit" id="btn-search-category" class="button-yellow">SEARCH</button>
                                 </form>
                             </div>
                         </div>

@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
     <!-- favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
@@ -59,6 +61,11 @@
     <!-- modernizr JS
     ============================================ -->
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+    <link href="../css/material-bootstrap-wizard.css" rel="stylesheet" />
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -79,6 +86,8 @@
 ============================================ -->
 <script src="../js/vendor/jquery-1.12.3.min.js"></script>
 
+{{--<script src="../js/jquery-2.2.4.min.js" type="text/javascript"></script>--}}
+
 <!-- bootstrap JS
 ============================================ -->
 <script src="../js/bootstrap.min.js"></script>
@@ -95,6 +104,8 @@
 <!-- meanmenu JS
 ============================================ -->
 <script src="../js/jquery.meanmenu.js"></script>
+
+<script src="../js/jquery.bootstrap.js" type="text/javascript"></script>
 
 <!-- owl.carousel JS
 ============================================ -->
@@ -123,5 +134,13 @@
 <!-- main JS
 ============================================ -->
 <script src="../js/main.js"></script>
+
+<!--   Core JS Files   -->
+
+<!--  Plugin for the Wizard -->
+<script src="../js/material-bootstrap-wizard.js"></script>
+<!---->
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script src="../js/jquery.validate.min.js"></script>
 </body>
 </html>

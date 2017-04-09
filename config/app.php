@@ -135,6 +135,8 @@ return [
     |
     */
 
+
+
     'providers' => [
 
         /*
@@ -165,6 +167,7 @@ return [
         Unisharp\Ckeditor\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class,
 
 
         /*

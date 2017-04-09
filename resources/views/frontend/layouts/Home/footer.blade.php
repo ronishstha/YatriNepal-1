@@ -104,7 +104,6 @@
                     <ul id="footer-menu">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="{{ route('dest') }}">Destinations</a></li>
-                        <li><a href="{{ route('travel') }}">Travel Styles</a></li>
                         <li><a href="shop-grid-no-sidebar.html">Specials</a></li>
                         <li><a href="blog-1.html">Blog</a></li>
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>

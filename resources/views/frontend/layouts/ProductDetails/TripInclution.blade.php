@@ -25,6 +25,7 @@
                 </div>
             </div>
         </div>
+        @include('frontend.layouts.Home.popup')
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title text-center">

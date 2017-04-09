@@ -23,11 +23,11 @@ class SearchController extends Controller
         $activities = Activity::get();
         $destination = Destination::get();
 
-        if($activities_request === ''){
+        if($activities_request === 'select'){
             $destination_pull = Destination::where('title',$destination_request)->firstOrFail();
             $itinerary = Itinerary::where('destination_id',$destination_pull->id)->get();
         }
-        elseif($destination_request === ''){
+        elseif($destination_request === 'select'){
             $activities_pull = Activity::where('title',$activities_request)->firstOrFail();
             $itinerary = Itinerary::where('activity_id',$activities_pull->id)->get();
         }
@@ -37,8 +37,8 @@ class SearchController extends Controller
             $itinerary = Itinerary::where('activity_id',$activities_pull->id && 'destination_id',$destination_pull->id)->get();
         }
 
-        return view('frontend.layouts.Search.SearchPage',compact('itinerary','about_adventure','banners','activities','destination'));
-//          return view('frontend.layouts.Search.SearchResult',compact('itinerary'));
+        return view('frontend.layouts.Search.SearchPage',compact('itinerary','about_adventure','banners','activities','destination','activities_request','destination_request'));
+
     }
 
 }

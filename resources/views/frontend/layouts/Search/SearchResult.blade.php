@@ -1,6 +1,21 @@
-
+<div class="clearfix"><br/></div>
 <div class="portfolio-area portfolio-two">
     <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title title-two text-center">
+                    <div class="title-border">
+                        @if($activities_request === 'select')
+                            <h1>Search Result by<span> {{ $destination_request }} </span></h1>
+                        @elseif($destination_request === 'select')
+                            <h1>Search Result by<span> {{ $activities_request }} </span></h1>
+                        @else
+                            <h1>Search Result by<span> {{ $activities_request }} && {{ $destination_request }} </span></h1>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             @foreach($itinerary as $itinerary)
                 <div class="col-md-3 col-sm-4">
