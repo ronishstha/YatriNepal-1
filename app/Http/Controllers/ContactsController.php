@@ -28,9 +28,18 @@ class ContactsController extends Controller
             'last_name' => $last_name,
             'phone_no' => $phone_no,
             'email' => $email,
-            'description' => $description], function($msg) use($first_name, $email){
-            $msg->from($email, $first_name);
+            'description' => $description], function($msg) use($first_name, $last_name, $email){
+            $msg->from($email, $first_name . ' ' . $last_name);
+            // Yatri Nepal email required
             $msg->to('stharonish@gmail.com', 'Admin');
+            $msg->subject('Message from User');
+        });
+
+        Mail::send('backend.contact.contact_message_user', [
+            'first_name' => $first_name,
+            'last_name' => $last_name], function($msg) use($first_name, $email){
+            $msg->from('yatrinepalserver@gmail.com', 'Yatri Nepal');
+            $msg->to($email, 'first_name');
             $msg->subject('Message from User');
         });
         return redirect()->route('backend.contact')->with(['success' => 'Successfully posted']);

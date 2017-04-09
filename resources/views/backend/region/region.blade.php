@@ -28,27 +28,32 @@
                         </div>
 
                         <div class="card-content table-responsive">
-                            <i class="material-icons create">note_add</i>
-                            <a href="{{ route('backend.region.get.create') }}">Create Region</a>
-                            <a href="{{ route('backend.region.delete.page') }}">
-                                <i class="material-icons delete">delete
-                                    @php
-                                        $count = count($regions);
-                                        $i = 0;
-                                    @endphp
-                                    @foreach($regions as $region)
-                                        @php
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-5">
+                                    <i class="material-icons create">note_add</i>
+                                    <a href="{{ route('backend.region.get.create') }}">Create Region</a>
+                                </div>
+                                    <a href="{{ route('backend.region.delete.page') }}">
+                                        <i class="material-icons col-md-push-4 delete">delete
+                                            @php
+                                                $count = count($regions);
+                                                $i = 0;
+                                            @endphp
+                                            @foreach($regions as $region)
+                                                @php
 
-                                            if($region->status == "trash"){
-                                                $i += 1;
-                                        }
-                                        @endphp
-                                    @endforeach
-                                    @if($i != 0)
-                                        <span class="noti-badge">{{ $i }}</span>
-                                    @endif
-                                </i>
-                            </a>
+                                                    if($region->status == "trash"){
+                                                        $i += 1;
+                                                }
+                                                @endphp
+                                            @endforeach
+                                            @if($i != 0)
+                                                <span class="noti-badge">{{ $i }}</span>
+                                            @endif
+                                        </i>
+                                    </a>
+
+                            </div>
                             @if(count($regions) == 0 || $count == $i)
                                 <br><p align="center">No region available<p>
                             @else

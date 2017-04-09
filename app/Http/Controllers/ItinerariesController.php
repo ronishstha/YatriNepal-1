@@ -88,11 +88,11 @@ class ItinerariesController extends Controller
         $area = $request['region'];
         $action = $request['activity'];
         $class = $request['category'];
-        $country = Country::where('title', $nation)->first();
-        $destination = Destination::where('title', $travel)->first();
-        $region = Region::where('title', $area)->first();
-        $activity = Activity::where('title', $action)->first();
-        $category = Category::where('title', $class)->first();
+        $country = Country::where('id', $nation)->first();
+        $destination = Destination::where('id', $travel)->first();
+        $region = Region::where('id', $area)->first();
+        $activity = Activity::where('id', $action)->first();
+        $category = Category::where('id', $class)->first();
         $user = Auth::user();
 
         $itinerary->title = $request['title'];
@@ -257,8 +257,13 @@ class ItinerariesController extends Controller
 
     public function getDelete($itinerary_id){
         $itinerary = Itinerary::findOrFail($itinerary_id);
-        unlink(public_path() . "\\itinerary\\" . $itinerary->image);
-        unlink(public_path() . "\\itinerary\\" . $itinerary->route_map);
+        if(!empty($itinerary->image)) {
+            unlink(public_path() . "\\itinerary\\" . $itinerary->image);
+        }
+
+        if(!empty($itinerary->route_map)){
+            unlink(public_path() . "\\itinerary\\" . $itinerary->route_map);
+        }
         $itinerary->delete();
         return redirect()->route('backend.itinerary.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -274,7 +279,12 @@ class ItinerariesController extends Controller
         $itinerary = Itinerary::where('slug', $itinerary_slug)
             ->first();
         $gallery = Gallery::where('itinerary_id', $itinerary->id)->first();
-        $photos = Photo::where('gallery_id', $gallery->id)->get();
+        if(count($gallery) != 0) {
+            $photos = Photo::where('gallery_id', $gallery->id)->get();
+        }
+        if(count($gallery) == 0){
+            $photos = NULL;
+        }
         return view('backend.itinerary.single_itinerary', ['itinerary' => $itinerary, 'photos' => $photos]);
     }
 
@@ -291,7 +301,38 @@ class ItinerariesController extends Controller
     }
 
     public function findDestinationName(Request $request){
-        $data = Destination::select('title')->where('country_id',$request->id)->get();
+        $data = Destination::select('title', 'id')->where('country_id',$request->id)->get();
         return response()->json($data);//then sent this data to ajax success
+    }
+
+    public function findRegionName(Request $request){
+        $result = Region::select('title', 'id')->where('destination_id',$request->id)->get();
+        return response()->json($result);//then sent this data to ajax success
+    }
+
+    public function findActivityName(Request $request){
+        $answer= Activity::select('title', 'id')->where('region_id',$request->id)->get();
+        return response()->json($answer);//then sent this data to ajax success
+    }
+
+    public function DeleteAll(){
+        $itineraries = Itinerary::all();
+        foreach($itineraries as $itinerary){
+            if($itinerary->status = "trash"){
+                $itinerary->delete();
+            }
+        }
+        return redirect()->route('backend.itinerary.delete.itinerary')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $itineraries = Itinerary::all();
+        foreach($itineraries as $itinerary){
+            if($itinerary->status = "trash"){
+                $itinerary->status = "published";
+                $itinerary->update();
+            }
+        }
+        return redirect()->route('backend.itinerary')->with(['success' => 'All items restored']);
     }
 }

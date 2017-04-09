@@ -82,4 +82,25 @@ class CategoriesController extends Controller
         $category->update();
         return redirect()->route('backend.category');
     }
+
+    public function DeleteAll(){
+        $categories = Category::all();
+        foreach($categories as $category){
+            if($category->status = "trash"){
+                $category->delete();
+            }
+        }
+        return redirect()->route('backend.category.delete.category')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $categories = Category::all();
+        foreach($categories as $category){
+            if($category->status = "trash"){
+                $category->status = "published";
+                $category->update();
+            }
+        }
+        return redirect()->route('backend.category')->with(['success' => 'All items restored']);
+    }
 }

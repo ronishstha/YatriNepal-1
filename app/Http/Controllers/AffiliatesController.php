@@ -37,6 +37,7 @@ class AffiliatesController extends Controller
 
         $slug = $request['title'];
         $affiliate->title = $request['title'];
+        $affiliate->link = $request['link'];
         $affiliate->slug = str_slug($slug,'-');
         $affiliate->status = $request['status'];
         $user = Auth::user();
@@ -70,6 +71,7 @@ class AffiliatesController extends Controller
         }
         $slug = $request['title'];
         $affiliate->title = $request['title'];
+        $affiliate->link = $request['link'];
         $affiliate->slug = str_slug($slug,'-');
         $affiliate->status = $request['status'];
         $user = Auth::user();
@@ -114,5 +116,26 @@ class AffiliatesController extends Controller
     public function getImage($filename){
         $file = Storage::disk('affiliate')->get($filename);
         return new Response($file, 200);
+    }
+
+    public function DeleteAll(){
+        $affiliates = Affiliate::all();
+        foreach($affiliates as $affiliate){
+            if($affiliate->status = "trash"){
+                $affiliate->delete();
+            }
+        }
+        return redirect()->route('backend.affiliate.delete.affiliate')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $affiliates = Affiliate::all();
+        foreach($affiliates as $affiliate){
+            if($affiliate->status = "trash"){
+                $affiliate->status = "published";
+                $affiliate->update();
+            }
+        }
+        return redirect()->route('backend.affiliate')->with(['success' => 'All items restored']);
     }
 }

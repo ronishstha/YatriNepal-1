@@ -28,10 +28,13 @@
                         </div>
 
                         <div class="card-content table-responsive">
+                            <div class="row">
+                                <div class="col-md-3 col-md-offset-5">
                             <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.customize.get.create') }}">Create Customized Trip</a>
+                                </div>
                             <a href="{{ route('backend.customize.delete.page') }}">
-                                <i class="material-icons delete">delete
+                                <i class="material-icons delete col-md-push-3">delete
                                     @php
                                         $count = count($customizes);
                                         $i = 0;
@@ -49,13 +52,14 @@
                                     @endif
                                 </i>
                             </a>
+                            </div>
                             @if(count($customizes) == 0 || $count == $i)
                                 <br><p align="center">No customized trip available<p>
                             @else
                                 <table class="table">
                                     <thead class="text-primary">
                                     <th>Name</th>
-                                    <th>Edit</th>
+                                    <th>Itinerary</th>
                                     <th>View</th>
                                     <th>Delete</th>
                                     </thead>

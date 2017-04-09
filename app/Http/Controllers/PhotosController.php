@@ -120,4 +120,25 @@ class PhotosController extends Controller
         $photo->update();
         return redirect()->route('backend.photo');
     }
+
+    public function DeleteAll(){
+        $photos = Photo::all();
+        foreach($photos as $photo){
+            if($photo->status = "trash"){
+                $photo->delete();
+            }
+        }
+        return redirect()->route('backend.photo.delete.photo')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $photos = Photo::all();
+        foreach($photos as $photo){
+            if($photo->status = "trash"){
+                $photo->status = "published";
+                $photo->update();
+            }
+        }
+        return redirect()->route('backend.photo')->with(['success' => 'All items restored']);
+    }
 }

@@ -15,7 +15,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Booking Process Step 1</h4>

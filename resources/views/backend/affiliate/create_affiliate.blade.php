@@ -25,7 +25,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Create Affiliate</h4>
@@ -39,6 +39,15 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Title</label>
                                             <input type="text" class="form-control" name="title" id="title" value="{{ Request::old('title') }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Link</label>
+                                            <input type="text" class="form-control" name="link" id="link" value="{{ Request::old('link') }}">
                                         </div>
                                     </div>
                                 </div>

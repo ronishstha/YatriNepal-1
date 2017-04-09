@@ -28,10 +28,13 @@
                         </div>
 
                         <div class="card-content table-responsive">
+                            <div class="row">
+                                <div class="col-md-3 col-md-offset-5">
                             <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.destination.get.create') }}">Create Destination</a>
+                                </div>
                             <a href="{{ route('backend.destination.delete.page') }}">
-                                <i class="material-icons delete">delete
+                                <i class="material-icons delete col-md-push-3">delete
                                     @php
                                         $count = count($destinations);
                                         $i = 0;
@@ -49,6 +52,7 @@
                                     @endif
                                 </i>
                             </a>
+                            </div>
                             @if(count($destinations) == 0 || $count == $i)
                                 <br><p align="center">No destination available<p>
                             @else

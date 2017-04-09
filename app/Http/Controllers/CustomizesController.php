@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Customize;
 use App\User;
+use Mail;
 use App\Itinerary;
 
 class CustomizesController extends Controller
@@ -29,12 +30,18 @@ class CustomizesController extends Controller
             'email' => 'required',
             'contact_no' => 'required',
             'country' => 'required',
-            'itinerary' => 'required'
+            'itinerary' => 'required',
+            'description' => 'required'
         ]);
 
         $customize = new Customize();
         $slug = $request['name'];
         $trip = $request['itinerary'];
+        $name  = $request['name'];
+        $email = $request['email'];
+        $country = $request['country'];
+        $contact_no = $request['contact_no'];
+        $description = $request['description'];
         $customize->name = $request['name'];
         $customize->email = $request['email'];
         $customize->contact_no = $request['contact_no'];
@@ -44,9 +51,32 @@ class CustomizesController extends Controller
         $customize->status = $request['status'];
         $user = Auth::user();
         $itinerary = Itinerary::where('title', $trip)->first();
+        $trip_code = $itinerary->code;
         $customize->user()->associate($user);
         $customize->itinerary()->associate($itinerary);
         $customize->save();
+
+        Mail::send('backend.customize.customize_message_user', [
+            'trip' => $trip,
+            'trip_code' => $trip_code], function($msg) use($name, $email){
+            $msg->from('yatrinepalserver@gmail.com', 'Yatri Nepal');
+            $msg->to($email, $name);
+            $msg->subject('Customized trip message received');
+        });
+
+        Mail::send('backend.customize.customize_message_admin', [
+            'trip' => $trip,
+            'trip_code' => $trip_code,
+            'email' => $email,
+            'name' => $name,
+            'description' => $description,
+            'contact_no' => $contact_no,
+            'country' => $country], function($msg) use($name, $email){
+            $msg->from($email, $name);
+            /*yatrinepal email required*/
+            $msg->to('stharonish@gmail.com', 'Yatri Nepal');
+            $msg->subject('Customized trip message received');
+        });
 
         return redirect()->route('backend.customize')->with(['success' => 'Successfully created']);
     }
@@ -114,5 +144,26 @@ class CustomizesController extends Controller
         $customize->status = "published";
         $customize->update();
         return redirect()->route('backend.customize');
+    }
+
+    public function DeleteAll(){
+        $customizes = Customize::all();
+        foreach($customizes as $customize){
+            if($customize->status = "trash"){
+                $customize->delete();
+            }
+        }
+        return redirect()->route('backend.customize.delete.customize')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $customizes = Customize::all();
+        foreach($customizes as $customize){
+            if($customize->status = "trash"){
+                $customize->status = "published";
+                $customize->update();
+            }
+        }
+        return redirect()->route('backend.customize')->with(['success' => 'All items restored']);
     }
 }

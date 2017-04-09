@@ -25,7 +25,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Create Customized Trip</h4>
@@ -81,7 +81,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Country</label>
+                                            <label>Country</label>
                                             <select class="form-control" name="country" id="country">
                                                 <option value="">Country...</option>
                                                 <option value="Afganistan">Afghanistan</option>

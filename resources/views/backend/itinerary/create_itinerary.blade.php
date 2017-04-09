@@ -25,7 +25,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Create Itinerary</h4>
@@ -164,27 +164,29 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Country</label>
-                                            <select class="form-control" name="country" id="country">
+                                            <label >Country</label>
+                                            <select class="form-control country" name="country" id="country">
                                                 @if(count($countries) == 0)
                                                     <option value=null>No country available</option>
                                                 @endif
+                                                <option value="0" disabled="true" selected="true">Select a Country</option>
                                                 @foreach($countries as $country)
-                                                    <option>{{ $country->title }}</option>
+                                                    <option value="{{ $country->id }}">{{ $country->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Destination</label>
-                                            <select class="form-control" name="destination" id="destination">
-                                                @if(count($destinations) == 0)
+                                            <label >Destination</label>
+                                            <select class="form-control destination" name="destination" id="destination">
+                                                {{--@if(count($destinations) == 0)
                                                     <option value=null>No destination available</option>
-                                                @endif
-                                                @foreach($destinations as $destination)
+                                                @endif--}}
+                                                    <option value="0" disabled="true" selected="true">-</option>
+                                                {{--@foreach($destinations as $destination)
                                                     <option>{{ $destination->title }}</option>
-                                                @endforeach
+                                                @endforeach--}}
                                             </select>
                                         </div>
                                     </div>
@@ -193,27 +195,29 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Region</label>
-                                            <select class="form-control" name="region" id="region">
-                                                @if(count($regions) == 0)
+                                            <label>Region</label>
+                                            <select class="form-control region" name="region" id="region">
+                                                {{--@if(count($regions) == 0)
                                                     <option value=null>No region available</option>
                                                 @endif
                                                 @foreach($regions as $region)
                                                     <option>{{ $region->title }}</option>
-                                                @endforeach
+                                                @endforeach--}}
+                                                <option value="0" disabled="true" selected="true">-</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Activity</label>
-                                            <select class="form-control" name="activity" id="activity">
-                                                @if(count($activities) == 0)
+                                            <label>Activity</label>
+                                            <select class="form-control activity" name="activity" id="activity">
+                                                {{--@if(count($activities) == 0)
                                                     <option value=null>No activity available</option>
                                                 @endif
                                                 @foreach($activities as $activity)
                                                     <option>{{ $activity->title }}</option>
-                                                @endforeach
+                                                @endforeach--}}
+                                                <option value="0" disabled="true" selected="true">-</option>
                                             </select>
                                         </div>
                                     </div>
@@ -222,13 +226,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Category</label>
-                                            <select class="form-control" name="category" id="category">
+                                            <label>Category</label>
+                                            <select class="form-control category" name="category" id="category">
                                                 @if(count($categories) == 0)
                                                     <option value=null>No category available</option>
                                                 @endif
                                                 @foreach($categories as $category)
-                                                    <option>{{ $category->title }}</option>
+                                                    <option value="">Select a category</option>
+                                                    <option value="{{$category->id}}">{{ $category->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
