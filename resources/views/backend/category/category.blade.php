@@ -20,7 +20,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Create Category</h4>
@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label>Description</label>
                                             <textarea row=20 class="form-control" name="description" id="description" value="{{ Request::old('description') }}"></textarea>
@@ -67,7 +67,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+
+
+                <div class="col-md-5">
                     <div class="card">
                         <div class="card-header" data-background-color="orange">
                             <h4 class="title">Category</h4>
@@ -76,7 +78,7 @@
                         <div class="card-content">
                                 <div class="card-content table-responsive">
                                     <a href="{{ route('backend.category.delete.page') }}">
-                                        <i class="material-icons delete">delete
+                                        <i class="material-icons delete col-md-push-11">delete
                                             @php
                                                 $count = count($categories);
                                                 $i = 0;

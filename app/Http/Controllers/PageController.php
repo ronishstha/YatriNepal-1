@@ -90,6 +90,27 @@ class PageController extends Controller
         $page = Page::findorFail($page_id);
         $page->status = "published";
         $page->update();
-        return redirect()->route('backend.pages');
+        return redirect()->route('backend.pages')->with(['success' => 'Successfully restored']);
+    }
+
+    public function DeleteAll(){
+        $pages = Page::all();
+        foreach($pages as $page){
+            if($page->status = "trash"){
+                $page->delete();
+            }
+        }
+        return redirect()->route('backend.pages.delete.page')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $pages = Page::all();
+        foreach($pages as $page){
+            if($page->status = "trash"){
+                $page->status = "published";
+                $page->update();
+            }
+        }
+        return redirect()->route('backend.pages')->with(['success' => 'All items restored']);
     }
 }

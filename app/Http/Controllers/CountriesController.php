@@ -81,7 +81,9 @@ class CountriesController extends Controller
 
     public function getDelete($country_id){
         $country = Country::findOrFail($country_id);
-        unlink(public_path() . "\\country\\" . $country->flag);
+        if(!empty($country->flag)) {
+            unlink(public_path() . "\\country\\" . $country->flag);
+        }
         $country->delete();
         return redirect()->route('backend.country.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -105,8 +107,24 @@ class CountriesController extends Controller
         return redirect()->route('backend.country');
     }
 
-    public function getImage($filename){
-        $file = Storage::disk('country')->get($filename);
-        return new Response($file, 200);
+    public function DeleteAll(){
+        $countries = Country::all();
+        foreach($countries as $country){
+            if($country->status = "trash"){
+                $country->delete();
+            }
+        }
+        return redirect()->route('backend.country.delete.country')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $countries = Country::all();
+        foreach($countries as $country){
+            if($country->status = "trash"){
+                $country->status = "published";
+                $country->update();
+            }
+        }
+        return redirect()->route('backend.country')->with(['success' => 'All items restored']);
     }
 }

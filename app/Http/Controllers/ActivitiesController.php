@@ -91,4 +91,25 @@ class ActivitiesController extends Controller
         $activity->update();
         return redirect()->route('backend.activity');
     }
+
+    public function DeleteAll(){
+        $activities = Page::all();
+        foreach($activities as $activity){
+            if($activity->status = "trash"){
+                $activity->delete();
+            }
+        }
+        return redirect()->route('backend.activity.delete.activity')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $activities = Page::all();
+        foreach($activities as $activity){
+            if($activity->status = "trash"){
+                $activity->status = "published";
+                $activity->update();
+            }
+        }
+        return redirect()->route('backend.activity')->with(['success' => 'All items restored']);
+    }
 }

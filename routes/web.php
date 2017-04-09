@@ -50,18 +50,6 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.update.password'
     ]);
 
-    Route::get('user', function () {
-        return view('backend.user');
-    })->name('backend.user');
-
-    Route::get('icon', function () {
-        return view('backend.icon');
-    })->name('backend.icon');
-
-    Route::get('notification', function () {
-        return view('backend.notification');
-    })->name('backend.notification');
-
 //----------------------------------pages route---------------------------------------
     Route::get('pages', [
         'uses' => 'PageController@getPage',
@@ -113,6 +101,16 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.pages.restore'
     ]);
 
+    Route::get('pages/deleteall', [
+        'uses' => 'PageController@DeleteAll',
+        'as'   => 'backend.pages.delete.all'
+    ]);
+
+    Route::get('pages/restoreall', [
+        'uses' => 'PageController@RestoreAll',
+        'as'   => 'backend.pages.restore.all'
+    ]);
+
 //----------------------end of pages route---------------------------------------
 
 //-----------------------category route---------------------------
@@ -160,6 +158,16 @@ Route::group(['prefix' => 'admin',
     Route::get('category/restore/{category_id}', [
         'uses' => 'CategoriesController@Restore',
         'as'   => 'backend.category.restore'
+    ]);
+
+    Route::get('category/deleteall', [
+        'uses' => 'CategoriesController@DeleteAll',
+        'as'   => 'backend.category.delete.all'
+    ]);
+
+    Route::get('category/restoreall', [
+        'uses' => 'CategoriesController@RestoreAll',
+        'as'   => 'backend.category.restore.all'
     ]);
 
 //-------------------------end of category route---------------------------------
@@ -215,6 +223,16 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.banner.restore'
     ]);
 
+    Route::get('banner/deleteall', [
+        'uses' => 'BannerController@DeleteAll',
+        'as'   => 'backend.banner.delete.all'
+    ]);
+
+    Route::get('banner/restoreall', [
+        'uses' => 'BannerController@RestoreAll',
+        'as'   => 'backend.banner.restore.all'
+    ]);
+
 //----------------------end of banner route---------------------
 
 
@@ -263,6 +281,16 @@ Route::group(['prefix' => 'admin',
     Route::get('country/restore/{country_id}', [
         'uses' => 'CountriesController@Restore',
         'as'   => 'backend.country.restore'
+    ]);
+
+    Route::get('country/deleteall', [
+        'uses' => 'CountriesController@DeleteAll',
+        'as'   => 'backend.country.delete.all'
+    ]);
+
+    Route::get('country/restoreall', [
+        'uses' => 'CountriesController@RestoreAll',
+        'as'   => 'backend.country.restore.all'
     ]);
 
 
@@ -320,6 +348,16 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.destination.restore'
     ]);
 
+    Route::get('destination/deleteall', [
+        'uses' => 'DestinationsController@DeleteAll',
+        'as'   => 'backend.destination.delete.all'
+    ]);
+
+    Route::get('destination/restoreall', [
+        'uses' => 'DestinationsController@RestoreAll',
+        'as'   => 'backend.destination.restore.all'
+    ]);
+
 //-------------------------end of destination route---------------------------------
 
 //-----------------------Region route---------------------------
@@ -367,6 +405,16 @@ Route::group(['prefix' => 'admin',
     Route::get('region/restore/{region_id}', [
         'uses' => 'RegionsController@Restore',
         'as'   => 'backend.region.restore'
+    ]);
+
+    Route::get('region/deleteall', [
+        'uses' => 'RegionsController@DeleteAll',
+        'as'   => 'backend.region.delete.all'
+    ]);
+
+    Route::get('region/restoreall', [
+        'uses' => 'RegionsController@RestoreAll',
+        'as'   => 'backend.region.restore.all'
     ]);
 
 
@@ -417,6 +465,16 @@ Route::group(['prefix' => 'admin',
     Route::get('activity/restore/{activity_id}', [
         'uses' => 'ActivitiesController@Restore',
         'as'   => 'backend.activity.restore'
+    ]);
+
+    Route::get('activity/deleteall', [
+        'uses' => 'ActivitiesController@DeleteAll',
+        'as'   => 'backend.activity.delete.all'
+    ]);
+
+    Route::get('activity/restoreall', [
+        'uses' => 'ActivitiesController@RestoreAll',
+        'as'   => 'backend.activity.restore.all'
     ]);
 
 //-------------------------end of activity route---------------------------------
@@ -474,6 +532,20 @@ Route::group(['prefix' => 'admin',
 
     Route::get('/findDestinationName','ItinerariesController@findDestinationName');
 
+    Route::get('/findRegionName','ItinerariesController@findRegionName');
+
+    Route::get('/findActivityName','ItinerariesController@findActivityName');
+
+    Route::get('itinerary/deleteall', [
+        'uses' => 'ItinerariesController@DeleteAll',
+        'as'   => 'backend.itinerary.delete.all'
+    ]);
+
+    Route::get('itinerary/restoreall', [
+        'uses' => 'ItinerariesController@RestoreAll',
+        'as'   => 'backend.itinerary.restore.all'
+    ]);
+
 //-------------------------end of itinerary route--------------------------------
 
 //-----------------------Review route---------------------------
@@ -526,6 +598,16 @@ Route::group(['prefix' => 'admin',
     Route::get('review/restore/{review_id}', [
         'uses' => 'ReviewsController@Restore',
         'as'   => 'backend.review.restore'
+    ]);
+
+    Route::get('review/deleteall', [
+        'uses' => 'ReviewsController@DeleteAll',
+        'as'   => 'backend.review.delete.all'
+    ]);
+
+    Route::get('review/restoreall', [
+        'uses' => 'ReviewsController@RestoreAll',
+        'as'   => 'backend.review.restore.all'
     ]);
 
 //-------------------------end of review route---------------------------------
@@ -594,6 +676,16 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.booking.restore'
     ]);
 
+    Route::get('booking/deleteall', [
+        'uses' => 'BookingsController@DeleteAll',
+        'as'   => 'backend.booking.delete.all'
+    ]);
+
+    Route::get('booking/restoreall', [
+        'uses' => 'BookingsController@RestoreAll',
+        'as'   => 'backend.booking.restore.all'
+    ]);
+
 //-------------------------end of booking route---------------------------------
 
 //-----------------------Customize route---------------------------
@@ -653,6 +745,16 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.customize.image'
     ]);
 
+    Route::get('customize/deleteall', [
+        'uses' => 'CustomizesController@DeleteAll',
+        'as'   => 'backend.customize.delete.all'
+    ]);
+
+    Route::get('customize/restoreall', [
+        'uses' => 'CustomizesController@RestoreAll',
+        'as'   => 'backend.customize.restore.all'
+    ]);
+
 //-------------------------end of customize route---------------------------------
 
 //-----------------------Gallery route---------------------------
@@ -705,6 +807,16 @@ Route::group(['prefix' => 'admin',
     Route::get('gallery/restore/{gallery_id}', [
         'uses' => 'GalleriesController@Restore',
         'as'   => 'backend.gallery.restore'
+    ]);
+
+    Route::get('gallery/deleteall', [
+        'uses' => 'GalleriesController@DeleteAll',
+        'as'   => 'backend.gallery.delete.all'
+    ]);
+
+    Route::get('gallery/restoreall', [
+        'uses' => 'GalleriesController@RestoreAll',
+        'as'   => 'backend.gallery.restore.all'
     ]);
 
 //-------------------------end of gallery route---------------------------------
@@ -761,6 +873,16 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.affiliate.restore'
     ]);
 
+    Route::get('affiliate/deleteall', [
+        'uses' => 'AffiliatesController@DeleteAll',
+        'as'   => 'backend.affiliate.delete.all'
+    ]);
+
+    Route::get('affiliate/restoreall', [
+        'uses' => 'AffiliatesController@RestoreAll',
+        'as'   => 'backend.affiliate.restore.all'
+    ]);
+
 //-------------------------end of photo route---------------------------------
 
 //-----------------------Photo route---------------------------
@@ -813,6 +935,16 @@ Route::group(['prefix' => 'admin',
     Route::get('photo/restore/{photo_id}', [
         'uses' => 'PhotosController@Restore',
         'as'   => 'backend.photo.restore'
+    ]);
+
+    Route::get('affiliate/deleteall', [
+        'uses' => 'AffiliateController@DeleteAll',
+        'as'   => 'backend.affiliate.delete.all'
+    ]);
+
+    Route::get('affiliate/restoreall', [
+        'uses' => 'AffiliateController@RestoreAll',
+        'as'   => 'backend.affiliate.restore.all'
     ]);
 
 //-------------------------end of photo route---------------------------------
