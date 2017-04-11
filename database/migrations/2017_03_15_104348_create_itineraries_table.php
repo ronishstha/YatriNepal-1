@@ -20,7 +20,7 @@ class CreateItinerariesTable extends Migration
             $table->string('title');
             $table->string('trip_duration');
             $table->string('trekking_duration');
-            $table->string('trekking_grade');
+            $table->enum('trekking_grade', ['easy', 'medium', 'hard'])->default('easy');
             $table->string('accommodation');
             $table->string('meals');
             $table->string('max_altitude');

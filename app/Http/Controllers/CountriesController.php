@@ -104,17 +104,17 @@ class CountriesController extends Controller
         $country = Country::findorFail($country_id);
         $country->status = "published";
         $country->update();
-        return redirect()->route('backend.country');
+        return redirect()->route('backend.country')->with(['success' => 'Item has been restored']);
     }
 
     public function DeleteAll(){
-        $countries = Country::all();
+        $countries = Country::where('status', 'trash')->get();
         foreach($countries as $country){
             if($country->status = "trash"){
                 $country->delete();
             }
         }
-        return redirect()->route('backend.country.delete.country')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.country.delete.page')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){

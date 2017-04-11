@@ -12,9 +12,24 @@
             width: 160px;
         }
         .fcontainer{
-            height: 350px;
+            height: 400px;
+        }
+        .form-input::before{
+            content: "\f007";
+            position: absolute;
+            font-family: "FontAwesome";
+            font-size: 30px;
+            padding-left:5px;
+            padding-top:7px;
+            color:#9B5986;
+        }
+        .form-input:nth-child(2)::before{
+            content: "\f007";
         }
         .form-input:nth-child(3)::before{
+            content: "\f023";
+        }
+        .form-input:nth-child(4)::before{
             content: "\f023";
         }
     </style>
@@ -40,9 +55,12 @@
 
     <div class="fcontainer">
         <img src="{{ URL::asset('assets/img/avatar.png') }}">
-        <form action="{{ route('backend.update.password') }}" method="post">
+        <form action="{{ route('backend.user.post.create') }}" method="post">
             <div class="form-input">
-                <input class="text2" type="password" name="old_password" id="old_password" placeholder="Enter Previous Password"/>
+                <input class="text2" type="text" name="name" id="name" placeholder="Enter Name"/>
+            </div>
+            <div class="form-input">
+                <input class="text2" type="text" name="email" id="email" placeholder="Enter Email"/>
             </div>
             <div class="form-input">
                 <input class="text2" type="password" name="password" id="password" placeholder="Enter New Password"/>
@@ -51,8 +69,8 @@
                 <input class="text2" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm New Password"/>
             </div>
             <br/>
-            <input class="submit" name ='submit' type="submit" value="Change Password"/>
             <input type="hidden" name="_token" value="{{ Session::token() }}"/>
+            <input class="submit" name ="submit" type="submit" value="Create User"/>
         </form>
     </div>
 

@@ -297,7 +297,7 @@ class ItinerariesController extends Controller
         $itinerary = Itinerary::findorFail($itinerary_id);
         $itinerary->status = "published";
         $itinerary->update();
-        return redirect()->route('backend.itinerary');
+        return redirect()->route('backend.itinerary')->with(['success' => 'Item has been restored']);
     }
 
     public function findDestinationName(Request $request){
@@ -316,13 +316,13 @@ class ItinerariesController extends Controller
     }
 
     public function DeleteAll(){
-        $itineraries = Itinerary::all();
+        $itineraries = Itinerary::where('status', 'trash')->get();
         foreach($itineraries as $itinerary){
             if($itinerary->status = "trash"){
                 $itinerary->delete();
             }
         }
-        return redirect()->route('backend.itinerary.delete.itinerary')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.itinerary.delete.page')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){

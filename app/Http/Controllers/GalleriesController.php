@@ -125,17 +125,17 @@ class GalleriesController extends Controller
         $gallery = Gallery::findorFail($gallery_id);
         $gallery->status = "published";
         $gallery->update();
-        return redirect()->route('backend.gallery');
+        return redirect()->route('backend.gallery')->with(['success' => 'Item has been restored']);
     }
 
     public function DeleteAll(){
-        $galleries = Gallery::all();
+        $galleries = Gallery::where('status', 'trash')->get();
         foreach($galleries as $gallery){
             if($gallery->status = "trash"){
                 $gallery->delete();
             }
         }
-        return redirect()->route('backend.gallery.delete.gallery')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.gallery.delete.page')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){

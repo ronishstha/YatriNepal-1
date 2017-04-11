@@ -110,22 +110,17 @@ class AffiliatesController extends Controller
         $affiliate = Affiliate::findorFail($affiliate_id);
         $affiliate->status = "published";
         $affiliate->update();
-        return redirect()->route('backend.affiliate');
-    }
-
-    public function getImage($filename){
-        $file = Storage::disk('affiliate')->get($filename);
-        return new Response($file, 200);
+        return redirect()->route('backend.affiliate')->with(['success' => 'Item has been restored']);
     }
 
     public function DeleteAll(){
-        $affiliates = Affiliate::all();
+        $affiliates = Affiliate::where('status', 'trash')->get();
         foreach($affiliates as $affiliate){
             if($affiliate->status = "trash"){
                 $affiliate->delete();
             }
         }
-        return redirect()->route('backend.affiliate.delete.affiliate')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.affiliate.delete.page')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){

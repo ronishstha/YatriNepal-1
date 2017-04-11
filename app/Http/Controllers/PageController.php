@@ -94,7 +94,7 @@ class PageController extends Controller
     }
 
     public function DeleteAll(){
-        $pages = Page::all();
+        $pages = Page::where('status', 'trash')->get();
         foreach($pages as $page){
             if($page->status = "trash"){
                 $page->delete();

@@ -126,17 +126,17 @@ class DestinationsController extends Controller
         $destination = Destination::findorFail($destination_id);
         $destination->status = "published";
         $destination->update();
-        return redirect()->route('backend.destination');
+        return redirect()->route('backend.destination')->with(['success' => 'Item has been restored']);
     }
 
     public function DeleteAll(){
-        $destinations = Destination::all();
+        $destinations = Destination::where('status', 'trash')->get();
         foreach($destinations as $destination){
             if($destination->status = "trash"){
                 $destination->delete();
             }
         }
-        return redirect()->route('backend.destination.delete.destination')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.destination.delete.page')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){
