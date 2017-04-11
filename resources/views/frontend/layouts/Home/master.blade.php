@@ -62,10 +62,7 @@
     ============================================ -->
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-    <link href="../css/material-bootstrap-wizard.css" rel="stylesheet" />
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -142,5 +139,7 @@
 <!---->
 <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 <script src="../js/jquery.validate.min.js"></script>
+
+<script src="../js/custom.js"></script>
 </body>
 </html>

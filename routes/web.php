@@ -25,6 +25,10 @@ Route::get('/destinations',[
     'uses' => 'frontend\DestinationController@dest'
 ])->name("dest");
 
+Route::post('/booked',[
+    'uses' => 'frontend\BookingController@postCreateBooking'
+])->name("booked");
+
 Route::get('/blog', function () {
     return view('frontend.layouts.Blog.blog');
 })->name("blog");

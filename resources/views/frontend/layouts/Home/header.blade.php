@@ -140,7 +140,7 @@
                                                     <li><a href="404.html">404 Error</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="{{ route('blog') }}">BLOG</a></li>
+                                            {{--<li><a href="{{ route('blog') }}">BLOG</a></li>--}}
                                             <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                         </ul>
                                     </nav>
