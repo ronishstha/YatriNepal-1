@@ -59,6 +59,16 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.update.email.password'
     ]);
 
+    Route::get('user', [
+        'uses' => 'UserController@getUser',
+        'as' => 'backend.user'
+    ]);
+
+    Route::get('user/delete/{user_id}', [
+       'uses' => 'UserController@getDelete',
+        'as' => 'backend.user.delete'
+    ]);
+
     Route::get('user/create', [
         'uses' => 'UserController@getCreateUser',
         'as' => 'backend.user.get.create'

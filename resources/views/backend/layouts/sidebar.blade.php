@@ -167,6 +167,7 @@
                             <li><a href="{{ route('backend.changepassword') }}"><strong>Change Password</strong></a></li>
                             <li><a href="{{ route('backend.change.email.name') }}"><strong>Change Email/Password</strong></a></li>
                             <li><a href="{{ route('backend.user.get.create') }}"><strong>New User</strong></a></li>
+                            @if(Auth::user()->id == 1) <li><a href="{{ route('backend.user') }}"><strong>Other Users</strong></a></li> @endif
                         </ul>
                         </li>
                         <li>

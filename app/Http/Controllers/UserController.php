@@ -71,8 +71,7 @@ class UserController extends Controller
             return redirect()->back()->with(['success' => 'User Successfully Added']);
         }
 
-        public function changeEmailName(Request $request)
-    {
+        public function changeEmailName(Request $request){
         $this->validate($request, [
             'old_password' => 'required',
             'email' => 'unique:users',
@@ -108,5 +107,21 @@ class UserController extends Controller
                 return redirect()->back()->with(['success' => 'Successfully changed']);
             }
         }
+    }
+
+    public function getUser(){
+        if(Auth::user()->id == 1){
+            return redirect()->back();
+        }
+        else{
+            $users = User::all();
+            return view('backend.users', ['users' => $users]);
+        }
+    }
+
+    public function getDelete($user_id){
+        $user = User::where('id', $user_id)->first();
+        $user->delete();
+        return redirect()->route('backend.user')->with(['success' => 'Successfully deleted']);
     }
 }
