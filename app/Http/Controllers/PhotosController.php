@@ -118,6 +118,27 @@ class PhotosController extends Controller
         $photo = Photo::findorFail($photo_id);
         $photo->status = "published";
         $photo->update();
-        return redirect()->route('backend.photo');
+        return redirect()->route('backend.photo')->with(['success' => 'Item has been restored']);
+    }
+
+    public function DeleteAll(){
+        $photos = Photo::where('status', 'trash')->get();
+        foreach($photos as $photo){
+            if($photo->status = "trash"){
+                $photo->delete();
+            }
+        }
+        return redirect()->route('backend.photo.delete.page')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $photos = Photo::all();
+        foreach($photos as $photo){
+            if($photo->status = "trash"){
+                $photo->status = "published";
+                $photo->update();
+            }
+        }
+        return redirect()->route('backend.photo')->with(['success' => 'All items restored']);
     }
 }

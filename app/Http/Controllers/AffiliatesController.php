@@ -37,6 +37,7 @@ class AffiliatesController extends Controller
 
         $slug = $request['title'];
         $affiliate->title = $request['title'];
+        $affiliate->link = $request['link'];
         $affiliate->slug = str_slug($slug,'-');
         $affiliate->status = $request['status'];
         $user = Auth::user();
@@ -70,6 +71,7 @@ class AffiliatesController extends Controller
         }
         $slug = $request['title'];
         $affiliate->title = $request['title'];
+        $affiliate->link = $request['link'];
         $affiliate->slug = str_slug($slug,'-');
         $affiliate->status = $request['status'];
         $user = Auth::user();
@@ -108,11 +110,27 @@ class AffiliatesController extends Controller
         $affiliate = Affiliate::findorFail($affiliate_id);
         $affiliate->status = "published";
         $affiliate->update();
-        return redirect()->route('backend.affiliate');
+        return redirect()->route('backend.affiliate')->with(['success' => 'Item has been restored']);
     }
 
-    public function getImage($filename){
-        $file = Storage::disk('affiliate')->get($filename);
-        return new Response($file, 200);
+    public function DeleteAll(){
+        $affiliates = Affiliate::where('status', 'trash')->get();
+        foreach($affiliates as $affiliate){
+            if($affiliate->status = "trash"){
+                $affiliate->delete();
+            }
+        }
+        return redirect()->route('backend.affiliate.delete.page')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $affiliates = Affiliate::all();
+        foreach($affiliates as $affiliate){
+            if($affiliate->status = "trash"){
+                $affiliate->status = "published";
+                $affiliate->update();
+            }
+        }
+        return redirect()->route('backend.affiliate')->with(['success' => 'All items restored']);
     }
 }

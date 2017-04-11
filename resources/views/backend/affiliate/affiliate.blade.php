@@ -28,10 +28,13 @@
                         </div>
 
                         <div class="card-content table-responsive">
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-5">
                             <i class="material-icons create">note_add</i>
                             <a href="{{ route('backend.affiliate.get.create') }}">Add Affiliate</a>
+                                </div>
                             <a href="{{ route('backend.affiliate.delete.page') }}">
-                                <i class="material-icons delete">delete
+                                <i class="material-icons delete col-md-push-4">delete
                                     @php
                                         $count = count($affiliates);
                                         $i = 0;
@@ -49,6 +52,7 @@
                                     @endif
                                 </i>
                             </a>
+                            </div>
                             @if(count($affiliates) == 0 || $count == $i)
                                 <br><p align="center">No affiliate available<p>
                             @else

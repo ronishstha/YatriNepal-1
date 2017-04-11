@@ -141,6 +141,27 @@ class ReviewsController extends Controller
         $review = Review::findorFail($review_id);
         $review->status = "published";
         $review->update();
-        return redirect()->route('backend.review');
+        return redirect()->route('backend.review')->with(['success' => 'Item has been restored']);
+    }
+
+    public function DeleteAll(){
+        $reviews = Review::where('status', 'trash')->get();
+        foreach($reviews as $review){
+            if($review->status = "trash"){
+                $review->delete();
+            }
+        }
+        return redirect()->route('backend.review.delete.page')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $reviews = Review::all();
+        foreach($reviews as $review){
+            if($review->status = "trash"){
+                $review->status = "published";
+                $review->update();
+            }
+        }
+        return redirect()->route('backend.review')->with(['success' => 'All items restored']);
     }
 }

@@ -94,9 +94,12 @@ class DestinationsController extends Controller
         return redirect()->route('backend.destination')->with(['success' => 'successfully updated']);
     }
 
-    public function getDelete($destination_id){
+    public function getDelete($destination_id)
+    {
         $destination = Destination::findOrFail($destination_id);
-        unlink(public_path() . "\\destination\\" . $destination->image);
+        if (!empty($destination->image)) {
+            unlink(public_path() . "\\destination\\" . $destination->image);
+        }
         $destination->delete();
         return redirect()->route('backend.destination.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -123,6 +126,27 @@ class DestinationsController extends Controller
         $destination = Destination::findorFail($destination_id);
         $destination->status = "published";
         $destination->update();
-        return redirect()->route('backend.destination');
+        return redirect()->route('backend.destination')->with(['success' => 'Item has been restored']);
+    }
+
+    public function DeleteAll(){
+        $destinations = Destination::where('status', 'trash')->get();
+        foreach($destinations as $destination){
+            if($destination->status = "trash"){
+                $destination->delete();
+            }
+        }
+        return redirect()->route('backend.destination.delete.page')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $destinations = Destination::all();
+        foreach($destinations as $destination){
+            if($destination->status = "trash"){
+                $destination->status = "published";
+                $destination->update();
+            }
+        }
+        return redirect()->route('backend.destination')->with(['success' => 'All items restored']);
     }
 }

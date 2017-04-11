@@ -89,13 +89,27 @@ class RegionsController extends Controller
         $region = Region::findorFail($region_id);
         $region->status = "published";
         $region->update();
-        return redirect()->route('backend.region');
+        return redirect()->route('backend.region')->with(['success' => 'Item has been restored']);
     }
 
-    /*public function getSingleRegion($region_slug){
-        $region = Region::where('slug', $region_slug)
-            ->first();
-        return view('backend.region.single_region', ['region' => $region]);
+    public function DeleteAll(){
+        $regions = Region::where('status', 'trash')->get();
+        foreach($regions as $region){
+            if($region->status = "trash"){
+                $region->delete();
+            }
+        }
+        return redirect()->route('backend.region.delete.all')->with(['success' => 'Trash Cleared']);
+    }
 
-    }*/
+    public function RestoreAll(){
+        $regions = Region::all();
+        foreach($regions as $region){
+            if($region->status = "trash"){
+                $region->status = "published";
+                $region->update();
+            }
+        }
+        return redirect()->route('backend.region')->with(['success' => 'All items restored']);
+    }
 }

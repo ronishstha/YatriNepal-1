@@ -1,4 +1,9 @@
 @extends('backend.layouts.index')
+
+@section('style')
+    <link href="{{ URL::asset('/assets/css/table.css') }}" rel="stylesheet"/>
+@endsection
+
 @section('content')
     <style>
         #fileupload-example-3::-webkit-file-upload-button {
@@ -10,10 +15,17 @@
             border: 1px solid #ccc;
         }
     </style>
+    @if(count($errors) > 0)
+        <section class="info-box fail">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </section>
+    @endif
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
                             <h4 class="title">Update Itinerary</h4>
@@ -47,7 +59,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Trekking Grade</label>
-                                            <input type="text" class="form-control" name="trekking_grade" id="trekking_grade" value="{{ Request::old('trekking_grade') ? Request::old('trekking_grade') : isset($itinerary) ? $itinerary->trekking_grade : ''  }}">
+                                            <select class="form-control" name="trekking_grade" id="trekking_grade">
+                                                <option @if($itinerary->trekking_grade =="easy") selected @endif>easy</option>
+                                                <option @if($itinerary->trekking_grade =="medium") selected @endif>medium</option>
+                                                <option @if($itinerary->trekking_grade =="hard") selected @endif>hard</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -160,12 +176,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Country</label>
-                                            <select class="form-control" name="country" id="country">
+                                            <select class="form-control country" name="country" id="country">
                                                 @if(count($countries) == 0)
                                                     <option value=null>No country available</option>
                                                 @endif
                                                 @foreach($countries as $country)
-                                                    <option @if($itinerary->country->title == "$country->title") selected @endif>{{ $country->title }}</option>
+                                                    <option value="{{ $country->id }} "@if($itinerary->country->title == "$country->title") selected @endif>{{ $country->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -173,12 +189,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Destination</label>
-                                            <select class="form-control" name="destination" id="destination">
+                                            <select class="form-control destination" name="destination" id="destination">
                                                 @if(count($destinations) == 0)
                                                     <option value=null>No destination available</option>
                                                 @endif
                                                 @foreach($destinations as $destination)
-                                                    <option @if($itinerary->destination->title == "$destination->title") selected @endif>{{ $destination->title }}</option>
+                                                    <option value="{{ $destination->id }} "@if($itinerary->destination->title == "$destination->title") selected @endif>{{ $destination->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -189,12 +205,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Region</label>
-                                            <select class="form-control" name="region" id="region">
+                                            <select class="form-control region" name="region" id="region">
                                                 @if(count($regions) == 0)
                                                     <option value=null>No region available</option>
                                                 @endif
                                                 @foreach($regions as $region)
-                                                    <option @if($itinerary->region->title == "$region->title") selected @endif>{{ $region->title }}</option>
+                                                    <option value="{{ $region->id }} @if($itinerary->region->title == "$region->title") selected @endif>{{ $region->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -202,12 +218,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Activity</label>
-                                            <select class="form-control" name="activity" id="activity">
+                                            <select class="form-control activity" name="activity" id="activity">
                                                 @if(count($activities) == 0)
                                                     <option value=null>No activity available</option>
                                                 @endif
                                                 @foreach($activities as $activity)
-                                                    <option @if($itinerary->activity->title == "$activity->title") selected @endif>{{ $activity->title }}</option>
+                                                    <option value="{{ $activity->id }} @if($itinerary->activity->title == "$activity->title") selected @endif>{{ $activity->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

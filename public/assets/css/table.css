@@ -28,12 +28,15 @@
 .pagination{
     margin-left: 375px;
 }
-.create{
-    margin-left: 375px;
+/*.create{*/
+    /*margin-left: 375px;*/
+/*}*/
+.cen{
+    float: none;
+    margin: 0 auto;
 }
 a .delete{
   color: black;
-    margin-left: 275px;
     position: relative;
     padding: 3px 5px;
 }
@@ -46,23 +49,23 @@ a .delete{
     text-align: center;
     margin-top: 20px;
     margin-bottom: -20px;
-    margin-left: 280px;
+    margin-left: 360px;
     padding: 16px;
     border-radius: 3px;
-    width: 350px;
+    width: 370px;
 }
 
 .info-box.fail{
-    border: 1px solid #ff6b6a;
-    background-color: #ffc2ba;
-    color: #ff6b6a;
+    border: 1px solid #f55a4e;
+    background-color: #f55a4e;
+    color: white;
 
 }
 
 .info-box.success{
-    border: 1px solid #46cc71;
-    background-color: #bdffb6;
-    color: #46cc71;
+    border: 1px solid #5cb860;
+    background-color: #5cb860;
+    color: white;
 }
 
 .noti-badge {

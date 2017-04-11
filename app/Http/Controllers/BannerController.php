@@ -84,7 +84,9 @@ class BannerController extends Controller
 
     public function getDelete($banner_id){
         $banner = Banner::findOrFail($banner_id);
-        unlink(public_path() . "\\banner\\" . $banner->image);
+        if(!empty($banner->image)) {
+            unlink(public_path() . "\\banner\\" . $banner->image);
+        }
         $banner->delete();
         return redirect()->route('backend.banner.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -112,6 +114,27 @@ class BannerController extends Controller
         $banner = Banner::findorFail($banner_id);
         $banner->status = "published";
         $banner->update();
-        return redirect()->route('backend.banner');
+        return redirect()->route('backend.banner')->with(['success' => 'Item has been restored']);
+    }
+
+    public function DeleteAll(){
+        $banners = Banner::where('status', 'trash')->get();
+        foreach($banners as $banner){
+            if($banner->status = "trash"){
+                $banner->delete();
+            }
+        }
+        return redirect()->route('backend.banner.delete.page')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $banners = Banner::all();
+        foreach($banners as $banner){
+            if($banner->status = "trash"){
+                $banner->status = "published";
+                $banner->update();
+            }
+        }
+        return redirect()->route('backend.banner')->with(['success' => 'All items restored']);
     }
 }

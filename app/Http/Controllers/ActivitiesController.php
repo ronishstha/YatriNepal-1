@@ -89,6 +89,27 @@ class ActivitiesController extends Controller
         $activity = Activity::findorFail($activity_id);
         $activity->status = "published";
         $activity->update();
-        return redirect()->route('backend.activity');
+        return redirect()->route('backend.activity')->with(['success' => 'Item has been restored']);
+    }
+
+    public function DeleteAll(){
+        $activities = Page::where('status', 'trash')->get();
+        foreach($activities as $activity){
+            if($activity->status = "trash"){
+                $activity->delete();
+            }
+        }
+        return redirect()->route('backend.activity.delete.page')->with(['success' => 'Trash Cleared']);
+    }
+
+    public function RestoreAll(){
+        $activities = Page::all();
+        foreach($activities as $activity){
+            if($activity->status = "trash"){
+                $activity->status = "published";
+                $activity->update();
+            }
+        }
+        return redirect()->route('backend.activity')->with(['success' => 'All items restored']);
     }
 }
