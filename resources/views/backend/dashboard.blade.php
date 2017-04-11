@@ -179,6 +179,10 @@
                     <div class="card-content">
                         <div class="tab-content">
                             <div class="tab-pane active" id="profile">
+                                @if (count($itineraries) == 0)
+                                    <p align="center">No itineraries have been made recently</p>
+                                @endif
+                                @if(count($itineraries) != 0)
                                 <table class="table">
                                     <thead class="text-primary">
                                     <th>Itinerary</th>
@@ -194,12 +198,15 @@
                                     </tr>
                                     @endforeach
                                     </tbody>
-
                                 </table>
+                                @endif
                             </div>
                             <div class="tab-pane" id="messages">
+                                @if (count($customizes) == 0)
+                                    <p align="center">No customized trip message received recently</p>
+                                @endif
+                                @if(count($customizes) != 0)
                                 <table class="table">
-
                                     <thead class="text-primary">
                                     <th>Name</th>
                                     <th>Itinerary</th>
@@ -215,8 +222,13 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                @endif
                             </div>
                             <div class="tab-pane" id="settings">
+                                @if (count($reviews) == 0)
+                                    <p align="center">No reviews have been made recently</p>
+                                @endif
+                                @if(count($reviews) != 0)
                                 <table class="table">
                                     <thead class="text-primary">
                                     <th>Name</th>
@@ -224,20 +236,21 @@
                                     <th></th>
                                     </thead>
                                     <tbody>
-                                    @foreach($reviews as $review)
-                                        <tr>
-                                            <td>
-                                                {{ $review->name }}
-                                            </td>
-                                            <td>
-                                                {{ $review->itinerary->title }}
-                                            </td>
-                                            <td><button class="btn-view"><a href="{{ route('backend.review.single.review', ['review_slug' => $review->slug])  }}">Details</a></button></td>
-                                        </tr>
-                                    @endforeach
 
+                                        @foreach($reviews as $review)
+                                            <tr>
+                                                <td>
+                                                    {{ $review->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $review->itinerary->title }}
+                                                </td>
+                                                <td><button class="btn-view"><a href="{{ route('backend.review.single.review', ['review_slug' => $review->slug])  }}">Details</a></button></td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
+                                @endif
                             </div>
                         </div>
                     </div>

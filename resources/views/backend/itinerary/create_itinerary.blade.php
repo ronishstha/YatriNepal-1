@@ -65,7 +65,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Trekking Grade</label>
-                                            <input type="text" class="form-control" name="trekking_grade" id="trekking_grade" value="{{ Request::old('trekking_grade') }}">
+                                            <select class="form-control" name="trekking_grade" id="trekking_grade">
+                                                <option>easy</option>
+                                                <option>medium</option>
+                                                <option>hard</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

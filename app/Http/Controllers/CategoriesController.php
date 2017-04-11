@@ -80,17 +80,17 @@ class CategoriesController extends Controller
         $category = Category::findorFail($category_id);
         $category->status = "published";
         $category->update();
-        return redirect()->route('backend.category');
+        return redirect()->route('backend.category')->with(['success' => 'Item has been restored']);
     }
 
     public function DeleteAll(){
-        $categories = Category::all();
+        $categories = Category::where('status', 'trash')->get();
         foreach($categories as $category){
             if($category->status = "trash"){
                 $category->delete();
             }
         }
-        return redirect()->route('backend.category.delete.category')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.category.delete.page')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){

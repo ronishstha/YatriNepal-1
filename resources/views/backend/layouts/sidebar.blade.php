@@ -158,8 +158,16 @@
                         </ul>
                     </li>--}}
                     @if(Auth::check())
-                        <li {{ Request::is('admin/change-password*') ? 'class=active' : '' }}>
-                            <a href="{{ route('backend.changepassword') }}"><strong>Change Password</strong></a>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <strong>Welcome {{  Auth::user()->name }}</strong>
+                            <i class="fa fa-chevron-down" aria-hidden="true" style="font-size:10px"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('backend.changepassword') }}"><strong>Change Password</strong></a></li>
+                            <li><a href="{{ route('backend.change.email.name') }}"><strong>Change Email/Password</strong></a></li>
+                            <li><a href="{{ route('backend.user.get.create') }}"><strong>New User</strong></a></li>
+                        </ul>
                         </li>
                         <li>
                             <a href="{{ route('admin.logout') }}"><strong>Log out</strong></a>

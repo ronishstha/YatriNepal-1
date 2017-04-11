@@ -89,17 +89,17 @@ class RegionsController extends Controller
         $region = Region::findorFail($region_id);
         $region->status = "published";
         $region->update();
-        return redirect()->route('backend.region');
+        return redirect()->route('backend.region')->with(['success' => 'Item has been restored']);
     }
 
     public function DeleteAll(){
-        $regions = Region::all();
+        $regions = Region::where('status', 'trash')->get();
         foreach($regions as $region){
             if($region->status = "trash"){
                 $region->delete();
             }
         }
-        return redirect()->route('backend.region.delete.region')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.region.delete.all')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){

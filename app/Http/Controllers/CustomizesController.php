@@ -143,17 +143,17 @@ class CustomizesController extends Controller
         $customize = Customize::findorFail($customize_id);
         $customize->status = "published";
         $customize->update();
-        return redirect()->route('backend.customize');
+        return redirect()->route('backend.customize')->with(['success' => 'Item has been restored']);
     }
 
     public function DeleteAll(){
-        $customizes = Customize::all();
+        $customizes = Customize::where('status', 'trash')->get();
         foreach($customizes as $customize){
             if($customize->status = "trash"){
                 $customize->delete();
             }
         }
-        return redirect()->route('backend.customize.delete.customize')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.customize.delete.page')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){

@@ -359,21 +359,21 @@ class BookingsController extends Controller
         $booking = Booking::findorFail($booking_id);
         $booking->status = "published";
         $booking->update();
-        return redirect()->route('backend.booking');
+        return redirect()->route('backend.booking')->with(['success' => 'Item has been restored']);
     }
 
     public function DeleteAll(){
-        $bookings = Page::all();
+        $bookings = Booking::where('status', 'trash')->get();
         foreach($bookings as $booking){
             if($booking->status = "trash"){
                 $booking->delete();
             }
         }
-        return redirect()->route('backend.booking.delete.booking')->with(['success' => 'Trash Cleared']);
+        return redirect()->route('backend.booking.delete.page')->with(['success' => 'Trash Cleared']);
     }
 
     public function RestoreAll(){
-        $bookings = Page::all();
+        $bookings = Booking::all();
         foreach($bookings as $booking){
             if($booking->status = "trash"){
                 $booking->status = "published";
