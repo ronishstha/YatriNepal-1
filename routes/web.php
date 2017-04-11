@@ -106,6 +106,34 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.update.password'
     ]);
 
+    Route::get('/change-email-name', function () {
+        return view('backend.change_email_name');
+    })->name('backend.change.email.name');
+
+    Route::post('/change-email-name/update', [
+        'uses' => 'UserController@changeEmailName',
+        'as'   => 'backend.update.email.password'
+    ]);
+
+    Route::get('user', [
+        'uses' => 'UserController@getUser',
+        'as' => 'backend.user'
+    ]);
+
+    Route::get('user/delete/{user_id}', [
+       'uses' => 'UserController@getDelete',
+        'as' => 'backend.user.delete'
+    ]);
+
+    Route::get('user/create', [
+        'uses' => 'UserController@getCreateUser',
+        'as' => 'backend.user.get.create'
+    ]);
+
+    Route::post('user/create', [
+        'uses' => 'UserController@postCreateUser',
+        'as' => 'backend.user.post.create'
+    ]);
 //----------------------------------pages route---------------------------------------
     Route::get('pages', [
         'uses' => 'PageController@getPage',

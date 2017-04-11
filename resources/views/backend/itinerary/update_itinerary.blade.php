@@ -59,7 +59,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Trekking Grade</label>
-                                            <input type="text" class="form-control" name="trekking_grade" id="trekking_grade" value="{{ Request::old('trekking_grade') ? Request::old('trekking_grade') : isset($itinerary) ? $itinerary->trekking_grade : ''  }}">
+                                            <select class="form-control" name="trekking_grade" id="trekking_grade">
+                                                <option @if($itinerary->trekking_grade =="easy") selected @endif>easy</option>
+                                                <option @if($itinerary->trekking_grade =="medium") selected @endif>medium</option>
+                                                <option @if($itinerary->trekking_grade =="hard") selected @endif>hard</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

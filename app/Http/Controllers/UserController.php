@@ -30,7 +30,8 @@ class UserController extends Controller
         return redirect()->route('backend.dashboard');
     }
 
-    public function changePassword(Request $request){
+    public function changePassword(Request $request)
+    {
         $this->validate($request, [
             'old_password' => 'required',
             'password' => 'required|min:6',
@@ -38,10 +39,10 @@ class UserController extends Controller
         ]);
         $data = $request->all();
         $user = User::find(auth()->user()->id);
-        if(!Hash::check($data['old_password'], $user->password)){
+        if (!Hash::check($data['old_password'], $user->password)) {
             return back()
-                ->with('error','The specified password does not match the database password');
-        }else {
+                ->with('fail', 'The specified password does not match the database password');
+        } else {
             $email = $user->email;
             $user->email = $email;
             $password = $request['password'];
@@ -49,5 +50,78 @@ class UserController extends Controller
             $user->update();
             return redirect()->route('backend.changepassword')->with(['success' => 'Successfully changed']);
         }
+    }
+
+        public function getCreateUser(){
+            return view('backend.create_user');
+        }
+
+        public function postCreateUser(Request $request){
+            $this->validate($request, [
+               'name' => 'required',
+               'email' => 'required|unique:users',
+               'password' => 'required|min:6',
+               'confirm_password' => 'required|same:password'
+            ]);
+            $user = new User();
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->password = bcrypt($request['password']);
+            $user->save();
+            return redirect()->back()->with(['success' => 'User Successfully Added']);
+        }
+
+        public function changeEmailName(Request $request){
+        $this->validate($request, [
+            'old_password' => 'required',
+            'email' => 'unique:users',
+            'confirm_email' => 'same:email'
+        ]);
+        $data = $request->all();
+        $user = User::find(auth()->user()->id);
+        if (!Hash::check($data['old_password'], $user->password)) {
+            if (empty($request['email']) && empty($request['email'])){
+                return back()->with('fail', 'The specified password does not match the database password. Enter atleast a name or email');
+            }
+            else {
+                return back()
+                    ->with('fail', 'The specified password does not match the database password');
+            }
+        } 
+        else {
+            if (empty($request['email']) && empty($request['name'])){
+                return back()->with('fail', 'Enter atleast a name or email');
+            }
+            else{
+                $email = $user->email;
+                $name = $user->name;
+                if(!empty($request['email'])){
+                    $email = $request['email'];
+                }
+                if(!empty($request['name'])){
+                    $name = $request['name'];
+                }
+                $user->email = $email;
+                $user->name = $name;
+                $user->update();
+                return redirect()->back()->with(['success' => 'Successfully changed']);
+            }
+        }
+    }
+
+    public function getUser(){
+        if(Auth::user()->id == 1){
+            return redirect()->back();
+        }
+        else{
+            $users = User::all();
+            return view('backend.users', ['users' => $users]);
+        }
+    }
+
+    public function getDelete($user_id){
+        $user = User::where('id', $user_id)->first();
+        $user->delete();
+        return redirect()->route('backend.user')->with(['success' => 'Successfully deleted']);
     }
 }
