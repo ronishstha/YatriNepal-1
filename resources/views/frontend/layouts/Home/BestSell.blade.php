@@ -30,6 +30,7 @@
                 <div class="row">
                     <div class="best-sell-slider carousel-style-one">
                         <div class="col-md-3">
+
                             <div class="hover-effect">
                                 <div class="box-hover">
                                     <a href="#">

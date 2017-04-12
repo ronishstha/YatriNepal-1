@@ -15,7 +15,7 @@
             @foreach( $similar_itinerary as $similar_itinerary)
                 <div class="col-md-4 col-sm-6">
                 <div class="single-adventure no-margin">
-                    <a href="#"><img alt="" src="../img/adventure-list/8.jpg"></a>
+                    <a href="{{ route('details', ['slug' => $similar_itinerary->slug]) }}"><img alt="" src="../img/adventure-list/8.jpg"></a>
                     <div class="adventure-text effect-bottom">
                         <div class="transparent-overlay">
                             <h4><a href="{{ route('details', ['slug' => $similar_itinerary->slug]) }}">{{  $similar_itinerary->title }} | <span>{{  $similar_itinerary->country->title }}</span></a></h4>

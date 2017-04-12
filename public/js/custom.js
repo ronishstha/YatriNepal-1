@@ -43,7 +43,7 @@ $(function(){
                       '<div class="col-md-3"> ' +
                       '<div class="form-group label-floating"> ' +
                       '<label class="control-label">First Name</label> ' +
-                      '<input type="text" class="form-control" name="first_name'+i+'"   id="first_name'+i+'" > ' +
+                      '<input type="text" class="form-control" name="first_name'+i+'"   id="first_name'+i+'"  > ' +
                       '</div> ' +
                       '</div> ' +
                       '<div class="col-md-3"> ' +
@@ -107,7 +107,7 @@ $(function(){
                       '<div class="col-md-3"> ' +
                       '<div class="form-group label-floating"> ' +
                       '<label class="control-label">Landline</label> ' +
-                      '<input type="text" class="form-control" name="landline'+i+'" id="landline{{$i}}"> ' +
+                      '<input type="text" class="form-control" name="landline'+i+'" id="landline'+i+'"> ' +
                       '</div> ' +
                       '</div> ' +
                       '<div class="col-md-3"> ' +

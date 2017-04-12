@@ -62,7 +62,7 @@
             @foreach($itinerary as $itinerary)
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="single-adventure">
-                        <a href="#"><img src="img/adventure-list/1.jpg" alt=""></a>
+                        <a href="{{ route('details',['slug'=>$itinerary->slug]) }}"><img src="img/adventure-list/1.jpg" alt=""></a>
                         <div class="adventure-text effect-bottom">
                             <div class="transparent-overlay">
                                 <h4><a href="{{ route('details',['slug'=>$itinerary->slug]) }}">{{ $itinerary->title }} | <span>{{ $itinerary->country->title }}</span></a></h4>

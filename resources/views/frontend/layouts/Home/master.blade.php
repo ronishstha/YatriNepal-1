@@ -60,7 +60,7 @@
 
     <!-- modernizr JS
     ============================================ -->
-    <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+
 
 
 </head>
@@ -131,6 +131,8 @@
 <!-- main JS
 ============================================ -->
 <script src="../js/main.js"></script>
+
+<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
 
 <!--   Core JS Files   -->
 
