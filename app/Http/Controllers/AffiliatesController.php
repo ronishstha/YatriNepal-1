@@ -60,7 +60,9 @@ class AffiliatesController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($affiliate->image)){
-                unlink(public_path() . "\\affiliate\\" . $affiliate->image);
+                if (file_exists(public_path() . '/affiliate/' . $affiliate->image)) {
+                    unlink(public_path() . '/affiliate/' . $affiliate->image);
+                }
             }
             $uploadPath = public_path() . '/affiliate';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -82,7 +84,11 @@ class AffiliatesController extends Controller
 
     public function getDelete($affiliate_id){
         $affiliate = Affiliate::findOrFail($affiliate_id);
-        unlink(public_path() . "\\affiliate\\" . $affiliate->image);
+        if(!empty($affiliate->image)){
+            if (file_exists(public_path() . '/affiliate/' . $affiliate->image)) {
+                unlink(public_path() . '/affiliate/' . $affiliate->image);
+            }
+        }
         $affiliate->delete();
         return redirect()->route('backend.affiliate.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -117,6 +123,11 @@ class AffiliatesController extends Controller
         $affiliates = Affiliate::where('status', 'trash')->get();
         foreach($affiliates as $affiliate){
             if($affiliate->status = "trash"){
+                if(!empty($affiliate->image)){
+                    if (file_exists(public_path() . '/affiliate/' . $affiliate->image)) {
+                        unlink(public_path() . '/affiliate/' . $affiliate->image);
+                    }
+                }
                 $affiliate->delete();
             }
         }

@@ -64,7 +64,9 @@ class CountriesController extends Controller
         $file = $request->file('flag');
         if($request->hasFile('flag')){
             if(!empty($country->flag)){
-                unlink(public_path() . "\\country\\" . $country->flag);
+                if(file_exists(public_path(). '/country/' . $country->flag)) {
+                    unlink(public_path() . '/country/' . $country->flag);
+                }
             }
             $uploadPath = public_path() . '/country';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -82,7 +84,9 @@ class CountriesController extends Controller
     public function getDelete($country_id){
         $country = Country::findOrFail($country_id);
         if(!empty($country->flag)) {
-            unlink(public_path() . "\\country\\" . $country->flag);
+            if(file_exists(public_path(). '/country/' . $country->flag)) {
+                unlink(public_path() . '/country/' . $country->flag);
+            }
         }
         $country->delete();
         return redirect()->route('backend.country.delete.page')->with(['success' => 'Successfully deleted']);
@@ -111,6 +115,9 @@ class CountriesController extends Controller
         $countries = Country::where('status', 'trash')->get();
         foreach($countries as $country){
             if($country->status = "trash"){
+                if(file_exists(public_path(). '/country/' . $country->flag)) {
+                    unlink(public_path() . '/country/' . $country->flag);
+                }
                 $country->delete();
             }
         }

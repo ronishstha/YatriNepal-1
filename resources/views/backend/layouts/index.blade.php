@@ -190,8 +190,6 @@
             });
         });
 
-        c
-
     });
 
 </script>
@@ -223,5 +221,7 @@
 <script>
     $('#lfm').filemanager('image', {prefix: route_prefix});
 </script>
+
+@yield('js')
 
 </html>

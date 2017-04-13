@@ -42,12 +42,14 @@
                             <p align="center">{!! $affiliate->description  !!}</p>
 
                             @if(!empty($affiliate->image))
-                                <section class="row">
-                                    <div class="col-md-6 col-md-offset-3">
-                                        <img src="{{ URL::asset('affiliate/' . $affiliate->image) }}" alt="" class="img-responsive" style="height: 200px; height: 200px; border-radius: 3px;">
-                                    </div>
-                                </section>
-                                <br>
+                                @if(file_exists(public_path(). '/affiliate/' . $affiliate->image))
+                                    <section class="row">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <img src="{{ URL::asset('affiliate/' . $affiliate->image) }}" alt="" class="img-responsive" style="height: 200px; height: 200px; border-radius: 3px;">
+                                        </div>
+                                    </section>
+                                    <br>
+                                 @endif
                             @endif
 
                             <div class="single-button">

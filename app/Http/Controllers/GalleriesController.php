@@ -73,7 +73,9 @@ class GalleriesController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($gallery->image)){
-                unlink(public_path() . "\\gallery\\" . $gallery->image);
+                if(file_exists(public_path(). '/gallery/' . $gallery->image)) {
+                    unlink(public_path() . '/gallery/' . $gallery->image);
+                }
             }
             $uploadPath = public_path() . '/gallery';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -95,9 +97,11 @@ class GalleriesController extends Controller
     public function getDelete($gallery_id){
         $gallery = Gallery::findOrFail($gallery_id);
         if(!empty($gallery->image)){
-            unlink(public_path() . "\\gallery\\" . $gallery->image);
+            if(file_exists(public_path(). '/gallery/' . $gallery->image)) {
+                unlink(public_path() . '/gallery/' . $gallery->image);
+                File::deleteDirectory(public_path() . '/gallery/'. $gallery->title);
+            }
         }
-        File::deleteDirectory(public_path() . '/gallery/'. $gallery->title);
         $gallery->delete();
         return redirect()->route('backend.gallery.delete.page')->with(['success' => 'Successfully deleted']);
     }
@@ -132,6 +136,12 @@ class GalleriesController extends Controller
         $galleries = Gallery::where('status', 'trash')->get();
         foreach($galleries as $gallery){
             if($gallery->status = "trash"){
+                if(!empty($gallery->image)) {
+                    if (file_exists(public_path() . '/gallery/' . $gallery->image)) {
+                        unlink(public_path() . '/gallery/' . $gallery->image);
+                        File::deleteDirectory(public_path() . '/gallery/' . $gallery->title);
+                    }
+                }
                 $gallery->delete();
             }
         }

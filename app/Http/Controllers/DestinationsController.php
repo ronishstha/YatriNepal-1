@@ -71,7 +71,9 @@ class DestinationsController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($destination->image)){
-                unlink(public_path() . "\\destination\\" . $destination->image);
+                if(file_exists(public_path(). '/destination/' . $destination->image)) {
+                    unlink(public_path() . '/destination/' . $destination->image);
+                }
             }
             $uploadPath = public_path() . '/destination';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -98,7 +100,9 @@ class DestinationsController extends Controller
     {
         $destination = Destination::findOrFail($destination_id);
         if (!empty($destination->image)) {
-            unlink(public_path() . "\\destination\\" . $destination->image);
+            if(file_exists(public_path(). '/destination/' . $destination->image)) {
+                unlink(public_path() . '/destination/' . $destination->image);
+            }
         }
         $destination->delete();
         return redirect()->route('backend.destination.delete.page')->with(['success' => 'Successfully deleted']);
@@ -133,6 +137,11 @@ class DestinationsController extends Controller
         $destinations = Destination::where('status', 'trash')->get();
         foreach($destinations as $destination){
             if($destination->status = "trash"){
+                if(!empty($destination->image)) {
+                    if (file_exists(public_path() . '/destination/' . $destination->image)) {
+                        unlink(public_path() . '/destination/' . $destination->image);
+                    }
+                }
                 $destination->delete();
             }
         }

@@ -185,7 +185,9 @@ class ItinerariesController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($itinerary->image)){
-                unlink(public_path() . "\\itinerary\\" . $itinerary->image);
+                if(file_exists(public_path(). '/itinerary/' . $itinerary->image)) {
+                    unlink(public_path() . "/itinerary/" . $itinerary->image);
+                }
             }
             $uploadPath = public_path() . '/itinerary';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -198,7 +200,9 @@ class ItinerariesController extends Controller
         $file_route = $request->file('route_map');
         if($request->hasFile('route_map')){
             if(!empty($itinerary->route_map)){
-                unlink(public_path() . "\\itinerary\\" . $itinerary->route_map);
+                if(file_exists(public_path(). '/itinerary/' . $itinerary->route_map)) {
+                    unlink(public_path() . "/itinerary/" . $itinerary->route_map);
+                }
             }
             $uploadPath = public_path() . '/itinerary';
             $fileName_route = date("Y-m-d-H-i-s") . $file_route->getClientOriginalName();
@@ -258,11 +262,15 @@ class ItinerariesController extends Controller
     public function getDelete($itinerary_id){
         $itinerary = Itinerary::findOrFail($itinerary_id);
         if(!empty($itinerary->image)) {
-            unlink(public_path() . "\\itinerary\\" . $itinerary->image);
+            if(file_exists(public_path(). '/itinerary/' . $itinerary->image)) {
+                unlink(public_path() . '/itinerary/' . $itinerary->image);
+            }
         }
 
         if(!empty($itinerary->route_map)){
-            unlink(public_path() . "\\itinerary\\" . $itinerary->route_map);
+            if(file_exists(public_path(). '/itinerary/' . $itinerary->route_map)) {
+                unlink(public_path() . '/itinerary/' . $itinerary->route_map);
+            }
         }
         $itinerary->delete();
         return redirect()->route('backend.itinerary.delete.page')->with(['success' => 'Successfully deleted']);
@@ -319,6 +327,16 @@ class ItinerariesController extends Controller
         $itineraries = Itinerary::where('status', 'trash')->get();
         foreach($itineraries as $itinerary){
             if($itinerary->status = "trash"){
+                if(!empty($itinerary->image)) {
+                    if (file_exists(public_path() . '/itinerary/' . $itinerary->image)) {
+                        unlink(public_path() . '/itinerary/' . $itinerary->image);
+                    }
+                }
+                if(!empty($itinerary->image)) {
+                    if (file_exists(public_path() . '/itinerary/' . $itinerary->route_map)) {
+                        unlink(public_path() . '/itinerary/' . $itinerary->route_map);
+                    }
+                }
                 $itinerary->delete();
             }
         }

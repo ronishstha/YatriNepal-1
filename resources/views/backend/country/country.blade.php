@@ -72,10 +72,13 @@
                                             <td>{{ $country->title }}</td>
                                             <td>
                                                 @if(!empty($country->flag))
-                                                    <img src="{{ URL::asset('country/' . $country->flag) }}" alt="" class="img-responsive" style="border-radius: 2px;height:20px;width:20px;">
+                                                    @if(file_exists(public_path(). '/country/' . $country->flag))
+                                                        <img src="{{ URL::asset('country/' . $country->flag) }}" alt="" class="img-responsive" style="border-radius: 2px;height:20px;width:20px;">
+                                                    @else
+                                                        No Image added
+                                                    @endif
                                                 @endif
-
-                                                </td>
+                                            </td>
                                             <td><button class="btn-edit"><a href="{{ route('backend.country.get.update', ['country_id' => $country->id]) }}">Edit</a></button></td>
                                             <td><button class="btn-delete"><a href="{{ route('backend.country.trash', ['country_id' => $country->id]) }}">Delete</a></button></td>
                                             <td>{{ $country->user->name }}</td>
