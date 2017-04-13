@@ -34,10 +34,34 @@ class indexController extends Controller
 
     public function getDetails($slug){
         $itinerary = Itinerary::where('slug',$slug)->firstOrFail();
-        $rating = Review::where('itinerary_id',$itinerary->id)->firstOrFail();
-        $similar_itinerary = Itinerary::where('category_id',$itinerary->category_id)->inRandomOrder(5)->get();
+        $rating = Review::where('itinerary_id',$itinerary->id)->get();
 
-        return view('frontend.layouts.ProductDetails.ProductDetails',compact('itinerary','similar_itinerary','rating'));
+        if(!empty($rating)) {
+
+//            $accomodate = $rating->accommodation;
+//            $meals = $rating->meals;
+//            $transportation = $rating->transportation;
+//            $pre_info = $rating->pre_info;
+//            $staffs = $rating->staffs;
+//            $money_value = $rating->money_value;
+
+            $count = 0;
+            $allrating = 0;
+            foreach($rating as $ratingz){
+
+                $allrating = $allrating + $ratingz->overall;
+            }
+            if(count($rating) != 0)
+            $average = round($allrating / count($rating));
+            else
+            $average = 0;
+        }
+        elseif(empty($rating)){
+            $rating = 0;
+            $average= 0;
+        }
+        $similar_itinerary = Itinerary::where('category_id', $itinerary->category_id)->inRandomOrder(5)->get();
+        return view('frontend.layouts.ProductDetails.ProductDetails',compact('itinerary','similar_itinerary','rating','average'));
     }
 
     public function booking(){

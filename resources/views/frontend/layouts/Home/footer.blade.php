@@ -28,23 +28,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 hidden-md hidden-sm">
-                <div class="single-footer-widget">
-                    <h4>Design Themes</h4>
-                    <div class="footer-widget-list">
-                        <ul class="widget-lists">
-                            <li><a href="#">Africa</a></li>
-                            <li><a href="#">Asia</a></li>
-                            <li><a href="#">Central America</a></li>
-                            <li><a href="#">Europe</a></li>
-                            <li><a href="#">Middle East</a></li>
-                            <li><a href="#">North America</a></li>
-                            <li><a href="#">Oceania</a></li>
-                            <li><a href="#">South America</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            {{--<div class="col-lg-2 hidden-md hidden-sm">--}}
+                {{--<div class="single-footer-widget">--}}
+                    {{--<h4>Design Themes</h4>--}}
+                    {{--<div class="footer-widget-list">--}}
+                        {{--<ul class="widget-lists">--}}
+                            {{--<li><a href="#">Africa</a></li>--}}
+                            {{--<li><a href="#">Asia</a></li>--}}
+                            {{--<li><a href="#">Central America</a></li>--}}
+                            {{--<li><a href="#">Europe</a></li>--}}
+                            {{--<li><a href="#">Middle East</a></li>--}}
+                            {{--<li><a href="#">North America</a></li>--}}
+                            {{--<li><a href="#">Oceania</a></li>--}}
+                            {{--<li><a href="#">South America</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <div class="col-lg-2 col-md-3 col-sm-3">
                 <div class="single-footer-widget">
                     <h4>Destinations</h4>
@@ -79,8 +79,6 @@
                     <a href="#"><i class="fa fa-facebook"></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-google-plus"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                    <a href="#"><i class="fa fa-rss"></i></a>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6">
@@ -97,15 +95,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-5 col-sm-12">
-                <span>Copyright © 2016 <a href="#">Power-Boosts</a>. All rights reserved.</span>
+                <span>Copyright © 2017 <a href="#">Yatri Nepal</a>. All rights reserved.</span>
             </div>
             <div class="col-lg-8 col-md-7 col-sm-12">
                 <nav>
                     <ul id="footer-menu">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="{{ route('dest') }}">Destinations</a></li>
+                        {{--<li><a href="{{ route('dest') }}">Destinations</a></li>--}}
                         <li><a href="shop-grid-no-sidebar.html">Specials</a></li>
-                        <li><a href="blog-1.html">Blog</a></li>
+                        {{--<li><a href="blog-1.html">Blog</a></li>--}}
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>
                     </ul>
                 </nav>

@@ -12,7 +12,7 @@ class CountriesTableSeeder extends Seeder
         $countries->title = 'Nepal';
         $countries->flag = 'nothinghere';
         $countries->slug = str_slug($countries->title, '-');
-        $countries->user_id = '3';
+        $countries->user_id = '1';
         $countries->status = 'unpublished';
         $countries->save();
 

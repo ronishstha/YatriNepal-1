@@ -16,7 +16,7 @@ class RegionsTableSeeder extends Seeder
         $region->title = 'Beautiful';
         $region->destination_id = '1';
         $region->slug = str_slug($region->title, '-');
-        $region->user_id = '2';
+        $region->user_id = '1';
         $region->status = 'unpublished';
         $region->save();
 

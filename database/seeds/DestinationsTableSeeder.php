@@ -18,7 +18,7 @@ class DestinationsTableSeeder extends Seeder
         $destination->country_id = '1';
         $destination->image = 'nothingnow' ;
         $destination->description = 'A must visit place before u die';
-        $destination->user_id = '3';
+        $destination->user_id = '1';
         $destination->status = 'unpublished';
         $destination->save();
     }

@@ -2,6 +2,7 @@
 @section('mainContent')
     @include('frontend.layouts.ProductDetails.TripInformation')
     @include('frontend.layouts.ProductDetails.TripInclution')
+    @include('frontend.layouts.ProductDetails.ReviewPanel')
     {{--@include('frontend.layouts.ProductDetails.PricingArea')--}}
     @include('frontend.layouts.ProductDetails.TripGallery')
     @include('frontend.layouts.ProductDetails.SimilarArea')

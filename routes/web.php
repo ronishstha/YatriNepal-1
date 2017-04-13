@@ -21,6 +21,11 @@ Route::get('/booking',[
     'as' => 'booking'
 ]);
 
+Route::post('contact_us', [
+    'uses' => 'frontend\ContactsController@postMessage',
+    'as'   => 'contactForm'
+]);
+
 Route::get('/destinations',[
     'uses' => 'frontend\DestinationController@dest'
 ])->name("dest");
