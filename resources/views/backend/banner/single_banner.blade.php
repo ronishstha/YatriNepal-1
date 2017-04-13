@@ -42,12 +42,14 @@
                             <p align="center">{!! $banner->description  !!}</p>
 
                             @if(!empty($banner->image))
-                                <section class="row">
-                                    <div class="col-md-6 col-md-offset-3">
-                                        <img src="{{ URL::asset('banner/'. $banner->image) }}" alt="" class="img-responsive" style="border-radius: 2px;">
-                                    </div>
-                                </section>
-                                <br>
+                                @if(file_exists(public_path(). '/banner/' . $banner->image))
+                                    <section class="row">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <img src="{{ URL::asset('banner/'. $banner->image) }}" alt="" class="img-responsive" style="border-radius: 2px;">
+                                        </div>
+                                    </section>
+                                    <br>
+                                @endif
                             @endif
 
                             <div class="single-button">

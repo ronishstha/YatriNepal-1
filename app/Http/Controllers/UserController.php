@@ -109,16 +109,6 @@ class UserController extends Controller
         }
     }
 
-    public function getUser(){
-        if(Auth::user()->id == 1){
-            return redirect()->back();
-        }
-        else{
-            $users = User::all();
-            return view('backend.users', ['users' => $users]);
-        }
-    }
-
     public function getDelete($user_id){
         $user = User::where('id', $user_id)->first();
         $user->delete();

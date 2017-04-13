@@ -41,7 +41,9 @@
                                 </div>
 
                                 @if(!empty($affiliate->image))
-                                    <td><img src="{{ URL::asset('affiliate/' . $affiliate->image) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                    @if(file_exists(public_path(). '/affiliate/' . $affiliate->image))
+                                        <td><img src="{{ URL::asset('affiliate/' . $affiliate->image) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                    @endif
                                 @endif
 
                                 <div class="row">

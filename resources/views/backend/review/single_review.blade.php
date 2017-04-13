@@ -82,11 +82,13 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     @if(!empty($review->image))
-                                        <section class="row">
-                                            <div class="col-md-6 col-md-offset-3">
-                                                <img src="{{ URL::asset('review/' . $review->image) }}" alt="" class="img-responsive" style=" border-radius:2px;height:100px;width:100px;margin-left:-20px;">
-                                            </div>
-                                        </section>
+                                        @if(file_exists(public_path(). '/review/' . $review->image))
+                                            <section class="row">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <img src="{{ URL::asset('review/' . $review->image) }}" alt="" class="img-responsive" style=" border-radius:2px;height:100px;width:100px;margin-left:-20px;">
+                                                </div>
+                                            </section>
+                                        @endif
                                     @endif
                                 </div>
                                 <div class="col-md-7">

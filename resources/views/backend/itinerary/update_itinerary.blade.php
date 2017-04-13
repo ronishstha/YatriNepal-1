@@ -147,12 +147,16 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         @if(!empty($itinerary->image))
-                                            <td><img src="{{ URL::asset('itinerary/' . $itinerary->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                            @if(file_exists(public_path(). '/itinerary/' . $itinerary->image))
+                                                <td><img src="{{ URL::asset('itinerary/' . $itinerary->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                            @endif
                                         @endif
                                     </div>
                                     <div class="col-md-6">
                                         @if(!empty($itinerary->route_map))
+                                            @if(file_exists(public_path(). '/itinerary/' . $itinerary->route_map))
                                             <td><img src="{{ URL::asset('itinerary/' . $itinerary->route_map ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
@@ -210,7 +214,7 @@
                                                     <option value=null>No region available</option>
                                                 @endif
                                                 @foreach($regions as $region)
-                                                    <option value="{{ $region->id }} @if($itinerary->region->title == "$region->title") selected @endif>{{ $region->title }}</option>
+                                                    <option value="{{ $region->id }}" @if($itinerary->region->title == "$region->title") selected @endif>{{ $region->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -223,7 +227,7 @@
                                                     <option value=null>No activity available</option>
                                                 @endif
                                                 @foreach($activities as $activity)
-                                                    <option value="{{ $activity->id }} @if($itinerary->activity->title == "$activity->title") selected @endif>{{ $activity->title }}</option>
+                                                    <option value="{{ $activity->id }}" @if($itinerary->activity->title == "$activity->title") selected @endif>{{ $activity->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

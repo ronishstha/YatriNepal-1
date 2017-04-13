@@ -60,4 +60,8 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
     public function affiliates(){
         return $this->hasMany('App\Affiliate');
     }
+
+    public function teams(){
+        return $this->hasMany('App\Team');
+    }
 }
