@@ -85,7 +85,9 @@
                                 </div>
 
                                 @if(!empty($review->image))
-                                    <td><img src="{{ URL::asset('review/' . $review->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                    @if(file_exists(public_path(). '/review/' . $review->image))
+                                        <td><img src="{{ URL::asset('review/' . $review->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                    @endif
                                 @endif
 
                                 <div class="row">

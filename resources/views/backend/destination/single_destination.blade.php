@@ -41,11 +41,13 @@
                         <div class="card-content table-responsive">
                             <p align="center">{!! $destination->description !!}  </p>
                             @if(!empty($destination->image))
+                                @if(file_exists(public_path(). '/destination/' . $destination->image))
                                 <section class="row">
                                     <div class="col-md-6 col-md-offset-3">
                                         <img src="{{ URL::asset('destination/' . $destination->image) }}" alt="" class="img-responsive">
                                     </div>
                                 </section><br>
+                                @endif
                             @endif
 
                             <div class="single-button">

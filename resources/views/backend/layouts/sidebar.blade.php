@@ -121,6 +121,13 @@
                 </a>
             </li>
 
+            <li {{ Request::is('admin/team*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.team') }}">
+                    <i class="material-icons text-gray">recent_actors</i>
+                    <p>Team</p>
+                </a>
+            </li>
+
             <li {{ Request::is('admin/contact*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.contact') }}">
                     <i class="material-icons text-gray">perm_phone_msg</i>

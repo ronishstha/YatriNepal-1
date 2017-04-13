@@ -80,7 +80,9 @@ class ReviewsController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($review->image)){
-                unlink(public_path() . "\\review\\" . $review->image);
+                if(file_exists(public_path(). '/review/' . $review->image)) {
+                    unlink(public_path() . '/review/' . $review->image);
+                }
             }
             $uploadPath = public_path() . '/review';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -113,7 +115,9 @@ class ReviewsController extends Controller
     public function getDelete($review_id){
         $review = Review::findOrFail($review_id);
         if(!empty($review->image)){
-            unlink(public_path() . "\\review\\" . $review->image);
+            if(file_exists(public_path(). '/review/' . $review->image)) {
+                unlink(public_path() . '/review/' . $review->image);
+            }
         }
         $review->delete();
         return redirect()->route('backend.review.delete.page')->with(['success' => 'Successfully deleted']);
@@ -148,6 +152,11 @@ class ReviewsController extends Controller
         $reviews = Review::where('status', 'trash')->get();
         foreach($reviews as $review){
             if($review->status = "trash"){
+                if(!empty($review->image)) {
+                    if (file_exists(public_path() . '/review/' . $review->image)) {
+                        unlink(public_path() . '/review/' . $review->image);
+                    }
+                }
                 $review->delete();
             }
         }
