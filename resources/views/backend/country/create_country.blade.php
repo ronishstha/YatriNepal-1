@@ -55,6 +55,18 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
+                                            <label class="control-label">Type</label>
+                                            <select class="form-control" name="type" id="type">
+                                                <option>single-country</option>
+                                                <option>multi-country</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
                                             <label class="control-label">Status</label>
                                             <select class="form-control" name="status" id="status">
                                                 <option>published</option>

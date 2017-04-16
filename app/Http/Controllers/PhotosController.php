@@ -72,7 +72,9 @@ class PhotosController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($photo->image)){
-                unlink(public_path() . "\\gallery\\" . '\\' . $gallery->title . '\\'. $photo->image);
+                if(file_exists(public_path(). '/gallery/' . '/' . $gallery->title . '/'. $photo->image)) {
+                    unlink(public_path() . '/gallery/' . '/' . $gallery->title . '/' . $photo->image);
+                }
             }
             $uploadPath = public_path() . '/gallery/' . $gallery->title;
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -90,7 +92,9 @@ class PhotosController extends Controller
         $photo = Photo::where('id', $photo_id)
             ->first();
         if(!empty($photo->image)){
-            unlink(public_path() . "\\gallery\\" . '\\' . $photo->gallery->title . '\\'. $photo->image);
+            if(file_exists(public_path(). '/gallery/' . '/' . $photo->gallery->title . '/'. $photo->image)) {
+                unlink(public_path() . '/gallery/' . '/' . $photo->gallery->title . '/' . $photo->image);
+            }
         }
         $photo->delete();
         return redirect()->route('backend.photo.delete.page')->with(['success' => 'Successfully deleted']);
@@ -125,6 +129,11 @@ class PhotosController extends Controller
         $photos = Photo::where('status', 'trash')->get();
         foreach($photos as $photo){
             if($photo->status = "trash"){
+                if(!empty($photo->image)){
+                    if(file_exists(public_path(). '/gallery/' . '/' . $photo->gallery->title . '/'. $photo->image)) {
+                        unlink(public_path() . '/gallery/' . '/' . $photo->gallery->title . '/' . $photo->image);
+                    }
+                }
                 $photo->delete();
             }
         }

@@ -60,7 +60,7 @@
                                 <table class="table">
                                     <thead class="text-primary">
                                     <th>Title</th>
-                                    <th>Destination</th>
+                                    <th>Country</th>
                                     <th>Last modified by</th>
                                     <th>modified date</th>
                                     <th>Edit</th>
@@ -71,7 +71,7 @@
                                         @if($region->status == "published" || $region->status == "unpublished")
                                             <tr>
                                                 <td>{{ $region->title }}</td>
-                                                <td>{{ $region->destination->title }}</td>
+                                                <td>{{ $region->country->title }}</td>
                                                 <td>{{ $region->user->name }}</td>
                                                 <td>{{ $region->updated_at }}</td>
                                                 <td><button class="btn-edit"><a href="{{ route('backend.region.get.update', ['region_id' => $region->id]) }}">Edit</a></button></td>

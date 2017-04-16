@@ -23,7 +23,7 @@ class CreateItinerariesTable extends Migration
             $table->enum('trekking_grade', ['easy', 'medium', 'hard'])->default('easy');
             $table->string('accommodation');
             $table->string('meals');
-            $table->string('max_altitude');
+            $table->string('max_altitude')->nullable();
             $table->string('best_time');
             $table->string('group_size');
             $table->string('start_end');
@@ -35,14 +35,12 @@ class CreateItinerariesTable extends Migration
             $table->string('route_map')->nullable();
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->integer('destination_id')->unsigned();
-            $table->foreign('destination_id')->references('id')->on('destinations')->onDelete('cascade');
+            $table->integer('destination_id')->nullable();
             $table->integer('region_id')->unsigned();
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
             $table->integer('activity_id')->unsigned();
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('category_id')->nullable();
             $table->text('summary');
             $table->text('trip_introduction');
             $table->text('itinerary');

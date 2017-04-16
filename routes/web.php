@@ -21,6 +21,11 @@ Route::get('/booking',[
     'as' => 'booking'
 ]);
 
+Route::post('contact_us', [
+    'uses' => 'frontend\ContactsController@postMessage',
+    'as'   => 'contactForm'
+]);
+
 Route::get('/destinations',[
     'uses' => 'frontend\DestinationController@dest'
 ])->name("dest");
@@ -971,6 +976,70 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.affiliate.restore.all'
     ]);
 
+//-------------------------end of affiliate route---------------------------------
+
+//-----------------------Team route---------------------------
+
+    Route::get('team', [
+        'uses' => 'TeamsController@getTeam',
+        'as' => 'backend.team'
+    ]);
+
+    Route::get('team/create', [
+        'uses' => 'TeamsController@getCreateTeam',
+        'as' => 'backend.team.get.create'
+    ]);
+
+    Route::post('team/create', [
+        'uses' => 'TeamsController@postCreateTeam',
+        'as' => 'backend.team.post.create'
+    ]);
+
+    Route::get('team/edit/{team_id}', [
+        'uses' => 'TeamsController@getUpdate',
+        'as' => 'backend.team.get.update'
+    ]);
+
+    Route::post('team/update', [
+        'uses' => 'TeamsController@postUpdate',
+        'as' => 'backend.team.post.update'
+    ]);
+
+    Route::get('team/delete/{team_id}', [
+        'uses' => 'TeamsController@getDelete',
+        'as' => 'backend.team.delete'
+    ]);
+
+    Route::get('team/single/{team_slug}', [
+        'uses' => 'TeamsController@getSingleTeam',
+        'as' => 'backend.team.single.team'
+    ]);
+
+    Route::get('team/trash/{team_id}', [
+        'uses' => 'TeamsController@getTrash',
+        'as'  => 'backend.team.trash'
+    ]);
+
+    Route::get('team/trash', [
+        'uses' => 'TeamsController@DeleteForever',
+        'as'   => 'backend.team.delete.page'
+    ]);
+
+    Route::get('team/restore/{team_id}', [
+        'uses' => 'TeamsController@Restore',
+        'as'   => 'backend.team.restore'
+    ]);
+
+    Route::get('team/deleteall', [
+        'uses' => 'TeamsController@DeleteAll',
+        'as'   => 'backend.team.delete.all'
+    ]);
+
+    Route::get('team/restoreall', [
+        'uses' => 'TeamsController@RestoreAll',
+        'as'   => 'backend.team.restore.all'
+    ]);
+
 //-------------------------end of photo route---------------------------------
 
 //-----------------------Photo route---------------------------
@@ -1035,7 +1104,7 @@ Route::group(['prefix' => 'admin',
         'as'   => 'backend.affiliate.restore.all'
     ]);
 
-//-------------------------end of photo route---------------------------------
+//-------------------------end of affiliate route---------------------------------
 
 //-------------------------contact route-------------------------------------
     Route::get('contact-us', [

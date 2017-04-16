@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Region;
-use App\Destination;
+use App\Country;
 use App\User;
 
 class RegionsController extends Controller
@@ -16,26 +16,26 @@ class RegionsController extends Controller
     }
 
     public function getCreateRegion(){
-        $destinations = Destination::all();
-        return view('backend.region.create_region', ['destinations' => $destinations]);
+        $countries = Country::all();
+        return view('backend.region.create_region', ['countries' => $countries]);
     }
 
     public function postCreateRegion(Request $request){
         $this->validate($request, [
             'title' => 'required',
-            'destination' => 'required'
+            'country' => 'required'
         ]);
 
         $region = new Region();
         $slug = $request['title'];
-        $travel = $request['destination'];
+        $travel = $request['country'];
         $region->title = $request['title'];
         $region->slug = str_slug($slug,'-');
         $region->status = $request['status'];
         $user = Auth::user();
-        $destination = Destination::where('title', $travel)->first();
+        $country = Country::where('title', $travel)->first();
         $region->user()->associate($user);
-        $region->destination()->associate($destination);
+        $region->country()->associate($country);
         $region->save();
 
         return redirect()->route('backend.region')->with(['success' => 'Successfully created']);
@@ -43,26 +43,26 @@ class RegionsController extends Controller
 
     public function getUpdate($region_id){
         $region = Region::findorFail($region_id);
-        $destinations = Destination::all();
-        return view('backend.region.update_region', ['region' => $region, 'destinations' => $destinations]);
+        $countries = Country::all();
+        return view('backend.region.update_region', ['region' => $region, 'countries' => $countries]);
     }
 
     public function postUpdate(Request $request)
     {
         $this->validate($request, [
             'title' => 'required',
-            'destination' => 'required',
+            'country' => 'required',
         ]);
         $region = Region::findOrFail($request['region_id']);
         $slug = $request['title'];
-        $travel = $request['destination'];
+        $travel = $request['country'];
         $region->title = $request['title'];
         $region->slug = str_slug($slug, '-');
         $region->status = $request['status'];
         $user = Auth::user();
         $region->user_id = $user->id;
-        $destination = Destination::where('title', $travel)->first();
-        $region->destination_id = $destination->id;
+        $country = Country::where('title', $travel)->first();
+        $region->country_id = $country->id;
         $region->update();
         return redirect()->route('backend.region')->with(['success' => 'successfully updated']);
     }

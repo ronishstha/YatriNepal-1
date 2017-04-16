@@ -18,10 +18,6 @@ class Itinerary extends Model
         return $this->belongsTo('App\Country');
     }
 
-    public function destination(){
-        return $this->belongsTo('App\Destination');
-    }
-
     public function region(){
         return $this->belongsTo('App\Region');
     }

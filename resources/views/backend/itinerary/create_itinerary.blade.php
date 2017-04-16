@@ -180,20 +180,20 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    {{--<div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label >Destination</label>
                                             <select class="form-control destination" name="destination" id="destination">
-                                                {{--@if(count($destinations) == 0)
+                                                --}}{{--@if(count($destinations) == 0)
                                                     <option value=null>No destination available</option>
-                                                @endif--}}
+                                                @endif--}}{{--
                                                     <option value="0" disabled="true" selected="true">-</option>
-                                                {{--@foreach($destinations as $destination)
+                                                --}}{{--@foreach($destinations as $destination)
                                                     <option>{{ $destination->title }}</option>
-                                                @endforeach--}}
+                                                @endforeach--}}{{--
                                             </select>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
 
                                 <div class="row">

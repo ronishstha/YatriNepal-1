@@ -24,10 +24,10 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Destination</label>
-                                            <select class="form-control" name="destination" id="destination">
-                                                @foreach($destinations as $destination)
-                                                    <option @if($region->destination->title == "$destination->title") selected @endif> {{$destination->title}}</option>
+                                            <label class="control-label">Country</label>
+                                            <select class="form-control" name="region" id="region">
+                                                @foreach($country as $region)
+                                                    <option @if($region->region->title == "$region->title") selected @endif> {{$region->title}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

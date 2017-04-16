@@ -119,11 +119,11 @@
             });
         });
 
-        $(document).on('change','.destination',function(){
+        $(document).on('change','.country',function(){
             console.log("hmm its change");
 
-            var destination_id = $(this).val();
-            console.log(destination_id);
+            var country_id = $(this).val();
+            console.log(country_id);
             var d = $(this).parent();
 
             var op=" ";
@@ -131,7 +131,7 @@
             $.ajax({
                 type:'get',
                 url:'{!!URL::to('admin/findRegionName')!!}',
-                data:{'id':destination_id},
+                data:{'id':country_id},
                 success:function(result){
                     console.log('success');
                     console.log(result);
@@ -190,8 +190,6 @@
             });
         });
 
-        c
-
     });
 
 </script>
@@ -223,5 +221,7 @@
 <script>
     $('#lfm').filemanager('image', {prefix: route_prefix});
 </script>
+
+@yield('js')
 
 </html>

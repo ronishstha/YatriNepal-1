@@ -16,8 +16,8 @@ class ActivitiesTableSeeder extends Seeder
         $activity->title = 'Hiking';
         $activity->slug = str_slug($activity->title, '-');
         $activity->user_id = '1';
-        $activity->region_id = '2';
-        $activity->status = 'unpublished';
+        $activity->region_id = '1';
+        $activity->status = 'published';
         $activity->save();
     }
 }

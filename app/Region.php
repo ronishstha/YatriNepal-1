@@ -10,12 +10,12 @@ class Region extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function destination(){
-        return $this->belongsTo('App\Destination');
+    public function country(){
+        return $this->belongsTo('App\Country');
     }
 
     public function activities(){
-        return $this->hasMany('App\Activities');
+        return $this->hasMany('App\Activity');
     }
 
     public function itineraries(){

@@ -67,7 +67,7 @@
                                     @foreach($affiliates as $affiliate)
                                         @if($affiliate->status == "published" || $affiliate->status == "unpublished")
                                             <tr>
-                                                <td><a href="{{ route('backend.affiliate.single.affiliate', ['affiliate_id' => $affiliate->id]) }}">{{ $affiliate->title }}</a></td>
+                                                <td><a href="{{ route('backend.affiliate.single.affiliate', ['affiliate_slug' => $affiliate->slug]) }}">{{ $affiliate->title }}</a></td>
                                                 <td><button class="btn-edit"><a href="{{ route('backend.affiliate.get.update', ['affiliate_id' => $affiliate->id]) }}">Edit</a></button></td>
                                                 <td><button class="btn-view"><a href="{{ route('backend.affiliate.single.affiliate', ['affiliate_slug' => $affiliate->slug])  }}">View</a></button></td>
                                                 <td><button class="btn-delete"><a href="{{ route('backend.affiliate.trash', ['affiliate_id' => $affiliate->id]) }}">Delete</a></button></td>

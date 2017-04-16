@@ -36,7 +36,9 @@
                                 </div>
 
                                 @if(!empty($gallery->image))
-                                    <td><img src="{{ URL::asset('gallery/' . $gallery->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                    @if(file_exists(public_path(). '/gallery/' . $gallery->image))
+                                        <td><img src="{{ URL::asset('gallery/' . $gallery->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                    @endif
                                 @endif
 
                                 <div class="row">

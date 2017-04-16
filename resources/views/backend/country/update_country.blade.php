@@ -31,7 +31,7 @@
                                 </div>
 
                                 @if(!empty($country->flag))
-                                    <td><img src="{{ URL::asset('country/' . $country->image ) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                    <td><img src="{{ URL::asset('country/' . $country->flag ) }}" style="height:100px;width:100px;border-radius:3px"></td>
                                 @endif
 
                                 <div class="row">
@@ -39,6 +39,18 @@
                                         <div class="">
                                             <label id="fileupload-example-3-label" for="fileupload-example-3">Flag</label>
                                             <input type="file" id="fileupload-example-3" name="flag" value="{{ Request::old('flag') ? Request::old('flag') : isset($country) ? $country->flag : '' }}"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Type</label>
+                                            <select class="form-control" name="type" id="type">
+                                                <option @if($country->type =="single-country") selected @endif>single-country</option>
+                                                <option @if($country->type =="multi-country") selected @endif>multi-country</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

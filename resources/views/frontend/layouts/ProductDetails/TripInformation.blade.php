@@ -173,7 +173,9 @@
                                     $overall += $rating->overall;
                                 @endforeach
                                 <h2>Rating</h2>
+                                @php $mainRating = round($overall/$count);
 
+                                @endphp
                                 <div class="trip-rating">
                                     <i class="fa fa-star grey"></i>
                                     <i class="fa fa-star grey"></i>

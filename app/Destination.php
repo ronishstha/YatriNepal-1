@@ -13,12 +13,4 @@ class Destination extends Model
     public function country(){
         return $this->belongsTo('App\Country');
     }
-
-    public function regions(){
-        return $this->hasMany('App\Region');
-    }
-
-    public function itineraries(){
-        return $this->hasMany('App\Itinerary');
-    }
 }

@@ -49,12 +49,12 @@
                 </a>
             </li>
 
-            <li {{ Request::is('admin/destination*') ? 'class=active' : '' }}>
+            {{--<li {{ Request::is('admin/destination*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.destination') }}">
                     <i class="material-icons">motorcycle</i>
                     <p>Destination</p>
                 </a>
-            </li>
+            </li>--}}
 
             <li {{ Request::is('admin/region*') ? 'class=active' : '' }}>
                 <a href="{{ route('backend.region') }}">
@@ -118,6 +118,13 @@
                 <a href="{{ route('backend.affiliate') }}">
                     <i class="material-icons text-gray">account_balance</i>
                     <p>Affiliate</p>
+                </a>
+            </li>
+
+            <li {{ Request::is('admin/team*') ? 'class=active' : '' }}>
+                <a href="{{ route('backend.team') }}">
+                    <i class="material-icons text-gray">recent_actors</i>
+                    <p>Team</p>
                 </a>
             </li>
 

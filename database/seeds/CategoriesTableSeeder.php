@@ -16,8 +16,8 @@ class CategoriesTableSeeder extends Seeder
         $category->title = 'Adventure';
         $category->slug = str_slug($category->title,'-');
         $category->description = 'Fun area';
-        $category->user_id = '3';
-        $category->status = 'unpublished';
+        $category->user_id = '1';
+        $category->status = 'published';
         $category->save();
 
     }

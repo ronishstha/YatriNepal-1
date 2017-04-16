@@ -62,7 +62,9 @@ class BannerController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($banner->image)){
-                unlink(public_path() . "\\banner\\" . $banner->image);
+                if(file_exists(public_path(). '/banner/' . $banner->image)) {
+                    unlink(public_path() . '/banner/' . $banner->image);
+                }
             }
             $uploadPath = public_path() . '/banner';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -85,7 +87,9 @@ class BannerController extends Controller
     public function getDelete($banner_id){
         $banner = Banner::findOrFail($banner_id);
         if(!empty($banner->image)) {
-            unlink(public_path() . "\\banner\\" . $banner->image);
+            if(file_exists(public_path(). '/banner/' . $banner->image)){
+                unlink(public_path() . '/banner/' . $banner->image);
+            }
         }
         $banner->delete();
         return redirect()->route('backend.banner.delete.page')->with(['success' => 'Successfully deleted']);
@@ -121,6 +125,11 @@ class BannerController extends Controller
         $banners = Banner::where('status', 'trash')->get();
         foreach($banners as $banner){
             if($banner->status = "trash"){
+                if(!empty($banner->image)) {
+                    if(file_exists(public_path(). '/banner/' . $banner->image)){
+                        unlink(public_path() . '/banner/' . $banner->image);
+                    }
+                }
                 $banner->delete();
             }
         }

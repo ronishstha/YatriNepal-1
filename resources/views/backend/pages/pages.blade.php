@@ -68,7 +68,7 @@
                                 @foreach($pages as $page)
                                     @if($page->status == "published" || $page->status == "unpublished")
                                         <tr>
-                                            <td><a href="{{ route('backend.pages.single.page', ['page_id' => $page->id]) }}">{{ $page->title }}</a></td>
+                                            <td><a href="{{ route('backend.pages.single.page', ['page_slug' => $page->slug]) }}">{{ $page->title }}</a></td>
                                             <td>{{ $page->page }}</td>
                                             <td><button class="btn-edit"><a href="{{ route('backend.pages.get.update', ['page_id' => $page->id]) }}">Edit</a></button></td>
                                             <td><button class="btn-view"><a href="{{ route('backend.pages.single.page', ['page_slug' => $page->slug/*, 'page_id' => $page->id*/])  }}">View</a></button></td>

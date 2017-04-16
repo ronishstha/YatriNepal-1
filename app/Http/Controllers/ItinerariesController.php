@@ -46,7 +46,6 @@ class ItinerariesController extends Controller
             'trekking_grade' => 'required',
             'accommodation' => 'required',
             'meals' => 'required',
-            'max_altitude' => 'required',
             'best_time' => 'required',
             'group_size' => 'required',
             'start_end' => 'required',
@@ -54,7 +53,6 @@ class ItinerariesController extends Controller
             'departure' => 'required',
             'cost' => 'required',
             'country' => 'required',
-            'destination' => 'required',
             'region' => 'required',
             'activity' => 'required',
             'category' => 'required',
@@ -111,6 +109,7 @@ class ItinerariesController extends Controller
         $itinerary->date = $request['date'];
         $itinerary->cost = $request['cost'];
         $itinerary->summary = $request['summary'];
+        $itinerary->destination_id = $request['destination'];
         $itinerary->trip_introduction = $request['trip_introduction'];
         $itinerary->itinerary = $request['itinerary'];
         $itinerary->important_note = $request['important_note'];
@@ -125,7 +124,7 @@ class ItinerariesController extends Controller
         $itinerary->status = $request['status'];
         $itinerary->user()->associate($user);
         $itinerary->country()->associate($country);
-        $itinerary->destination()->associate($destination);
+        /*$itinerary->destination()->associate($destination)*/;
         $itinerary->region()->associate($region);
         $itinerary->activity()->associate($activity);
         $itinerary->category()->associate($category);
@@ -160,7 +159,6 @@ class ItinerariesController extends Controller
             'trekking_grade' => 'required',
             'accommodation' => 'required',
             'meals' => 'required',
-            'max_altitude' => 'required',
             'best_time' => 'required',
             'group_size' => 'required',
             'start_end' => 'required',
@@ -168,7 +166,6 @@ class ItinerariesController extends Controller
             'departure' => 'required',
             'cost' => 'required',
             'country' => 'required',
-            'destination' => 'required',
             'region' => 'required',
             'activity' => 'required',
             'category' => 'required',
@@ -185,7 +182,9 @@ class ItinerariesController extends Controller
         $file = $request->file('image');
         if($request->hasFile('image')){
             if(!empty($itinerary->image)){
-                unlink(public_path() . "\\itinerary\\" . $itinerary->image);
+                if(file_exists(public_path(). '/itinerary/' . $itinerary->image)) {
+                    unlink(public_path() . "/itinerary/" . $itinerary->image);
+                }
             }
             $uploadPath = public_path() . '/itinerary';
             $fileName = date("Y-m-d-H-i-s") . $file->getClientOriginalName();
@@ -198,7 +197,9 @@ class ItinerariesController extends Controller
         $file_route = $request->file('route_map');
         if($request->hasFile('route_map')){
             if(!empty($itinerary->route_map)){
-                unlink(public_path() . "\\itinerary\\" . $itinerary->route_map);
+                if(file_exists(public_path(). '/itinerary/' . $itinerary->route_map)) {
+                    unlink(public_path() . "/itinerary/" . $itinerary->route_map);
+                }
             }
             $uploadPath = public_path() . '/itinerary';
             $fileName_route = date("Y-m-d-H-i-s") . $file_route->getClientOriginalName();
@@ -242,11 +243,12 @@ class ItinerariesController extends Controller
         $itinerary->cost_inclusive = $request['cost_inclusive'];
         $itinerary->cost_exclusive = $request['cost_exclusive'];
         $itinerary->trekking_group = $request['trekking_group'];
+        $itinerary->destination_id = $request['destination'];
         $itinerary->trip_status = $request['trip_status'];
         $itinerary->slug = str_slug($slug,'-');
         $itinerary->status = $request['status'];
         $itinerary->country_id = $country->id;
-        $itinerary->destination_id = $destination->id;
+        /*$itinerary->destination_id = $destination->id;*/
         $itinerary->region_id = $region->id;
         $itinerary->activity_id = $activity->id;
         $itinerary->category_id = $category->id;
@@ -258,11 +260,15 @@ class ItinerariesController extends Controller
     public function getDelete($itinerary_id){
         $itinerary = Itinerary::findOrFail($itinerary_id);
         if(!empty($itinerary->image)) {
-            unlink(public_path() . "\\itinerary\\" . $itinerary->image);
+            if(file_exists(public_path(). '/itinerary/' . $itinerary->image)) {
+                unlink(public_path() . '/itinerary/' . $itinerary->image);
+            }
         }
 
         if(!empty($itinerary->route_map)){
-            unlink(public_path() . "\\itinerary\\" . $itinerary->route_map);
+            if(file_exists(public_path(). '/itinerary/' . $itinerary->route_map)) {
+                unlink(public_path() . '/itinerary/' . $itinerary->route_map);
+            }
         }
         $itinerary->delete();
         return redirect()->route('backend.itinerary.delete.page')->with(['success' => 'Successfully deleted']);
@@ -306,7 +312,7 @@ class ItinerariesController extends Controller
     }
 
     public function findRegionName(Request $request){
-        $result = Region::select('title', 'id')->where('destination_id',$request->id)->get();
+        $result = Region::select('title', 'id')->where('country_id',$request->id)->get();
         return response()->json($result);//then sent this data to ajax success
     }
 
@@ -319,6 +325,16 @@ class ItinerariesController extends Controller
         $itineraries = Itinerary::where('status', 'trash')->get();
         foreach($itineraries as $itinerary){
             if($itinerary->status = "trash"){
+                if(!empty($itinerary->image)) {
+                    if (file_exists(public_path() . '/itinerary/' . $itinerary->image)) {
+                        unlink(public_path() . '/itinerary/' . $itinerary->image);
+                    }
+                }
+                if(!empty($itinerary->image)) {
+                    if (file_exists(public_path() . '/itinerary/' . $itinerary->route_map)) {
+                        unlink(public_path() . '/itinerary/' . $itinerary->route_map);
+                    }
+                }
                 $itinerary->delete();
             }
         }

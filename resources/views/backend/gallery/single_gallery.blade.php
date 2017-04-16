@@ -52,7 +52,11 @@
 
                             <div class="itinerary-gallery">
                                 @foreach($photos as $photo)
-                                    <td><img class="itgallery" src="{{ URL::asset('gallery/' . $photo->gallery->title . '/' . $photo->image) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                    @if(!empty($photo->image))
+                                        @if(file_exists(public_path(). '/photo/' . $photo->image))
+                                            <td><img class="itgallery" src="{{ URL::asset('gallery/' . $photo->gallery->title . '/' . $photo->image) }}" style="height:100px;width:100px;border-radius:3px"></td>
+                                        @endif
+                                    @endif
                                 @endforeach
                             </div>
 

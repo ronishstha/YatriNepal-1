@@ -67,7 +67,7 @@
                                     @foreach($banners as $banner)
                                         @if($banner->status == "published" || $banner->status == "unpublished")
                                             <tr>
-                                                <td><a href="{{ route('backend.banner.single.banner', ['banner_id' => $banner->id]) }}">{{ $banner->title }}</a></td>
+                                                <td><a href="{{ route('backend.banner.single.banner', ['banner_slug' => $banner->slug]) }}">{{ $banner->title }}</a></td>
                                                 <td><button class="btn-edit"><a href="{{ route('backend.banner.get.update', ['banner_id' => $banner->id]) }}">Edit</a></button></td>
                                                 <td><button class="btn-view"><a href="{{ route('backend.banner.single.banner', ['banner_slug' => $banner->slug])  }}">View</a></button></td>
                                                 <td><button class="btn-delete"><a href="{{ route('backend.banner.trash', ['banner_id' => $banner->id]) }}">Delete</a></button></td>

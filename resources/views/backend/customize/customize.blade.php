@@ -67,7 +67,7 @@
                                     @foreach($customizes as $customize)
                                         @if($customize->status == "published" || $customize->status == "unpublished")
                                             <tr>
-                                                <td><a href="{{ route('backend.customize.single.customize', ['customize_id' => $customize->id]) }}">{{ $customize->name }}</a></td>
+                                                <td><a href="{{ route('backend.customize.single.customize', ['customize_slug' => $customize->slug]) }}">{{ $customize->name }}</a></td>
                                                 <td><button class="btn-edit"><a href="{{ route('backend.customize.get.update', ['customize_id' => $customize->id]) }}">Edit</a></button></td>
                                                 <td><button class="btn-view"><a href="{{ route('backend.customize.single.customize', ['customize_slug' => $customize->slug])  }}">View</a></button></td>
                                                 <td><button class="btn-delete"><a href="{{ route('backend.customize.trash', ['customize_id' => $customize->id]) }}">Delete</a></button></td>
