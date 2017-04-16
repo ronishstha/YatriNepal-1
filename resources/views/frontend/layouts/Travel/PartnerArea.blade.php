@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="partner-carousel carousel-style-two" style="background:blue ">
+            <div class="partner-carousel carousel-style-two">
                 <div class="col-md-4" >
                     <a href="#"><img src="../img/partners/adventure-travel.png" alt=""></a>
                 </div>

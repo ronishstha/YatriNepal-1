@@ -168,10 +168,6 @@
                     <div class="row">
                         <div class="col-md-4 text-center">
                             <div class="trip-text-container">
-                                @foreach($rating as $rating)
-                                    $count++;
-                                    $overall += $rating->overall;
-                                @endforeach
                                 <h2>Rating</h2>
                                 @php $mainRating = round($overall/$count);
 
@@ -182,8 +178,41 @@
                                     <i class="fa fa-star grey"></i>
                                     <i class="fa fa-star grey"></i>
                                     <i class="fa fa-star-o"></i>
+                                <div class="trip-rating" >
+                                    @if($average == 1)
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"></i>
+                                        <i class="fa fa-star grey"></i>
+                                        <i class="fa fa-star grey"></i>
+                                        <i class="fa fa-star grey"></i>
+                                    @elseif($average == 2)
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"></i>
+                                        <i class="fa fa-star grey"></i>
+                                        <i class="fa fa-star grey"></i>
+                                    @elseif($average == 3)
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    @elseif($average == 4)
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"></i>
+                                    @else
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                        <i class="fa fa-star grey"style="color:yellow"></i>
+                                    @endif
+
                                 </div>
-                                <p>15 <span>reviews</span></p>
+                                <p style="font-size: 20px"><b><span style="font-size: 30px">{{ count($rating) }}</span></b><span>reviews</span></p>
                             </div>
                         </div>
                         <div class="col-md-4 text-center">
@@ -200,7 +229,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
-                            <button id="booking-button" type="submit">Book this trip</button>
+                            <a href="{{ route('booking') }}" class="btn btn-info" id="booking-button" type="submit">Book this trip</a>
                         </div>
                     </div>
                 </div>

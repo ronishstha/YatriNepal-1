@@ -94,52 +94,52 @@
                                     <nav>
                                         <ul id="nav">
                                             <li><a href="{{ route('home') }}">HOME</a></li>
-                                            <li><a href="{{ route('dest') }}">Destination</a>
-                                                <div class="megamenu">
-                                                    <div class="megamenu-list clearfix">
-                                                                <span class="border-hover">
-                                                                    <a href="#" class="mega-image">
-                                                                        <img src="../img/mega-b-4.jpg" alt="">
-                                                                    </a>
-                                                                </span>
-                                                        <span>
-                                                                    <a href="#" class="mega-title">Edgeworks Climbing</a>
-                                                                    <a href="#">Indoor climbing</a>
-                                                                    <a href="#">Rock climbing</a>
-                                                                    <a href="#">Climbing competition</a>
-                                                                    <a href="#">Top rope climbing</a>
-                                                                    <a href="#">Traditional climbing</a>
-                                                                    <a href="#">Free solo climbing</a>
-                                                                </span>
-                                                        <span>
-                                                                    <a href="#" class="mega-title">Academic Mountain</a>
-                                                                    <a href="#">Fold and thrust belt</a>
-                                                                    <a href="#">Fault-block mountain</a>
-                                                                    <a href="#">Mountain ranges</a>
-                                                                    <a href="#">Sedimentary</a>
-                                                                    <a href="#">Subaqueous volcano</a>
-                                                                    <a href="#">Complex volcano</a>
-                                                                </span>
-                                                        <span>
-                                                                    <a href="#" class="mega-title">Adventure Camping</a>
-                                                                    <a href="#">Bicycle Camping</a>
-                                                                    <a href="#">Canoe Camping</a>
-                                                                    <a href="#">Reenact camping</a>
-                                                                    <a href="#">Winter camping</a>
-                                                                    <a href="#">Dry camping</a>
-                                                                    <a href="#">Backpacking</a>
-                                                                </span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="drop-down"><a href="{{ route('home') }}">Pages</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="#" class="mega-title">Other Pages</a></li>
-                                                    <li><a href="{{ route('contact') }}">About Us</a></li>
-                                                    <li><a href="signin.html">Sign In</a></li>
-                                                    <li><a href="404.html">404 Error</a></li>
-                                                </ul>
-                                            </li>
+                                            {{--<li><a href="{{ route('dest') }}">Destination</a>--}}
+                                                {{--<div class="megamenu">--}}
+                                                    {{--<div class="megamenu-list clearfix">--}}
+                                                                {{--<span class="border-hover">--}}
+                                                                    {{--<a href="#" class="mega-image">--}}
+                                                                        {{--<img src="../img/mega-b-4.jpg" alt="">--}}
+                                                                    {{--</a>--}}
+                                                                {{--</span>--}}
+                                                        {{--<span>--}}
+                                                                    {{--<a href="#" class="mega-title">Edgeworks Climbing</a>--}}
+                                                                    {{--<a href="#">Indoor climbing</a>--}}
+                                                                    {{--<a href="#">Rock climbing</a>--}}
+                                                                    {{--<a href="#">Climbing competition</a>--}}
+                                                                    {{--<a href="#">Top rope climbing</a>--}}
+                                                                    {{--<a href="#">Traditional climbing</a>--}}
+                                                                    {{--<a href="#">Free solo climbing</a>--}}
+                                                                {{--</span>--}}
+                                                        {{--<span>--}}
+                                                                    {{--<a href="#" class="mega-title">Academic Mountain</a>--}}
+                                                                    {{--<a href="#">Fold and thrust belt</a>--}}
+                                                                    {{--<a href="#">Fault-block mountain</a>--}}
+                                                                    {{--<a href="#">Mountain ranges</a>--}}
+                                                                    {{--<a href="#">Sedimentary</a>--}}
+                                                                    {{--<a href="#">Subaqueous volcano</a>--}}
+                                                                    {{--<a href="#">Complex volcano</a>--}}
+                                                                {{--</span>--}}
+                                                        {{--<span>--}}
+                                                                    {{--<a href="#" class="mega-title">Adventure Camping</a>--}}
+                                                                    {{--<a href="#">Bicycle Camping</a>--}}
+                                                                    {{--<a href="#">Canoe Camping</a>--}}
+                                                                    {{--<a href="#">Reenact camping</a>--}}
+                                                                    {{--<a href="#">Winter camping</a>--}}
+                                                                    {{--<a href="#">Dry camping</a>--}}
+                                                                    {{--<a href="#">Backpacking</a>--}}
+                                                                {{--</span>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                            {{--<li class="drop-down"><a href="{{ route('home') }}">Pages</a>--}}
+                                                {{--<ul class="sub-menu">--}}
+                                                    {{--<li><a href="#" class="mega-title">Other Pages</a></li>--}}
+                                                    {{--<li><a href="{{ route('contact') }}">About Us</a></li>--}}
+                                                    {{--<li><a href="signin.html">Sign In</a></li>--}}
+                                                    {{--<li><a href="404.html">404 Error</a></li>--}}
+                                                {{--</ul>--}}
+                                            {{--</li>--}}
                                             {{--<li><a href="{{ route('blog') }}">BLOG</a></li>--}}
                                             <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                         </ul>
@@ -162,15 +162,15 @@
                         <nav id="dropdown">
                             <ul>
                                 <li><a href="index.html">HOME</a></li>
-                                <li><a href="#">Shop</a></li>
-                                <li><a href="{{ route('blog') }}">Blog</a></li>
+                                {{--<li><a href="#">Shop</a></li>--}}
+                                {{--<li><a href="{{ route('blog') }}">Blog</a></li>--}}
                                 <li><a href="{{ route('contact') }}">ABOUT</a>
-                                <li><a href="#">PAGES</a>
-                                    <ul>
-                                        <li><a href="signin.html">Sign in</a></li>
-                                        <li><a href="404.html">404 error</a></li>
-                                    </ul>
-                                </li>
+                                {{--<li><a href="#">PAGES</a>--}}
+                                    {{--<ul>--}}
+                                        {{--<li><a href="signin.html">Sign in</a></li>--}}
+                                        {{--<li><a href="404.html">404 error</a></li>--}}
+                                    {{--</ul>--}}
+                                {{--</li>--}}
                                 <li><a href="{{ route('contact') }}">CONTACT</a></li>
                             </ul>
                         </nav>

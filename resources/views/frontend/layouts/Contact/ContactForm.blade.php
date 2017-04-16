@@ -22,22 +22,23 @@
                 </div>
                 <div class="contact-row">
                     <div class="contact-column">
-                        <form action="mail.php" method="post">
+                        <form action="{{ route('contactForm') }}" method="post">
+                            {!! csrf_field() !!}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input name="f_name" type="text" class="form-box" placeholder="First name">
+                                    <input name="first_name" type="text" class="form-box" placeholder="First name">
                                 </div>
                                 <div class="col-md-6">
-                                    <input name="l_name" type="text" class="form-box" placeholder="Last name">
+                                    <input name="last_name" type="text" class="form-box" placeholder="Last name">
                                 </div>
                                 <div class="col-md-6">
                                     <input name="email" type="email" class="form-box" placeholder="Email">
                                 </div>
                                 <div class="col-md-6">
-                                    <input name="number" type="text" class="form-box" placeholder="Phone number">
+                                    <input name="phone_no" type="text" class="form-box" placeholder="Phone number">
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea name="message" class="yourmessage" placeholder="Your message"></textarea>
+                                    <textarea name="description" class="yourmessage" placeholder="Your message"></textarea>
                                     <input type="submit" value="Send Message" class="submit-button">
                                 </div>
                             </div>

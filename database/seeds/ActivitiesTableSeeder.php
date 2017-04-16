@@ -18,6 +18,7 @@ class ActivitiesTableSeeder extends Seeder
         $activity->user_id = '1';
         $activity->region_id = '1';
         $activity->status = 'published';
+
         $activity->save();
     }
 }

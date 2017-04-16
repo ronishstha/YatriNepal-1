@@ -29,79 +29,21 @@
                 </div>
                 <div class="row">
                     <div class="best-sell-slider carousel-style-one">
+                        @foreach($bestSell->chunk(2) as $bestSellChunk)
                         <div class="col-md-3">
-
+                            @foreach($bestSellChunk as $bestSells)
                             <div class="hover-effect">
                                 <div class="box-hover">
-                                    <a href="#">
+                                    <a href="{{ route('details',['slug'=>$bestSells->slug]) }}">
                                         <img src="img/sell/6.jpg" alt="">
-                                        <span>Adventure camping</span>
+                                        <span>{{ $bestSells->title }}</span>
                                     </a>
                                 </div>
                             </div>
-                            <div class="hover-effect">
-                                <div class="box-hover">
-                                    <a href="#" class="no-margin">
-                                        <img src="img/sell/8.jpg" alt="">
-                                        <span>Winter camping</span>
-                                    </a>
-                                </div>
-                            </div>
+                          @endforeach
                         </div>
-                        <div class="col-md-3">
-                            <div class="hover-effect">
-                                <div class="box-hover">
-                                    <a href="#">
-                                        <img src="img/sell/7.jpg" alt="">
-                                        <span>Hiking trails</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="hover-effect">
-                                <div class="box-hover">
-                                    <a href="#" class="no-margin">
-                                        <img src="img/sell/9.jpg" alt="">
-                                        <span>Mountyain huts</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="hover-effect">
-                                <div class="box-hover">
-                                    <a href="#">
-                                        <img src="img/sell/8.jpg" alt="">
-                                        <span>Winter camping</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="hover-effect">
-                                <div class="box-hover">
-                                    <a href="#" class="no-margin">
-                                        <img src="img/sell/1.jpg" alt="">
-                                        <span>Rail trip</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="hover-effect">
-                                <div class="box-hover">
-                                    <a href="#">
-                                        <img src="img/sell/9.jpg" alt="">
-                                        <span>Mountain huts</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="hover-effect">
-                                <div class="box-hover">
-                                    <a href="#" class="no-margin">
-                                        <img src="img/sell/2.jpg" alt="">
-                                        <span>Brazil trip</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
+                        @endforeach
                     </div>
                 </div>
             </div>
